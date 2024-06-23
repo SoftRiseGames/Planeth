@@ -3,8 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Love : MonoBehaviour
 {
-    private bool isLoveClick;
+    private Vector3 lastMousePosition;
 
+    private bool isLoveClick;
+    private bool isMouseMoving;
+    
+    [SerializeField] float threshold;
+    private void Update()
+    {
+        Vector3 currentMousePosition = Input.mousePosition;
+        if (Mathf.Abs(currentMousePosition.x - lastMousePosition.x) > threshold || Mathf.Abs(currentMousePosition.y - lastMousePosition.y) > threshold)
+        {
+            isMouseMoving = true;
+            lastMousePosition = currentMousePosition;
+        }
+        else
+        {
+            isMouseMoving = false;
+            return;
+        }
+    }
     private void OnEnable()
     {
         Controlls.isLoveClick += ClickCheck;
@@ -17,11 +35,8 @@ public class Love : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        if (isLoveClick)
-            InvokeRepeating(nameof(LovePoint), 0f, 1f);
-        else if (!isLoveClick)
-            CancelInvoke(nameof(LovePoint));
-
+        if (isLoveClick && isMouseMoving)
+            LovePoint();
     }
     private void OnMouseUp()
     {
@@ -34,6 +49,7 @@ public class Love : MonoBehaviour
     {
         Debug.Log("love");
     }
+ 
 
 
 }
