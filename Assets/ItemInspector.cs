@@ -25,15 +25,17 @@ public class ItemInspector : OdinEditorWindow
     public static void showWindow()
     {
         GetWindow<ItemInspector>().Show();
-        //GetWindow<ItemInspector>().StartingVariebles();
     }
+
+    
+    [Button("Set Variebles")]
     public void StartingVariebles()
     {
         AnchorXaxisUpdated = AnchorXaxisBasePoint;
-        AnchorYaxisUpdated = AnchoryaxisBasePoint; 
+        AnchorYaxisUpdated = AnchoryaxisBasePoint;
         Debug.Log("Deðiþkenler Dengelendi");
     }
-    
+
 
     [Button("Debugger")]
     void DebuggerButton()
