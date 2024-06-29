@@ -8,8 +8,6 @@ using System.Linq;
 
 public class ItemInspector : OdinEditorWindow
 {
-    private const string PreferencesKey = "ItemInspector.Data";
-
     [TableList]
     [SerializeField] List<So_Clothe_Settings> Clothes;
 
@@ -18,10 +16,13 @@ public class ItemInspector : OdinEditorWindow
     private float AnchorXaxisUpdated;
     private float AnchorYaxisUpdated;
     [HorizontalGroup("Second Float group")]
-    [SerializeField] float MaxWidthLimit, LowerDistance;
+    [SerializeField] int MaxWidthLimit;
+    [SerializeField] float LowerDistance;
 
+    [SerializeField] string saveName;
+    [SerializeField] string jsonLoadName;
+    [SerializeField] GameObject CanvasUnderObject;
     [SerializeField] GameObject instantiateGameobject;
-
     [MenuItem("Game Settings/Main Menu")]
     public static void ShowWindow()
     {
@@ -37,28 +38,31 @@ public class ItemInspector : OdinEditorWindow
             AnchoryaxisBasePoint = AnchoryaxisBasePoint,
             DistanceBetweenObject = DistanceBetweenObject,
             MaxWidthLimit = MaxWidthLimit,
-            LowerDistance = LowerDistance
+            LowerDistance = LowerDistance,
+            CanvasUnderObject = CanvasUnderObject
+            
         };
 
         var serializedData = JsonUtility.ToJson(data);
-        EditorPrefs.SetString(PreferencesKey, serializedData);
+        string filePath = Application.dataPath + "/MenuSavingObjects/" + saveName+".json";
+        System.IO.File.WriteAllText(filePath, serializedData);
+        Debug.Log("save");
     }
 
     [Button("Load All Data")]
     private void LoadData()
     {
-        if (EditorPrefs.HasKey(PreferencesKey))
-        {
-            var serializedData = EditorPrefs.GetString(PreferencesKey);
-            var data = JsonUtility.FromJson<ItemInspectorData>(serializedData);
+        string dataReading = System.IO.File.ReadAllText(Application.dataPath + "/MenuSavingObjects/" + jsonLoadName + ".json");
+        var data = JsonUtility.FromJson<ItemInspectorData>(dataReading);
 
-            Clothes = data.Clothes;
-            AnchorXaxisBasePoint = data.AnchorXaxisBasePoint;
-            AnchoryaxisBasePoint = data.AnchoryaxisBasePoint;
-            DistanceBetweenObject = data.DistanceBetweenObject;
-            MaxWidthLimit = data.MaxWidthLimit;
-            LowerDistance = data.LowerDistance;
-        }
+        Clothes = data.Clothes;
+        AnchorXaxisBasePoint = data.AnchorXaxisBasePoint;
+        AnchoryaxisBasePoint = data.AnchoryaxisBasePoint;
+        DistanceBetweenObject = data.DistanceBetweenObject;
+        MaxWidthLimit = data.MaxWidthLimit;
+        LowerDistance = data.LowerDistance;
+        CanvasUnderObject = data.CanvasUnderObject;
+        
     }
     [Button("Set Variables")]
     public void StartingVariables()
@@ -80,7 +84,9 @@ public class ItemInspector : OdinEditorWindow
                 AnchorYaxisUpdated = AnchorYaxisUpdated - LowerDistance;
                 AnchorXaxisUpdated = AnchorXaxisBasePoint;
             }
-            Instantiate(instantiateGameobject, new Vector2(AnchorXaxisUpdated, AnchorYaxisUpdated), Quaternion.identity);
+            RectTransform rectTransform = instantiateGameobject.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(AnchorXaxisUpdated, AnchorYaxisUpdated);
+            Instantiate(instantiateGameobject,CanvasUnderObject.transform);
             AnchorXaxisUpdated = AnchorXaxisUpdated + DistanceBetweenObject;
         }
     }
@@ -95,7 +101,8 @@ public class ItemInspector : OdinEditorWindow
         public float AnchorXaxisBasePoint;
         public float AnchoryaxisBasePoint;
         public float DistanceBetweenObject;
-        public float MaxWidthLimit;
+        public int MaxWidthLimit;
         public float LowerDistance;
+        public GameObject CanvasUnderObject;
     }
 }
