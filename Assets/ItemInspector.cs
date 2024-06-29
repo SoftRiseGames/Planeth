@@ -5,18 +5,16 @@ using UnityEditor;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using System.Linq;
-
+using UnityEngine.UI;
 public class ItemInspector : OdinEditorWindow
 {
     [TableList]
     [SerializeField] List<So_Clothe_Settings> Clothes;
 
     [HorizontalGroup("Float Group")]
-    [SerializeField] float AnchorXaxisBasePoint, AnchoryaxisBasePoint, DistanceBetweenObject;
-    private float AnchorXaxisUpdated;
-    private float AnchorYaxisUpdated;
+    [SerializeField] float CellCount, DistanceBetweenObject;
     [HorizontalGroup("Second Float group")]
-    [SerializeField] int MaxWidthLimit;
+
     [SerializeField] float LowerDistance;
 
     [SerializeField] string saveName;
@@ -34,10 +32,8 @@ public class ItemInspector : OdinEditorWindow
         var data = new ItemInspectorData
         {
             Clothes = Clothes,
-            AnchorXaxisBasePoint = AnchorXaxisBasePoint,
-            AnchoryaxisBasePoint = AnchoryaxisBasePoint,
+          
             DistanceBetweenObject = DistanceBetweenObject,
-            MaxWidthLimit = MaxWidthLimit,
             LowerDistance = LowerDistance,
             CanvasUnderObject = CanvasUnderObject
             
@@ -56,38 +52,34 @@ public class ItemInspector : OdinEditorWindow
         var data = JsonUtility.FromJson<ItemInspectorData>(dataReading);
 
         Clothes = data.Clothes;
-        AnchorXaxisBasePoint = data.AnchorXaxisBasePoint;
-        AnchoryaxisBasePoint = data.AnchoryaxisBasePoint;
+        CellCount = data.CellCount;
         DistanceBetweenObject = data.DistanceBetweenObject;
-        MaxWidthLimit = data.MaxWidthLimit;
         LowerDistance = data.LowerDistance;
         CanvasUnderObject = data.CanvasUnderObject;
         
-    }
-    [Button("Set Variables")]
-    public void StartingVariables()
-    {
-        AnchorXaxisUpdated = AnchorXaxisBasePoint;
-        AnchorYaxisUpdated = AnchoryaxisBasePoint;
-        Debug.Log("Variables Balanced");
     }
 
     [Button("Olustur")]
     void DebuggerButton()
     {
         Debug.Log("Objeler olusuturuldu");
+       
+        var GridControl = CanvasUnderObject.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform.GetComponent<GridLayoutGroup>();
+        RectTransform rectTransform = CanvasUnderObject.transform.GetChild(0).GetComponent<RectTransform>();
+
+        float right = rectTransform.anchoredPosition.x + (rectTransform.sizeDelta.x * (1 - rectTransform.pivot.x))-(GridControl.spacing.x*(CellCount-1));
+        float height = rectTransform.sizeDelta.y;
+
+
+        var CellSpaceAllObject = GridControl.spacing.x * (CellCount - 1);
+        var CellSize = right / CellCount;
+      
+        GridControl.cellSize = new Vector2(CellSize, CellSize);
+     
+
         for (int i = 0; i < Clothes.Count; i++)
         {
-            if (i / MaxWidthLimit - 1 == 0)
-            {
-                Debug.Log(i / MaxWidthLimit - 1);
-                AnchorYaxisUpdated = AnchorYaxisUpdated - LowerDistance;
-                AnchorXaxisUpdated = AnchorXaxisBasePoint;
-            }
-            RectTransform rectTransform = instantiateGameobject.GetComponent<RectTransform>();
-            rectTransform.anchoredPosition = new Vector2(AnchorXaxisUpdated, AnchorYaxisUpdated);
-            Instantiate(instantiateGameobject,CanvasUnderObject.transform);
-            AnchorXaxisUpdated = AnchorXaxisUpdated + DistanceBetweenObject;
+            Instantiate(instantiateGameobject,CanvasUnderObject.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
         }
     }
 
@@ -98,10 +90,8 @@ public class ItemInspector : OdinEditorWindow
     private class ItemInspectorData
     {
         public List<So_Clothe_Settings> Clothes;
-        public float AnchorXaxisBasePoint;
-        public float AnchoryaxisBasePoint;
+        public float CellCount;
         public float DistanceBetweenObject;
-        public int MaxWidthLimit;
         public float LowerDistance;
         public GameObject CanvasUnderObject;
     }
