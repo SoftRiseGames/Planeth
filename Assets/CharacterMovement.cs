@@ -74,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
             if (!attackChecker)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                gameObject.transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), new Vector2(mousePosition.x, transform.position.y), 8 * Time.deltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), new Vector2(mousePosition.x, transform.position.y), 5 * Time.deltaTime);
             }
         }
         if (isAttack)
