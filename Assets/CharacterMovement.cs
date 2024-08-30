@@ -24,12 +24,14 @@ public class CharacterMovement : MonoBehaviour
         Controlls.IsActionCharacter += CharacterIsMove;
         Controlls.IsNonActionCharater += CharacterIsNonMove;
         CharacterZeroMovement += ZeroMovement;
+        CharacterDedectionControl.isEnemyCollide += isPositionReset;
     }
     private void OnDisable()
     {
         Controlls.IsActionCharacter -= CharacterIsMove;
         Controlls.IsNonActionCharater -= CharacterIsNonMove;
         CharacterZeroMovement -= ZeroMovement;
+        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
     }
 
     void CharacterIsMove()
@@ -54,14 +56,7 @@ public class CharacterMovement : MonoBehaviour
         isAttack = false;
         isMove = false;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name =="enemy")
-        {
-            Debug.Log("collide");
-            CharacterPositionReset(500);
-        }
-    }
+   
     private void Update()
     {
         CharacterMove();
@@ -96,6 +91,5 @@ public class CharacterMovement : MonoBehaviour
         attackChecker = false;
         
     }
-    
-
+    void isPositionReset() => CharacterPositionReset(500);
 }

@@ -12,6 +12,7 @@ public class Controlls : MonoBehaviour
     public static Action isNext;
     public static Action IsActionCharacter;
     public static Action IsNonActionCharater;
+    public static Action CharacterZeroMovement;
    
     void MouseZeroActions()
     {
@@ -26,9 +27,7 @@ public class Controlls : MonoBehaviour
         RaycastCheck();
         MouseZeroActions();
     }
-    public void isPreviousControl() => isPrevious?.Invoke();
-    public void isNextControl() => isNext?.Invoke();
-    
+   
     void RaycastCheck()
     {
         /*
