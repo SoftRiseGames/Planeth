@@ -14,8 +14,8 @@ public class So_Clothe_Settings : ScriptableObject
 }
 public enum enumType
 {
-    Hand,
-    Helmet,
-    armor,
-    shoes
+    Hand = 0,
+    Helmet = 1,
+    armor = 2,
+    shoes = 3
 }
