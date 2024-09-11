@@ -9,13 +9,17 @@ public class CharacterDedectionControl : MonoBehaviour
     public static Action isEnemyIncreasinghealth;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "enemy")
+        if (collision.gameObject.name == "enemy" || collision.gameObject.name == "fallground")
         {
             isEnemyCollide?.Invoke();
-            if (collision.gameObject.GetComponent<Enemies>().isDamagable == false)
-                isEnemyDecreasinghealth?.Invoke();
-            else
-                return;
+            if(collision.gameObject.name == "enemy")
+            {
+                if (collision.gameObject.GetComponent<Enemies>().isDamagable == false)
+                    isEnemyDecreasinghealth?.Invoke();
+                else
+                    return;
+            }
+          
         }
     }
 }

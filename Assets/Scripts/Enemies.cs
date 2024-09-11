@@ -12,12 +12,14 @@ public class Enemies : MonoBehaviour
     [SerializeField] EnemyType enemyTypes;
     public bool isDamagable;
 
-    void Start()
+    private void OnEnable()
     {
-       
-        InvokeRepeating("EnemyWaitStatus", 0,6);
+        InvokeRepeating("EnemyWaitStatus", 0, 6);
     }
-
+    private void OnDisable()
+    {
+        CancelInvoke("EnemyWaitStatus");
+    }
     async void EnemyWaitStatus()
     {
         if(enemyTypes == EnemyType.EnemyType2)
