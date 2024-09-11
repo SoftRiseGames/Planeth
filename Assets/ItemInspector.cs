@@ -33,7 +33,7 @@ public class ItemInspector : OdinEditorWindow
     [SerializeField] string saveName;
 
     [HorizontalGroup("Second Save Group", 0.5f)]
-    [LabelText("JSON Load Name")] // "JSON Load Name" is now correctly under "Save/Load Settings"
+    [LabelText("JSON Load Name")] 
     [SerializeField] string jsonLoadName;
 
     [Space(10)]
