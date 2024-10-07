@@ -15,12 +15,16 @@ public class WearableMaker : OdinEditorWindow
     [Title("Boosters")]
     public int CoinBooster;
     public int ClickBooster;
-   
-    [Title("ObjectNameAndLoad")]
+
+    [Title("ObjectName")]
     public string ObjectName;
+
+    [Title("ObjectFileNameAndFileLoad")]
+    public string ObjectFileName;
     public string ObjectLoad;
     [Title("price")]
     public int price;
+
 
  
     [Title("Object Types")]
@@ -47,7 +51,7 @@ public class WearableMaker : OdinEditorWindow
         newWearable.CoinBooster = CoinBooster;
         newWearable.ClickBooster = ClickBooster;
         newWearable.price = price;
-
+        newWearable.ObjectName = ObjectName;
         int enumtyper = ((int)WearableType);
         newWearable.WearableType = (enumType)enumtyper;
 
@@ -58,7 +62,7 @@ public class WearableMaker : OdinEditorWindow
             AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Wearables");
         }
 
-        string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{path}/"+ObjectName+".asset");
+        string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{path}/"+ObjectFileName+".asset");
         AssetDatabase.CreateAsset(newWearable, assetPath);
         AssetDatabase.SaveAssets();
 
@@ -94,6 +98,7 @@ public class WearableMaker : OdinEditorWindow
                     CoinBooster = loadedWearable.CoinBooster;
                     ClickBooster = loadedWearable.ClickBooster;
                     price = loadedWearable.price;
+                    ObjectName = loadedWearable.ObjectName;
                     int enumtyper = ((int)loadedWearable.WearableType);
                     WearableType = (enumType)enumtyper;
 
@@ -121,6 +126,7 @@ public class WearableMaker : OdinEditorWindow
         loadedWearable.CoinBooster = CoinBooster;
         loadedWearable.ClickBooster = ClickBooster;
         loadedWearable.price = price;
+        loadedWearable.ObjectName = ObjectName;
         int enumtyper = ((int)WearableType);
         loadedWearable.WearableType = (enumType)enumtyper;
     }

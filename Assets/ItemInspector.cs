@@ -18,7 +18,7 @@ public class ItemInspector : OdinEditorWindow
     [SerializeField] float CellCount;
 
     [HorizontalGroup("Second Float Group", 0.5f, LabelWidth = 150)]
-    [LabelText("Distance Between Objects")] // "Distance Between Objects" now properly under "Grid Settings"
+    [LabelText("Distance Between Objects")] 
     [SerializeField] float DistanceBetweenObject;
 
     [Space(10)]
@@ -92,21 +92,25 @@ public class ItemInspector : OdinEditorWindow
         }
 
         Debug.Log("Instantiating objects...");
-
+       
         var gridControl = CanvasUnderObject.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<GridLayoutGroup>();
         RectTransform rectTransform = CanvasUnderObject.transform.GetChild(0).GetComponent<RectTransform>();
 
-        float right = rectTransform.anchoredPosition.x + (rectTransform.sizeDelta.x * (1 - rectTransform.pivot.x)) - (gridControl.spacing.x * (CellCount - 1));
-        float height = rectTransform.sizeDelta.y;
+        float paddingHorizontal = gridControl.padding.left + gridControl.padding.right;
+        float availableWidth = rectTransform.rect.width - paddingHorizontal - (gridControl.spacing.x * (CellCount - 1));
 
-        float cellSpaceAllObject = gridControl.spacing.x * (CellCount - 1);
-        float cellSize = right / CellCount;
+
+        float cellSize = availableWidth / CellCount;
 
         gridControl.cellSize = new Vector2(cellSize, cellSize);
-
         for (int i = 0; i < Clothes.Count; i++)
         {
-            Instantiate(instantiateGameobject, CanvasUnderObject.transform.GetChild(0).GetChild(0).GetChild(0));
+            
+            var instantiatedObject = Instantiate(instantiateGameobject, CanvasUnderObject.transform.GetChild(0).GetChild(0).GetChild(0));
+            var marketingButtonOptions = instantiatedObject.GetComponent<MarketingButtonOptions>();
+            marketingButtonOptions.ButtonSettingObject = null;
+            marketingButtonOptions.ButtonSettingObject = Clothes[i];
+            marketingButtonOptions.ReCreate();
         }
 
         Debug.Log("Objects instantiated successfully!");

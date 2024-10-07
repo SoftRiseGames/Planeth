@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
   m_Name: a
   m_EditorClassIdentifier: 
-  Background: {fileID: 0}
-  Skin: {fileID: 0}
+  Background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  Skin: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  ObjectName: Keskin Kask
   CoinBooster: 396
   ClickBooster: 0
+  price: 0
+  WearableType: 0
