@@ -2536,6 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93d6864383fd642bd4838e24423a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WhichMainMenu: menuScreens
 --- !u!1 &1682172341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,6 +2792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93d6864383fd642bd4838e24423a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WhichMainMenu: menuScreens
 --- !u!1 &1978400164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93d6864383fd642bd4838e24423a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WhichMainMenu: menuScreens
 --- !u!1001 &4325137879416387571
 PrefabInstance:
   m_ObjectHideFlags: 0

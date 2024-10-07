@@ -5,5 +5,4 @@ using UnityEngine;
 public class StoreLister : MonoBehaviour
 {
     public List<GameObject> StoreMenus;
-   
 }
