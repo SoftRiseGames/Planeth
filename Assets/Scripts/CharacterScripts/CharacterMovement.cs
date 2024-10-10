@@ -12,26 +12,29 @@ public class CharacterMovement : MonoBehaviour
     bool isReposition;
     bool attackChecker;
     float defaultYPosition;
-
+    Rigidbody2D rb;
     public static Action CharacterZeroMovement;
     private void Start()
     {
         defaultYPosition = gameObject.transform.position.y;
-        Debug.Log(defaultYPosition);
+        CharacterFall();
+        rb = GetComponent<Rigidbody2D>();
+        
     }
     private void OnEnable()
     {
         Controlls.IsActionCharacter += CharacterIsMove;
         Controlls.IsNonActionCharater += CharacterIsNonMove;
-        CharacterZeroMovement += ZeroMovement;
         CharacterDedectionControl.isEnemyCollide += isPositionReset;
+        CharacterZeroMovement += ZeroMovement;
     }
     private void OnDisable()
     {
         Controlls.IsActionCharacter -= CharacterIsMove;
         Controlls.IsNonActionCharater -= CharacterIsNonMove;
-        CharacterZeroMovement -= ZeroMovement;
         CharacterDedectionControl.isEnemyCollide -= isPositionReset;
+        CharacterZeroMovement -= ZeroMovement;
+       
     }
 
     void CharacterIsMove()
@@ -40,21 +43,24 @@ public class CharacterMovement : MonoBehaviour
         {
             isMove = true;
             isAttack = false;
+            CharacterFall();
         }
     }
 
     void CharacterIsNonMove()
     {
-        if (!isReposition && !isAttack) 
+        if (!isReposition) 
         {
             isMove = false;
             isAttack = true;
+            characterNonFall();
         }
     }
     void ZeroMovement()
     {
         isAttack = false;
         isMove = false;
+        characterNonFall();
     }
    
     private void Update()
@@ -69,16 +75,14 @@ public class CharacterMovement : MonoBehaviour
             if (!attackChecker)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                gameObject.transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), new Vector2(mousePosition.x, transform.position.y), 5 * Time.deltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, gameObject.transform.position.y), new Vector2(mousePosition.x, gameObject.transform.position.y), 1 * Time.fixedDeltaTime);
             }
         }
         if (isAttack)
         {
             attackChecker = true;
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y-29*Time.deltaTime);
+            gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 7* Time.fixedDeltaTime);
         }
-        Debug.Log(attackChecker);
-
     }
     
     async void CharacterPositionReset(int delayTime)
@@ -89,7 +93,21 @@ public class CharacterMovement : MonoBehaviour
         await Task.Delay(delayTime);
         isReposition = false;
         attackChecker = false;
-        
+        characterNonFall();
+        CharacterFall();
     }
-    void isPositionReset() => CharacterPositionReset(500);
+    void isPositionReset()
+    {
+        CharacterPositionReset(500);
+    }
+
+    async void CharacterFall()
+    {
+        await Task.Delay(3000);
+        rb.gravityScale = .2f;
+    }
+    void characterNonFall()
+    {
+        rb.gravityScale = 0;
+    }
 }
