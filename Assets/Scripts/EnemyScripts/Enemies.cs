@@ -11,7 +11,7 @@ public class Enemies : MonoBehaviour
 {
     [SerializeField] EnemyType enemyTypes;
     public bool isDamagable;
-
+    
     private void OnEnable()
     {
         InvokeRepeating("EnemyWaitStatus", 0, 6);

@@ -13,14 +13,16 @@ public class CharacterMovement : MonoBehaviour
     bool attackChecker;
     float defaultYPosition;
     Rigidbody2D rb;
+    Coroutine fallCoroutine; 
     public static Action CharacterZeroMovement;
+
     private void Start()
     {
         defaultYPosition = gameObject.transform.position.y;
-        CharacterFall();
         rb = GetComponent<Rigidbody2D>();
-        
+        StartCharacterFall(); 
     }
+
     private void OnEnable()
     {
         Controlls.IsActionCharacter += CharacterIsMove;
@@ -28,46 +30,47 @@ public class CharacterMovement : MonoBehaviour
         CharacterDedectionControl.isEnemyCollide += isPositionReset;
         CharacterZeroMovement += ZeroMovement;
     }
+
     private void OnDisable()
     {
         Controlls.IsActionCharacter -= CharacterIsMove;
         Controlls.IsNonActionCharater -= CharacterIsNonMove;
         CharacterDedectionControl.isEnemyCollide -= isPositionReset;
         CharacterZeroMovement -= ZeroMovement;
-       
     }
 
     void CharacterIsMove()
     {
-        if (!isReposition && !isAttack) 
+        if (!isReposition && !isAttack)
         {
             isMove = true;
             isAttack = false;
-            CharacterFall();
+            StartCharacterFall(); 
         }
     }
 
     void CharacterIsNonMove()
     {
-        if (!isReposition) 
+        if (!isReposition)
         {
             isMove = false;
             isAttack = true;
             characterNonFall();
         }
     }
+
     void ZeroMovement()
     {
         isAttack = false;
         isMove = false;
         characterNonFall();
     }
-   
+
     private void Update()
     {
         CharacterMove();
     }
-   
+
     void CharacterMove()
     {
         if (isMove)
@@ -75,39 +78,61 @@ public class CharacterMovement : MonoBehaviour
             if (!attackChecker)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                gameObject.transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, gameObject.transform.position.y), new Vector2(mousePosition.x, gameObject.transform.position.y), 1 * Time.fixedDeltaTime);
+                gameObject.transform.position = Vector2.MoveTowards(
+                    new Vector2(transform.position.x, gameObject.transform.position.y),
+                    new Vector2(mousePosition.x, gameObject.transform.position.y),
+                    1 * Time.fixedDeltaTime
+                );
             }
         }
+
         if (isAttack)
         {
             attackChecker = true;
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 7* Time.fixedDeltaTime);
+            gameObject.transform.position = new Vector2(
+                gameObject.transform.position.x,
+                gameObject.transform.position.y - 7 * Time.fixedDeltaTime
+            );
         }
     }
-    
+
     async void CharacterPositionReset(int delayTime)
     {
         isReposition = true;
         CharacterZeroMovement?.Invoke();
-        gameObject.transform.DOMoveY(defaultYPosition, .5f);
+        gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => StartCharacterFall());
         await Task.Delay(delayTime);
         isReposition = false;
         attackChecker = false;
-        characterNonFall();
-        CharacterFall();
     }
+
     void isPositionReset()
     {
         CharacterPositionReset(500);
     }
 
-    async void CharacterFall()
+    void StartCharacterFall()
     {
-        await Task.Delay(3000);
-        rb.gravityScale = .2f;
+        if (fallCoroutine == null)
+        {
+            fallCoroutine = StartCoroutine(StartFallCoroutine());
+        }
     }
+
+    IEnumerator StartFallCoroutine()
+    {
+        yield return new WaitForSeconds(3f);
+        rb.gravityScale = 0.5f;
+    }
+
     void characterNonFall()
     {
-        rb.gravityScale = 0;
+        if (fallCoroutine != null)
+        {
+            StopCoroutine(fallCoroutine);
+            fallCoroutine = null; 
+        }
+        rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero; 
     }
 }
