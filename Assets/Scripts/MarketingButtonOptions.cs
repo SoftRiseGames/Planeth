@@ -10,14 +10,30 @@ public class MarketingButtonOptions : MonoBehaviour
     [SerializeField] TextMeshProUGUI ObjectName;
     [SerializeField] Image background;
     [SerializeField] Image Skin;
-    
-    
+    [SerializeField] SO_ValueMaker GameTotalCoin;
+
+    private void Start()
+    {
+        if (!ButtonSettingObject.isTaken)
+            GetComponent<Button>().interactable = true;
+        else
+            GetComponent<Button>().interactable = false;
+    }
+
     public void ReCreate()
     {
         background.sprite = ButtonSettingObject.Background;
         Skin.sprite = ButtonSettingObject.Skin;
         ObjectName.text = ButtonSettingObject.ObjectName;
     }
-   
-   
+   public void TakeItem()
+    {
+        if (GameTotalCoin.Amount >= ButtonSettingObject.price)
+        {
+            ButtonSettingObject.isTaken = true;
+            GetComponent<Button>().interactable = false;
+        }
+            
+    }
+
 }

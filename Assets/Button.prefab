@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 917505927828486950}
   - component: {fileID: 8972405897468255722}
   - component: {fileID: 7659265967228218037}
+  - component: {fileID: 6246590227619389989}
   - component: {fileID: 2926238618274656587}
   m_Layer: 5
   m_Name: Button
@@ -331,7 +332,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8972405897468255722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2926238618274656587}
+        m_TargetAssemblyTypeName: MarketingButtonOptions, Assembly-CSharp
+        m_MethodName: TakeItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6246590227619389989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7844862630151277674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddabd482b810a47498a34c1b71603238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2926238618274656587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,3 +373,4 @@ MonoBehaviour:
   ObjectName: {fileID: 1215138291660718906}
   background: {fileID: 8972405897468255722}
   Skin: {fileID: 9029255687278725513}
+  GameTotalCoin: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}

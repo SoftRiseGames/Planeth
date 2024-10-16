@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
-  m_Name: Clothe 1
+  m_Script: {fileID: 11500000, guid: 642dc213e4ff39e4e8e8efa0835425c5, type: 3}
+  m_Name: GameTakenTotalValue
   m_EditorClassIdentifier: 
-  Background: {fileID: 0}
-  Skin: {fileID: 0}
-  ObjectName: gelismis_kilic
-  CoinBooster: 0
-  ClickBooster: 0
-  price: 0
-  WearableType: 0
-  isTaken: 0
+  _amount: 100

@@ -18,7 +18,7 @@ public class ItemInspector : OdinEditorWindow
     [SerializeField] float CellCount;
 
     [HorizontalGroup("Second Float Group", 0.5f, LabelWidth = 150)]
-    [LabelText("Distance Between Objects")] 
+    [LabelText("Distance Between Objects")]
     [SerializeField] float DistanceBetweenObject;
 
     [Space(10)]
@@ -33,7 +33,7 @@ public class ItemInspector : OdinEditorWindow
     [SerializeField] string saveName;
 
     [HorizontalGroup("Second Save Group", 0.5f)]
-    [LabelText("JSON Load Name")] 
+    [LabelText("JSON Load Name")]
     [SerializeField] string jsonLoadName;
 
     [Space(10)]
@@ -92,7 +92,7 @@ public class ItemInspector : OdinEditorWindow
         }
 
         Debug.Log("Instantiating objects...");
-       
+
         var gridControl = CanvasUnderObject.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<GridLayoutGroup>();
         RectTransform rectTransform = CanvasUnderObject.transform.GetChild(0).GetComponent<RectTransform>();
 
@@ -105,7 +105,7 @@ public class ItemInspector : OdinEditorWindow
         gridControl.cellSize = new Vector2(cellSize, cellSize);
         for (int i = 0; i < Clothes.Count; i++)
         {
-            
+
             var instantiatedObject = Instantiate(instantiateGameobject, CanvasUnderObject.transform.GetChild(0).GetChild(0).GetChild(0));
             var marketingButtonOptions = instantiatedObject.GetComponent<MarketingButtonOptions>();
             marketingButtonOptions.ButtonSettingObject = null;

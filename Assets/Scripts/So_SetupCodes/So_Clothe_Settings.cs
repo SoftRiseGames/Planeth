@@ -10,6 +10,7 @@ public class So_Clothe_Settings : ScriptableObject
     public int ClickBooster;
     public int price;
     public enumType WearableType;
+    public bool isTaken;
 
 
 }

@@ -7,7 +7,6 @@ public class MainMenuTopButtonScripts : MonoBehaviour
     [SerializeField] string WhichMainMenu;
     public void GameStoreMenuActivator()
     {
-       
        GameObject menuLists = GameObject.Find(WhichMainMenu);
         foreach (GameObject menuListObjects in menuLists.GetComponent<StoreLister>().StoreMenus)
             menuListObjects.SetActive(false);
