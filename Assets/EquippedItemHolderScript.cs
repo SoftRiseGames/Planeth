@@ -5,6 +5,7 @@ using UnityEngine;
 public class EquippedItemHolderScript : MonoBehaviour
 {
     public EquippedItem EquippedItem;
+    [SerializeField] List<GameObject> EquippedItemMenu;
     void Start()
     {
         

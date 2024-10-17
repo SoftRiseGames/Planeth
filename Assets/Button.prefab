@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonSettingObject: {fileID: 0}
+  ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
   ObjectName: {fileID: 1215138291660718906}
   background: {fileID: 8972405897468255722}
   Skin: {fileID: 9029255687278725513}

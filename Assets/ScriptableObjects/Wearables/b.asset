@@ -19,3 +19,4 @@ MonoBehaviour:
   ClickBooster: 0
   price: 0
   WearableType: 1
+  isTaken: 0
