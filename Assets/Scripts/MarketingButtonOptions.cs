@@ -7,6 +7,7 @@ public class MarketingButtonOptions : MonoBehaviour
 {
     
     public So_Clothe_Settings ButtonSettingObject;
+    [SerializeField] EquippedItemHolderScript ItemHolder;
     [SerializeField] TextMeshProUGUI ObjectName;
     [SerializeField] Image background;
     [SerializeField] Image Skin;
@@ -32,6 +33,7 @@ public class MarketingButtonOptions : MonoBehaviour
         {
             ButtonSettingObject.isTaken = true;
             GetComponent<Button>().interactable = false;
+            ItemHolder.EquippedItem.EquippedData.Add(ButtonSettingObject);
         }
             
     }
