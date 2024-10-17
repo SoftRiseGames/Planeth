@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
   m_Name: Clothe
   m_EditorClassIdentifier: 
-  clothe: {fileID: 0}
+  Background: {fileID: 0}
+  Skin: {fileID: 0}
+  ObjectName: 
   CoinBooster: 0
   ClickBooster: 0
+  price: 0
+  WearableType: 3
+  isTaken: 0

@@ -6,14 +6,31 @@ public class EquippedItemHolderScript : MonoBehaviour
 {
     public EquippedItem EquippedItem;
     [SerializeField] List<GameObject> EquippedItemMenu;
-    void Start()
-    {
-        
-    }
+    [SerializeField] GameObject EquipButton;
+    private int EquippedItemCount;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("TotalEquippedItem"))
+            EquippedItemCount = PlayerPrefs.GetInt("TotalEquippedItem");
+        else
+            EquippedItemCount = -1;
+        
+        EquipItemList();
+    }
+    void EquipItemList()
     {
         
+        EquippedItemHolderScript equippeditems = GetComponent<EquippedItemHolderScript>();
+        for (int i = 0; i < equippeditems.EquippedItem.EquippedData.Count; i++)
+        {
+            if (i > EquippedItemCount)
+            {
+                Instantiate(EquipButton, EquippedItemMenu[0].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+            }
+        }
+            
+        EquippedItemCount = equippeditems.EquippedItem.EquippedData.Count-1;
+        PlayerPrefs.SetInt("TotalEquippedItem", EquippedItemCount);
     }
 }

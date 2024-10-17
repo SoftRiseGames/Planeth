@@ -154,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquippedItem: {fileID: 11400000, guid: b929d78673d6e2d4a85418b34cd8f9db, type: 2}
   EquippedItemMenu: []
+  EquipButton: {fileID: 0}
+  EquippedItemCount: 0
 --- !u!4 &366675658
 Transform:
   m_ObjectHideFlags: 0
@@ -1847,6 +1849,8 @@ MonoBehaviour:
   - {fileID: 8409764123422153640}
   - {fileID: 2839908273698885888}
   - {fileID: 7863058441482996452}
+  EquipButton: {fileID: 8438025995495982740, guid: 94f1098cef1fbff4cb6ebed5a9753dc7, type: 3}
+  EquippedItemCount: 0
 --- !u!1 &7863058441482996452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1875,7 +1879,7 @@ GameObject:
   - component: {fileID: 6173320561351424260}
   - component: {fileID: 5491940476200498903}
   m_Layer: 5
-  m_Name: EuqippedItemBackground
+  m_Name: EquippedItemBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
