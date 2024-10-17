@@ -18,6 +18,11 @@ public class EquippedItemHolderScript : MonoBehaviour
         
         EquipItemList();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+            EquipItemList();
+    }
     void EquipItemList()
     {
         
