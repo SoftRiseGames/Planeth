@@ -731,10 +731,10 @@ RectTransform:
   - {fileID: 1833020900}
   m_Father: {fileID: 86690380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.5, y: -562.5}
-  m_SizeDelta: {x: 375, y: 375}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361911509
 MonoBehaviour:
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonSettingObject: {fileID: 11400000, guid: 9cc25856de05b0b4794013bda1e20497, type: 2}
-  ItemHolder: {fileID: 0}
+  ItemHolder: {fileID: 366675657}
   ObjectName: {fileID: 1942953077}
   background: {fileID: 1361911512}
   Skin: {fileID: 1833020901}
@@ -897,10 +897,10 @@ RectTransform:
   - {fileID: 1157886757}
   m_Father: {fileID: 86690380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 187.5, y: -187.5}
-  m_SizeDelta: {x: 375, y: 375}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1368710089
 MonoBehaviour:
@@ -1566,10 +1566,10 @@ RectTransform:
   - {fileID: 386440790}
   m_Father: {fileID: 86690380}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 562.5, y: -187.5}
-  m_SizeDelta: {x: 375, y: 375}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2095165935
 MonoBehaviour:
@@ -1584,7 +1584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ButtonSettingObject: {fileID: 11400000, guid: e809baa1a2d950e49bc76619bcef341d, type: 2}
-  ItemHolder: {fileID: 0}
+  ItemHolder: {fileID: 366675657}
   ObjectName: {fileID: 2009466852}
   background: {fileID: 2095165938}
   Skin: {fileID: 386440791}
