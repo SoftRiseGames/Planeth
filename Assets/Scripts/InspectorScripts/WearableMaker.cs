@@ -1,3 +1,5 @@
+
+#if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -131,3 +133,4 @@ public class WearableMaker : OdinEditorWindow
         loadedWearable.WearableType = (enumType)enumtyper;
     }
 }
+#endif

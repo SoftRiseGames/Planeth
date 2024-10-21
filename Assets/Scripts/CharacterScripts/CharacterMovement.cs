@@ -122,7 +122,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator StartFallCoroutine()
     {
         yield return new WaitForSeconds(3f);
-        rb.gravityScale = 0.5f;
+        rb.gravityScale = 3f;
     }
 
     void characterNonFall()

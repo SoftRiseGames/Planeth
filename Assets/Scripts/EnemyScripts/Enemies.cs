@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
-public enum EnemyType
-{
-    EnemyType1,
-    EnemyType2
-}
+using System;
+
 public class Enemies : MonoBehaviour
 {
-    [SerializeField] EnemyType enemyTypes;
+    [SerializeField] SO_Enemytypes enemies; 
     public bool isDamagable;
-    
+    public static Action isSpawn;
+    private int health;
+
+    private void Start()
+    {
+        isSpawn?.Invoke();
+        gameObject.GetComponent<SpriteRenderer>().sprite = enemies.enemySprite;
+        health = enemies.EnemyHealth;
+    }
     private void OnEnable()
     {
         InvokeRepeating("EnemyWaitStatus", 0, 6);
@@ -22,7 +27,7 @@ public class Enemies : MonoBehaviour
     }
     async void EnemyWaitStatus()
     {
-        if(enemyTypes == EnemyType.EnemyType2)
+        if(enemies.enemy == EnemyType.EnemyType2)
         {
             isDamagable = true;
             GetComponent<SpriteRenderer>().color = Color.white;
