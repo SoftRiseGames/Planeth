@@ -27,16 +27,18 @@ public class EquippedItemHolderScript : MonoBehaviour
     }
     void EquipItemList()
     {
-        
+
         EquippedItemHolderScript equippeditems = GetComponent<EquippedItemHolderScript>();
+
         for (int i = 0; i < equippeditems.EquippedItem.EquippedData.Count; i++)
         {
             if (i > EquippedItemCount)
             {
-                Instantiate(EquipButton, EquippedItemMenu[0].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[0].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
             }
         }
-            
-        EquippedItemCount = equippeditems.EquippedItem.EquippedData.Count-1;
+
+        EquippedItemCount = equippeditems.EquippedItem.EquippedData.Count - 1;
     }
 }

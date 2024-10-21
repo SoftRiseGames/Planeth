@@ -11,6 +11,6 @@ public class So_Clothe_Settings : ScriptableObject
     public int price;
     public enumType WearableType;
     public bool isTaken;
-
+    public bool isWear;
 
 }
