@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.IO;
 
 public class MarketingButtonOptions : MonoBehaviour
 {
@@ -14,22 +13,15 @@ public class MarketingButtonOptions : MonoBehaviour
     [SerializeField] Image Skin;
     [SerializeField] SO_ValueMaker GameTotalCoin;
 
-    private string savePath;
+    private ScriptableObjectDataManager dataManager;
 
     private void Start()
     {
-        
-        savePath = Application.persistentDataPath + "/buttonData.json";
+        dataManager = ScriptableObjectDataManager.Instance; // Singleton üzerinden eriþim
+        // Butonun interaktif olup olmadýðýný kontrol et
+        GetComponent<Button>().interactable = !ButtonSettingObject.isTaken;
 
-        
-        LoadData();
-
-        
-        if (!ButtonSettingObject.isTaken)
-            GetComponent<Button>().interactable = true;
-        else
-            GetComponent<Button>().interactable = false;
-
+        // Arka plan ve metinleri oluþtur
         ReCreate();
     }
 
@@ -44,70 +36,23 @@ public class MarketingButtonOptions : MonoBehaviour
     {
         if (GameTotalCoin.Amount >= ButtonSettingObject.price)
         {
-            
+            // Ürün alýndý
             ButtonSettingObject.isTaken = true;
-            GameTotalCoin.Amount = GameTotalCoin.Amount - ButtonSettingObject.price;
+            GameTotalCoin.Amount -= ButtonSettingObject.price;
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(ButtonSettingObject);
 
-            
-            SaveData();
+            // Veriyi kaydet
+            dataManager.SaveData(ButtonSettingObject, GameTotalCoin, ItemHolder);
         }
     }
+
     private void Update()
     {
+        // Eðer R tuþuna basýlýrsa tüm veriyi sýfýrla
         if (Input.GetKeyDown(KeyCode.R))
         {
-            RestartData();
+            dataManager.RestartData(ButtonSettingObject, GameTotalCoin, ItemHolder);
         }
-    }
-    private void RestartData()
-    {
-        ButtonData data = new ButtonData
-        {
-            isTaken = false,
-            totalCoins = 100,
-            equippedItems = null
-        };
-
-        string jsonData = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, jsonData);
-    }
-    private void SaveData()
-    {
-        ButtonData data = new ButtonData
-        {
-            isTaken = ButtonSettingObject.isTaken,
-            totalCoins = GameTotalCoin.Amount,
-            equippedItems = ItemHolder.EquippedData 
-        };
-
-        string jsonData = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, jsonData);
-
-        
-    }
-
-    private void LoadData()
-    {
-        if (File.Exists(savePath))
-        {
-            string jsonData = File.ReadAllText(savePath);
-            ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
-
-            
-            ButtonSettingObject.isTaken = data.isTaken;
-            GameTotalCoin.Amount = data.totalCoins;
-            ItemHolder.EquippedData = data.equippedItems; 
-        }
-    }
-
-    
-    [System.Serializable]
-    public class ButtonData
-    {
-        public bool isTaken;
-        public int totalCoins;
-        public List<So_Clothe_Settings> equippedItems; 
     }
 }
