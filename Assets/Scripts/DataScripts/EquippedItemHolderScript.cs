@@ -11,11 +11,13 @@ public class EquippedItemHolderScript : MonoBehaviour
 
     private void Start()
     {
+        /*
         if (PlayerPrefs.HasKey("TotalEquippedItem"))
             EquippedItemCount = PlayerPrefs.GetInt("TotalEquippedItem");
         else
-            EquippedItemCount = -1;
-        
+            
+        */
+        EquippedItemCount = -1;
         EquipItemList();
     }
     private void Update()
@@ -36,6 +38,5 @@ public class EquippedItemHolderScript : MonoBehaviour
         }
             
         EquippedItemCount = equippeditems.EquippedItem.EquippedData.Count-1;
-        PlayerPrefs.SetInt("TotalEquippedItem", EquippedItemCount);
     }
 }

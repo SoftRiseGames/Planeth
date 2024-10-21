@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 using UnityEngine.UI;
 public class MarketingButtonOptions : MonoBehaviour
 {
-    
+
     public So_Clothe_Settings ButtonSettingObject;
     [SerializeField] EquippedItem ItemHolder;
     [SerializeField] TextMeshProUGUI ObjectName;
@@ -27,15 +28,19 @@ public class MarketingButtonOptions : MonoBehaviour
         Skin.sprite = ButtonSettingObject.Skin;
         ObjectName.text = ButtonSettingObject.ObjectName;
     }
-   public void TakeItem()
+    public void TakeItem()
     {
         if (GameTotalCoin.Amount >= ButtonSettingObject.price)
         {
             ButtonSettingObject.isTaken = true;
+            GameTotalCoin.Amount = GameTotalCoin.Amount - ButtonSettingObject.price;
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(ButtonSettingObject);
+            EditorUtility.SetDirty(GameTotalCoin);
+            EditorUtility.SetDirty(ButtonSettingObject);
+            EditorUtility.SetDirty(ItemHolder);
         }
-            
+
     }
 
 }

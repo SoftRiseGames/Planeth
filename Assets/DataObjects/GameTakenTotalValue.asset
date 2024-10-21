@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642dc213e4ff39e4e8e8efa0835425c5, type: 3}
   m_Name: GameTakenTotalValue
   m_EditorClassIdentifier: 
-  _amount: 100
+  _amount: 0

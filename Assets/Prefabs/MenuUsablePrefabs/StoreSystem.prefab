@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93d6864383fd642bd4838e24423a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhichMainMenu: menuScreens
+  WhichMainMenu: {fileID: 7841349254992151148}
 --- !u!1 &887346482435341455
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93d6864383fd642bd4838e24423a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhichMainMenu: menuScreens
+  WhichMainMenu: {fileID: 7841349254992151148}
 --- !u!1 &4263729015800685188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1444,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf93d6864383fd642bd4838e24423a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WhichMainMenu: menuScreens
+  WhichMainMenu: {fileID: 7841349254992151148}
 --- !u!1 &7563747872126429228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 6173320562282634094}
   - component: {fileID: 5491940475252954301}
   m_Layer: 5
-  m_Name: StoreBackground
+  m_Name: StoreSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

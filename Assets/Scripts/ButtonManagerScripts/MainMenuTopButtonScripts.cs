@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class MainMenuTopButtonScripts : MonoBehaviour
 {
-    [SerializeField] string WhichMainMenu;
+    [SerializeField] GameObject WhichMainMenu;
     public void GameStoreMenuActivator()
     {
 
-       GameObject menuLists = GameObject.Find(WhichMainMenu);
-
-        if(menuLists.tag == "Store")
+        if(WhichMainMenu.tag == "Store")
         {
-            foreach (GameObject menuListObjects in menuLists.GetComponent<StoreLister>().StoreMenus)
+            foreach (GameObject menuListObjects in WhichMainMenu.GetComponent<StoreLister>().StoreMenus)
                 menuListObjects.SetActive(false);
 
-            menuLists.GetComponent<StoreLister>().StoreMenus[int.Parse(gameObject.name)].SetActive(true);
+            WhichMainMenu.GetComponent<StoreLister>().StoreMenus[int.Parse(gameObject.name)].SetActive(true);
             Debug.Log(int.Parse(gameObject.name));
         }
-        else if(menuLists.tag == "EquippedItem")
+        else if(WhichMainMenu.tag == "EquippedItem")
         {
 
         }
