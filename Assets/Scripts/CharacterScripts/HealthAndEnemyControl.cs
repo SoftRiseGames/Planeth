@@ -12,14 +12,16 @@ public class HealthAndEnemyControl : MonoBehaviour
     
     private void OnEnable()
     {
-        CharacterDedectionControl.isEnemyDecreasinghealth += DecrasingHealth;
+        CharacterDedectionControl.isEnemyDecreasingOurhealth += DecrasingHealth;
         CharacterDedectionControl.isEnemyIncreasinghealth += IncreasingHealth;
+        Enemies.isDeath += EnemyDecreaseCount;
         Enemies.isSpawn += EnemyStartCount;
     }
     private void OnDisable()
     {
-        CharacterDedectionControl.isEnemyDecreasinghealth -= DecrasingHealth;
+        CharacterDedectionControl.isEnemyDecreasingOurhealth -= DecrasingHealth;
         CharacterDedectionControl.isEnemyIncreasinghealth -= IncreasingHealth;
+        Enemies.isDeath -= EnemyDecreaseCount;
         Enemies.isSpawn -= EnemyStartCount;
     }
     void IncreasingHealth()

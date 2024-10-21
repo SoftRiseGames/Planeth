@@ -696,7 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: {fileID: 11400000, guid: 193ab14ed97fcad488d549e56135911b, type: 2}
-  isDamagable: 0
+  isDamagable: 1
 --- !u!1 &194800647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1955,7 +1955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies: {fileID: 11400000, guid: 193ab14ed97fcad488d549e56135911b, type: 2}
-  isDamagable: 0
+  isDamagable: 1
 --- !u!1 &991104233
 GameObject:
   m_ObjectHideFlags: 0
@@ -2870,7 +2870,7 @@ Rigidbody2D:
   m_Mass: 0.6525203
   m_LinearDrag: 1
   m_AngularDrag: 1
-  m_GravityScale: 20
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 00794bd70bcdf364481645683058ed8c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -3024,7 +3024,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31051b2674678514a94da888ee08cb14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: {fileID: 11400000, guid: 193ab14ed97fcad488d549e56135911b, type: 2}
+  enemies: {fileID: 11400000, guid: 75576040f115e0d47a37ed085993bca2, type: 2}
   isDamagable: 1
 --- !u!61 &2002078483
 BoxCollider2D:

@@ -9,20 +9,24 @@ public class Enemies : MonoBehaviour
     [SerializeField] SO_Enemytypes enemies; 
     public bool isDamagable;
     public static Action isSpawn;
-    private int health;
+    public static Action isDeath;
+    public int health;
 
     private void Start()
     {
         isSpawn?.Invoke();
+        
         gameObject.GetComponent<SpriteRenderer>().sprite = enemies.enemySprite;
         health = enemies.EnemyHealth;
     }
     private void OnEnable()
     {
+        CharacterDedectionControl.isEnemysDecreasingHealth += DecreaseHealth;
         InvokeRepeating("EnemyWaitStatus", 0, 6);
     }
     private void OnDisable()
     {
+        CharacterDedectionControl.isEnemysDecreasingHealth -= DecreaseHealth;
         CancelInvoke("EnemyWaitStatus");
     }
     async void EnemyWaitStatus()
@@ -36,5 +40,18 @@ public class Enemies : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
-    
+    private void Update()
+    {
+        if(health <= 0)
+        {
+            isDeath?.Invoke();
+            Destroy(this.gameObject);
+        }
+            
+
+    }
+    void DecreaseHealth()
+    {
+        health = health - 1;
+    }
 }

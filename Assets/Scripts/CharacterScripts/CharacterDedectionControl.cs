@@ -5,8 +5,9 @@ using System;
 public class CharacterDedectionControl : MonoBehaviour
 {
     public static Action isEnemyCollide;
-    public static Action isEnemyDecreasinghealth;
+    public static Action isEnemyDecreasingOurhealth;
     public static Action isEnemyIncreasinghealth;
+    public static Action isEnemysDecreasingHealth;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "enemy" || collision.gameObject.name == "fallground")
@@ -15,9 +16,13 @@ public class CharacterDedectionControl : MonoBehaviour
             if(collision.gameObject.name == "enemy")
             {
                 if (collision.gameObject.GetComponent<Enemies>().isDamagable == false)
-                    isEnemyDecreasinghealth?.Invoke();
-                else
-                    return;
+                    isEnemyDecreasingOurhealth?.Invoke();
+                else if (collision.gameObject.GetComponent<Enemies>().isDamagable == true)
+                    collision.gameObject.GetComponent<Enemies>().health = collision.gameObject.GetComponent<Enemies>().health - 1;
+
+
+
+
             }
           
         }
