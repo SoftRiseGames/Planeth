@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System.IO;
 
 public class MarketingButtonOptions : MonoBehaviour
 {
@@ -13,18 +12,16 @@ public class MarketingButtonOptions : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] Image Skin;
     [SerializeField] SO_ValueMaker GameTotalCoin;
-
-    private string savePath;
+    private ScriptableObjectDataManager dataManager;
 
     private void Start()
     {
-        
-        savePath = Application.persistentDataPath + "/buttonData.json";
+        dataManager = FindObjectOfType<ScriptableObjectDataManager>();
 
-        
-        LoadData();
-
-        
+        if (dataManager != null)
+        {
+            dataManager.LoadData(ButtonSettingObject, GameTotalCoin, ItemHolder);
+        }
         if (!ButtonSettingObject.isTaken)
             GetComponent<Button>().interactable = true;
         else
@@ -51,44 +48,10 @@ public class MarketingButtonOptions : MonoBehaviour
             ItemHolder.EquippedData.Add(ButtonSettingObject);
 
             
-            SaveData();
+            if (dataManager != null)
+            {
+                dataManager.SaveData(ButtonSettingObject, GameTotalCoin, ItemHolder);
+            }
         }
-    }
-
-    
-    private void SaveData()
-    {
-        ButtonData data = new ButtonData
-        {
-            isTaken = ButtonSettingObject.isTaken,
-            totalCoins = GameTotalCoin.Amount,
-            equippedItems = ItemHolder.EquippedData 
-        };
-
-        string jsonData = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, jsonData);
-    }
-
-    private void LoadData()
-    {
-        if (File.Exists(savePath))
-        {
-            string jsonData = File.ReadAllText(savePath);
-            ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
-
-            
-            ButtonSettingObject.isTaken = data.isTaken;
-            GameTotalCoin.Amount = data.totalCoins;
-            ItemHolder.EquippedData = data.equippedItems; 
-        }
-    }
-
-    
-    [System.Serializable]
-    public class ButtonData
-    {
-        public bool isTaken;
-        public int totalCoins;
-        public List<So_Clothe_Settings> equippedItems; 
     }
 }
