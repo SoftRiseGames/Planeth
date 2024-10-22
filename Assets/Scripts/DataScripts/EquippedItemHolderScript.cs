@@ -25,6 +25,7 @@ public class EquippedItemHolderScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.K))
             EquipItemList();
     }
+    
     void EquipItemList()
     {
 
@@ -36,6 +37,7 @@ public class EquippedItemHolderScript : MonoBehaviour
             {
                 GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[0].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
                 newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
+               
             }
         }
 

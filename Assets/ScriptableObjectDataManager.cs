@@ -11,23 +11,23 @@ public class ScriptableObjectDataManager : MonoBehaviour
 
     private void Awake()
     {
-        // Singleton kontrolü
+        
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Oyun sahneleri arasýnda nesneyi koru
+            DontDestroyOnLoad(gameObject); 
         }
         else
         {
-            Destroy(gameObject); // Zaten var olan bir instance varsa bu nesneyi yok et
+            Destroy(gameObject); 
         }
 
-        // Persistent data yolunu ayarla
+        
         savePath = Application.persistentDataPath + "/buttonData.json";
     }
 
-    // ScriptableObject verilerini JSON dosyasýna kaydet
-    public void SaveData(So_Clothe_Settings buttonSettingObject, SO_ValueMaker gameTotalCoin, EquippedItem itemHolder)
+    
+    public void SaveObjectTakeData(So_Clothe_Settings buttonSettingObject, SO_ValueMaker gameTotalCoin, EquippedItem itemHolder)
     {
         ButtonData data = new ButtonData
         {
@@ -66,8 +66,36 @@ public class ScriptableObjectDataManager : MonoBehaviour
             string jsonData = File.ReadAllText(savePath);
             ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
 
+            for (int i = 0; i < itemHolder.EquippedData.Count; i++)
+                itemHolder.EquippedData[i].isTaken = data.isTaken;
+
             gameTotalCoin.Amount = data.totalCoins;
             itemHolder.EquippedData = new List<So_Clothe_Settings>(data.equippedItems); // Clone the list to avoid reference issues
+        }
+        else
+        {
+            Debug.Log("Save file not found, loading defaults.");
+        }
+    }
+    public void SaveWearData(So_Clothe_Settings buttonSettingObject)
+    {
+        ButtonData data = new ButtonData
+        {
+            isWear = buttonSettingObject.isWear,
+        };
+
+        string jsonData = JsonUtility.ToJson(data, true);
+        File.WriteAllText(savePath, jsonData);
+        
+    }
+    public void LoadWearData(So_Clothe_Settings buttonSettingObject)
+    {
+        if (File.Exists(savePath))
+        {
+            string jsonData = File.ReadAllText(savePath);
+            ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
+
+            buttonSettingObject.isWear = data.isWear;
         }
         else
         {
@@ -83,7 +111,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         itemHolder.EquippedData.Clear();
 
         // Sýfýrlandýktan sonra JSON dosyasýný güncelle
-        SaveData(buttonSettingObject, gameTotalCoin, itemHolder);
+        SaveObjectTakeData(buttonSettingObject, gameTotalCoin, itemHolder);
     }
 
     // ScriptableObject verileri için kullanýlan veri sýnýfý
@@ -91,6 +119,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
     public class ButtonData
     {
         public bool isTaken;
+        public bool isWear;
         public int totalCoins;
         public List<So_Clothe_Settings> equippedItems;
     }

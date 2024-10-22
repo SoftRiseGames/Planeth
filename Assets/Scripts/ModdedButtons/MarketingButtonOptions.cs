@@ -18,13 +18,19 @@ public class MarketingButtonOptions : MonoBehaviour
     private void Start()
     {
         dataManager = ScriptableObjectDataManager.Instance; // Singleton üzerinden eriþim
-        // Butonun interaktif olup olmadýðýný kontrol et
-        GetComponent<Button>().interactable = !ButtonSettingObject.isTaken;
-
+        ifTake();
         // Arka plan ve metinleri oluþtur
         ReCreate();
     }
-
+    void ifTake()
+    {
+        if (ButtonSettingObject.isTaken == true)
+        {
+            Debug.Log("alýndý");
+            gameObject.GetComponent<Button>().interactable = false;
+        }
+        
+    }
     public void ReCreate()
     {
         background.sprite = ButtonSettingObject.Background;
@@ -41,9 +47,8 @@ public class MarketingButtonOptions : MonoBehaviour
             GameTotalCoin.Amount -= ButtonSettingObject.price;
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(ButtonSettingObject);
-
             // Veriyi kaydet
-            dataManager.SaveData(ButtonSettingObject, GameTotalCoin, ItemHolder);
+            dataManager.SaveObjectTakeData(ButtonSettingObject, GameTotalCoin, ItemHolder);
         }
     }
 

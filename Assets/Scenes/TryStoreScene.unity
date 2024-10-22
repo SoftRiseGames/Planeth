@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &366675656
+--- !u!1 &667968436
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,40 +131,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 366675658}
-  - component: {fileID: 366675657}
+  - component: {fileID: 667968438}
+  - component: {fileID: 667968437}
   m_Layer: 0
-  m_Name: EquippedItemHolder
+  m_Name: ScriptableObjectData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &366675657
+--- !u!114 &667968437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366675656}
+  m_GameObject: {fileID: 667968436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9be03c0f88cb147bc64825074511ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 9140d52f257286b458937b3ff46558a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EquippedItem: {fileID: 11400000, guid: b929d78673d6e2d4a85418b34cd8f9db, type: 2}
-  EquippedItemMenu: []
-  EquipButton: {fileID: 0}
---- !u!4 &366675658
+--- !u!4 &667968438
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366675656}
+  m_GameObject: {fileID: 667968436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 128.23524, y: 188.05629, z: -1.2780215}
+  m_LocalPosition: {x: 18.02362, y: 2.057949, z: -0.940178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -440,6 +437,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 942761038}
     m_Modifications:
+    - target: {fileID: 3047632560616288490, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047632560616288490, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047632560616288490, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047632560616288490, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047632560616288490, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3047632560616288490, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4168144048258623398, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -529,7 +550,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4181754088631706123, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
@@ -544,5 +566,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1605372116}
   - {fileID: 1593020564}
-  - {fileID: 366675658}
   - {fileID: 942761038}
+  - {fileID: 667968438}
