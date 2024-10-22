@@ -31,13 +31,13 @@ public class ScriptableObjectDataManager : MonoBehaviour
         //
     }
 
-    public ButtonDataList buttonDataList = new ButtonDataList();
+    ButtonDataList buttonDataList = new ButtonDataList();
     CurrencyData currencyData = new CurrencyData();
     EquippedLister equippedLister = new EquippedLister();
 
 
    
-    [System.Serializable]
+
     public class ButtonData
     {
         public string isName;
@@ -55,7 +55,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         public int Amount;
     }
 
-    [System.Serializable]
+
     public class ButtonDataList
     {
         public List<ButtonData> buttonDatas = new List<ButtonData>(); // Diziyi List'e çevirdik
@@ -96,7 +96,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         
         string ItemDatas = JsonUtility.ToJson(buttonDataList,true);
         string CurrencyDatas = JsonUtility.ToJson(currencyData);
-        string EquippedDatas = JsonUtility.ToJson(equippedLister);
+        string EquippedDatas = JsonUtility.ToJson(equippedLister,true);
         File.WriteAllText(savePath, ItemDatas);
         File.WriteAllText(CoinSavePath, CurrencyDatas);
         File.WriteAllText(EquippedItemDataPath, EquippedDatas);

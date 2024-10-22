@@ -1,1 +1,85 @@
-{"EquippedData":[{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484},{"instanceID":25546},{"instanceID":25484}]}
+{
+    "EquippedData": [
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        },
+        {
+            "instanceID": 25546
+        },
+        {
+            "instanceID": 25484
+        }
+    ]
+}
