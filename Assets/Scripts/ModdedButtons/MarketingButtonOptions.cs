@@ -12,19 +12,27 @@ public class MarketingButtonOptions : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] Image Skin;
     [SerializeField] SO_ValueMaker GameTotalCoin;
+    public bool isTaken;
 
-    private ScriptableObjectDataManager dataManager;
-
+    private void Awake()
+    {
+        //ScriptableObjectDataManager.Instance.LoadData(gameObject);
+    }
     private void Start()
     {
-        dataManager = ScriptableObjectDataManager.Instance; // Singleton üzerinden eriþim
+       
         ifTake();
         // Arka plan ve metinleri oluþtur
         ReCreate();
     }
+    private void Update()
+    {
+        if (ButtonSettingObject.isTaken)
+            isTaken = true;
+    }
     void ifTake()
     {
-        if (ButtonSettingObject.isTaken == true)
+        if (isTaken == true)
         {
             Debug.Log("alýndý");
             gameObject.GetComponent<Button>().interactable = false;
@@ -42,22 +50,15 @@ public class MarketingButtonOptions : MonoBehaviour
     {
         if (GameTotalCoin.Amount >= ButtonSettingObject.price)
         {
-            // Ürün alýndý
-            ButtonSettingObject.isTaken = true;
+            
+            this.ButtonSettingObject.isTaken = true;
             GameTotalCoin.Amount -= ButtonSettingObject.price;
             GetComponent<Button>().interactable = false;
-            ItemHolder.EquippedData.Add(ButtonSettingObject);
-            // Veriyi kaydet
-            dataManager.SaveObjectTakeData(ButtonSettingObject, GameTotalCoin, ItemHolder);
+            ItemHolder.EquippedData.Add(this.ButtonSettingObject);
+            ScriptableObjectDataManager.Instance.SaveDatas(ButtonSettingObject);
+         
         }
     }
 
-    private void Update()
-    {
-        // Eðer R tuþuna basýlýrsa tüm veriyi sýfýrla
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            dataManager.RestartData(ButtonSettingObject, GameTotalCoin, ItemHolder);
-        }
-    }
+    
 }

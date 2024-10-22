@@ -1,126 +1,119 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.IO;
+using UnityEngine;
 
 public class ScriptableObjectDataManager : MonoBehaviour
 {
     public static ScriptableObjectDataManager Instance { get; private set; }
-
     private string savePath;
+    private string CoinSavePath;
+    private string EquippedItemDataPath;
+    public SO_ValueMaker CoinValue;
+    public EquippedItem ItemHolder;
 
     private void Awake()
     {
-        
+        // Singleton pattern implementation
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
 
-        
-        savePath = Application.persistentDataPath + "/buttonData.json";
+        savePath = Application.dataPath + "/Datas.json";
+        CoinSavePath = Application.dataPath + "/Amounts.json";
+        EquippedItemDataPath = Application.dataPath + "/EquippedItemDataPath.json";
+
+        //
     }
 
-    
-    public void SaveObjectTakeData(So_Clothe_Settings buttonSettingObject, SO_ValueMaker gameTotalCoin, EquippedItem itemHolder)
-    {
-        ButtonData data = new ButtonData
-        {
-            isTaken = buttonSettingObject.isTaken,
-            totalCoins = gameTotalCoin.Amount,
-            equippedItems = new List<So_Clothe_Settings>(itemHolder.EquippedData) // Clone the list to avoid reference issues
-        };
+    public ButtonDataList buttonDataList = new ButtonDataList();
+    CurrencyData currencyData = new CurrencyData();
+    EquippedLister equippedLister = new EquippedLister();
 
-        string jsonData = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, jsonData);
-    }
 
-    // ScriptableObject verilerini JSON dosyasýndan yükle
-    public void LoadData(So_Clothe_Settings buttonSettingObject, SO_ValueMaker gameTotalCoin, EquippedItem itemHolder)
-    {
-        if (File.Exists(savePath))
-        {
-            string jsonData = File.ReadAllText(savePath);
-            ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
-
-            // Veriyi geri yükle
-            buttonSettingObject.isTaken = data.isTaken;
-            gameTotalCoin.Amount = data.totalCoins;
-            itemHolder.EquippedData = new List<So_Clothe_Settings>(data.equippedItems); // Clone the list to avoid reference issues
-        }
-        else
-        {
-            Debug.Log("Save file not found, loading defaults.");
-        }
-    }
-
-    public void StartLoadData(SO_ValueMaker gameTotalCoin, EquippedItem itemHolder)
-    {
-        if (File.Exists(savePath))
-        {
-            string jsonData = File.ReadAllText(savePath);
-            ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
-
-            for (int i = 0; i < itemHolder.EquippedData.Count; i++)
-                itemHolder.EquippedData[i].isTaken = data.isTaken;
-
-            gameTotalCoin.Amount = data.totalCoins;
-            itemHolder.EquippedData = new List<So_Clothe_Settings>(data.equippedItems); // Clone the list to avoid reference issues
-        }
-        else
-        {
-            Debug.Log("Save file not found, loading defaults.");
-        }
-    }
-    public void SaveWearData(So_Clothe_Settings buttonSettingObject)
-    {
-        ButtonData data = new ButtonData
-        {
-            isWear = buttonSettingObject.isWear,
-        };
-
-        string jsonData = JsonUtility.ToJson(data, true);
-        File.WriteAllText(savePath, jsonData);
-        
-    }
-    public void LoadWearData(So_Clothe_Settings buttonSettingObject)
-    {
-        if (File.Exists(savePath))
-        {
-            string jsonData = File.ReadAllText(savePath);
-            ButtonData data = JsonUtility.FromJson<ButtonData>(jsonData);
-
-            buttonSettingObject.isWear = data.isWear;
-        }
-        else
-        {
-            Debug.Log("Save file not found, loading defaults.");
-        }
-    }
-
-    // Tüm verileri sýfýrlama
-    public void RestartData(So_Clothe_Settings buttonSettingObject, SO_ValueMaker gameTotalCoin, EquippedItem itemHolder)
-    {
-        buttonSettingObject.isTaken = false;
-        gameTotalCoin.Amount = 100; // Ýstediðiniz baþlangýç deðeri
-        itemHolder.EquippedData.Clear();
-
-        // Sýfýrlandýktan sonra JSON dosyasýný güncelle
-        SaveObjectTakeData(buttonSettingObject, gameTotalCoin, itemHolder);
-    }
-
-    // ScriptableObject verileri için kullanýlan veri sýnýfý
+   
     [System.Serializable]
     public class ButtonData
     {
+        public string isName;
         public bool isTaken;
         public bool isWear;
-        public int totalCoins;
-        public List<So_Clothe_Settings> equippedItems;
+    }
+
+    public class EquippedLister
+    {
+        public List<So_Clothe_Settings> EquippedData = new List<So_Clothe_Settings>();
+    }
+
+    public class CurrencyData
+    {
+        public int Amount;
+    }
+
+    [System.Serializable]
+    public class ButtonDataList
+    {
+        public List<ButtonData> buttonDatas = new List<ButtonData>(); // Diziyi List'e çevirdik
+    }
+
+   
+
+    // Veriyi kaydetme fonksiyonu
+    public void SaveDatas(So_Clothe_Settings so_Clothe)
+    {
+        LoadData();
+        // Yeni ButtonData oluþtur
+        ButtonData buttonData = new ButtonData
+        {
+            isName = so_Clothe.name,
+            isTaken = so_Clothe.isTaken,
+            isWear = so_Clothe.isWear
+        };
+        buttonDataList.buttonDatas.Add(buttonData);
+        SaveCoinDatas();
+        EquippedDatas();
+        Outputjson();
+    }
+    void SaveCoinDatas()
+    {
+        currencyData.Amount = CoinValue.Amount;
+    }
+    void EquippedDatas()
+    {
+        for(int i = 0; i<ItemHolder.EquippedData.Count; i++)
+        {
+            equippedLister.EquippedData.Add(ItemHolder.EquippedData[i]);
+        }
+    }
+   
+    void Outputjson()
+    {
+        
+        string ItemDatas = JsonUtility.ToJson(buttonDataList,true);
+        string CurrencyDatas = JsonUtility.ToJson(currencyData);
+        string EquippedDatas = JsonUtility.ToJson(equippedLister);
+        File.WriteAllText(savePath, ItemDatas);
+        File.WriteAllText(CoinSavePath, CurrencyDatas);
+        File.WriteAllText(EquippedItemDataPath, EquippedDatas);
+        // File.WriteAllText(CoinSavePath, CurrencyDatas);
+    }
+
+    // JSON dosyasýný okuma fonksiyonu
+    void LoadData()
+    {
+        if (File.Exists(savePath))
+        {
+            string json = File.ReadAllText(savePath);
+            buttonDataList = JsonUtility.FromJson<ButtonDataList>(json); 
+        }
+        else
+        {
+            Debug.Log("No existing data file found, starting fresh.");
+        }
     }
 }

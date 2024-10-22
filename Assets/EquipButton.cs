@@ -6,6 +6,11 @@ public class EquipButton : MonoBehaviour
 {
     public So_Clothe_Settings clothes;
     public EquippedItem equipList;
+
+    private void Awake()
+    {
+        //ScriptableObjectDataManager.Instance.LoadData(gameObject);
+    }
     public void isEquip()
     {
         Debug.Log("clicked");
@@ -17,6 +22,6 @@ public class EquipButton : MonoBehaviour
         }
         */
         clothes.isWear = true;
-        ScriptableObjectDataManager.Instance.SaveWearData(clothes);
+        //ScriptableObjectDataManager.Instance.SaveData(gameObject,this.gameObject.name);
     }
 }

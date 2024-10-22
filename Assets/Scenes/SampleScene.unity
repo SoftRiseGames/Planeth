@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 49562364}
   - component: {fileID: 49562363}
   - component: {fileID: 49562362}
-  - component: {fileID: 49562361}
   - component: {fileID: 49562360}
   m_Layer: 5
   m_Name: Button(Clone)
@@ -160,10 +159,10 @@ RectTransform:
   - {fileID: 1064480418}
   m_Father: {fileID: 1118972795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 562.5, y: -187.5}
+  m_SizeDelta: {x: 375, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49562360
 MonoBehaviour:
@@ -183,18 +182,7 @@ MonoBehaviour:
   background: {fileID: 49562363}
   Skin: {fileID: 1064480419}
   GameTotalCoin: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
---- !u!114 &49562361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 49562358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddabd482b810a47498a34c1b71603238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  isTaken: 0
 --- !u!114 &49562362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,10 +1194,10 @@ RectTransform:
   - {fileID: 1532706170}
   m_Father: {fileID: 1118972795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -187.5}
+  m_SizeDelta: {x: 375, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425865578
 MonoBehaviour:
@@ -1229,6 +1217,7 @@ MonoBehaviour:
   background: {fileID: 425865581}
   Skin: {fileID: 1532706171}
   GameTotalCoin: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  isTaken: 0
 --- !u!114 &425865580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1367,6 +1356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9140d52f257286b458937b3ff46558a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinValue: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
+  buttonDataList:
+    buttonDatas: []
 --- !u!1 &465066440
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,10 +1397,10 @@ RectTransform:
   - {fileID: 300201928}
   m_Father: {fileID: 1118972795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -562.5}
+  m_SizeDelta: {x: 375, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465066442
 MonoBehaviour:
@@ -1427,6 +1420,7 @@ MonoBehaviour:
   background: {fileID: 465066445}
   Skin: {fileID: 300201929}
   GameTotalCoin: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  isTaken: 0
 --- !u!114 &465066443
 MonoBehaviour:
   m_ObjectHideFlags: 0

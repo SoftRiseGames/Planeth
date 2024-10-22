@@ -7,12 +7,10 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] SO_ValueMaker GameTotalCoin;
     [SerializeField] EquippedItem ItemHolder;
-    private ScriptableObjectDataManager dataManager;
-
+   
     private void Awake()
     {
-        dataManager = ScriptableObjectDataManager.Instance;
-        dataManager.StartLoadData(GameTotalCoin, ItemHolder);
+       
     }
   
     private void OnEnable()
@@ -21,7 +19,10 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        LoadWearData();
+        /*
+        if(Input.GetKeyDown(KeyCode.K))
+            ScriptableObjectDataManager.Instance.DeleteAllJsonFiles();
+        */
     }
     void LoadWearData()
     {
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
         foreach(So_Clothe_Settings equippedItem in ItemHolder.EquippedData)
         {
             Debug.Log("kontrol");
-            dataManager.LoadWearData(equippedItem);
         }
         
     }
