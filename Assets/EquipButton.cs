@@ -37,6 +37,7 @@ public class EquipButton : MonoBehaviour
             
             
         clothes.isWear = true;
+        gameObject.GetComponent<Button>().interactable = false;
         ScriptableObjectDataManager.Instance.UpdateSavedData(clothes);
 
     }
