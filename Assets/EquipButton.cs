@@ -22,16 +22,12 @@ public class EquipButton : MonoBehaviour
     public void isEquip()
     {
         Debug.Log("clicked");
-        /*
-        foreach(So_Clothe_Settings takenitems in equipList.EquippedData)
-        {
-            takenitems.isWear = false;
-            ScriptableObjectDataManager.Instance.SaveWearData(takenitems);
-        }
-        */
+       
         foreach (So_Clothe_Settings equippedItem in equipList.EquippedData)
         {
-            equippedItem.isWear = false;
+            if(equippedItem.WearableType == clothes.WearableType)
+                equippedItem.isWear = false;
+
             ScriptableObjectDataManager.Instance.UpdateSavedData(equippedItem);
         }
             

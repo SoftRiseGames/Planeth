@@ -18,11 +18,7 @@ public class CharacterDedectionControl : MonoBehaviour
                 if (collision.gameObject.GetComponent<Enemies>().isDamagable == false)
                     isEnemyDecreasingOurhealth?.Invoke();
                 else if (collision.gameObject.GetComponent<Enemies>().isDamagable == true)
-                    collision.gameObject.GetComponent<Enemies>().health = collision.gameObject.GetComponent<Enemies>().health - 1;
-
-
-
-
+                    collision.gameObject.GetComponent<Enemies>().health = collision.gameObject.GetComponent<Enemies>().health - GetComponent<CharacterDataScripts>().DamagePower;
             }
           
         }

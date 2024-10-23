@@ -159,10 +159,10 @@ RectTransform:
   - {fileID: 1064480418}
   m_Father: {fileID: 1118972795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 562.5, y: -187.5}
+  m_SizeDelta: {x: 375, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &49562360
 MonoBehaviour:
@@ -1194,10 +1194,10 @@ RectTransform:
   - {fileID: 1532706170}
   m_Father: {fileID: 1118972795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -187.5}
+  m_SizeDelta: {x: 375, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &425865578
 MonoBehaviour:
@@ -1397,10 +1397,10 @@ RectTransform:
   - {fileID: 300201928}
   m_Father: {fileID: 1118972795}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 187.5, y: -562.5}
+  m_SizeDelta: {x: 375, y: 375}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465066442
 MonoBehaviour:
@@ -2720,6 +2720,7 @@ GameObject:
   - component: {fileID: 1978400170}
   - component: {fileID: 1978400168}
   - component: {fileID: 1978400169}
+  - component: {fileID: 1978400171}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -2890,6 +2891,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b33c8d9a0d59a74ebe3d58c691889cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1978400171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978400164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d333b3e2f55b924eac566c4a9b903a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamagePower: 0
+  HelmetSprite: {fileID: 0}
+  ArmorSprite: {fileID: 0}
+  ShoesSprite: {fileID: 0}
+  HandSprite: {fileID: 0}
+  EquippedItems: {fileID: 0}
 --- !u!1 &1978433307
 GameObject:
   m_ObjectHideFlags: 0
@@ -3191,7 +3210,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1777726099623050466, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 5651932253255421405, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_Pivot.x
@@ -3279,7 +3298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8158761895949614585, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
