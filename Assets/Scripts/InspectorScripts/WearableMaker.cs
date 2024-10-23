@@ -30,7 +30,7 @@ public class WearableMaker : OdinEditorWindow
 
  
     [Title("Object Types")]
-    public enumType WearableType;
+    public ObjectType WearableType;
 
     private So_Clothe_Settings loadedWearable;
     [MenuItem("Game Settings/WearableMaker")]
@@ -55,7 +55,7 @@ public class WearableMaker : OdinEditorWindow
         newWearable.price = price;
         newWearable.ObjectName = ObjectName;
         int enumtyper = ((int)WearableType);
-        newWearable.WearableType = (enumType)enumtyper;
+        newWearable.WearableType = (ObjectType)enumtyper;
 
         // ScriptableObject'i kaydetme iþlemi
         string path = "Assets/ScriptableObjects/Wearables";
@@ -102,7 +102,7 @@ public class WearableMaker : OdinEditorWindow
                     price = loadedWearable.price;
                     ObjectName = loadedWearable.ObjectName;
                     int enumtyper = ((int)loadedWearable.WearableType);
-                    WearableType = (enumType)enumtyper;
+                    WearableType = (ObjectType)enumtyper;
 
                     Debug.Log($"Wearable '{ObjectLoad}' baþarýyla yüklendi.");
                     Debug.Log(loadedWearable.name);
@@ -130,7 +130,7 @@ public class WearableMaker : OdinEditorWindow
         loadedWearable.price = price;
         loadedWearable.ObjectName = ObjectName;
         int enumtyper = ((int)WearableType);
-        loadedWearable.WearableType = (enumType)enumtyper;
+        loadedWearable.WearableType = (ObjectType)enumtyper;
     }
 }
 #endif

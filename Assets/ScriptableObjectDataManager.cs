@@ -46,6 +46,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         public string isName;
         public bool isTaken;
         public bool isWear;
+        
     }
 
     public class EquippedLister

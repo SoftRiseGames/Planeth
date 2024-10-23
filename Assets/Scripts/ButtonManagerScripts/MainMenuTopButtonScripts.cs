@@ -18,7 +18,10 @@ public class MainMenuTopButtonScripts : MonoBehaviour
         }
         else if(WhichMainMenu.tag == "EquippedItem")
         {
+            foreach (GameObject menuListObjects in WhichMainMenu.GetComponent<EquippedItemHolderScript>().EquippedItemMenu)
+                menuListObjects.SetActive(false);
 
+            WhichMainMenu.GetComponent<EquippedItemHolderScript>().EquippedItemMenu[int.Parse(gameObject.name)].SetActive(true);
         }
         
     }

@@ -9,7 +9,7 @@ public class So_Clothe_Settings : ScriptableObject
     public int CoinBooster;
     public int ClickBooster;
     public int price;
-    public enumType WearableType;
+    public ObjectType WearableType;
     public bool isTaken;
     public bool isWear;
 

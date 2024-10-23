@@ -1,5 +1,5 @@
 
-public enum enumType
+public enum ObjectType
 {
     Hand = 0,
     Helmet = 1,

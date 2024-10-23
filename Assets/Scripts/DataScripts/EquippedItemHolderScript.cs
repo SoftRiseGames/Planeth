@@ -5,7 +5,7 @@ using UnityEngine;
 public class EquippedItemHolderScript : MonoBehaviour
 {
     public EquippedItem EquippedItem;
-    [SerializeField] List<GameObject> EquippedItemMenu;
+    public List<GameObject> EquippedItemMenu;
     [SerializeField] GameObject EquipButton;
     private int EquippedItemCount;
 
@@ -17,6 +17,11 @@ public class EquippedItemHolderScript : MonoBehaviour
         else
             
         */
+        foreach (GameObject EquippedObject in EquippedItemMenu)
+            EquippedObject.SetActive(false);
+
+        EquippedItemMenu[0].SetActive(true);
+
         EquippedItemCount = -1;
         EquipItemList();
     }
@@ -35,9 +40,23 @@ public class EquippedItemHolderScript : MonoBehaviour
         {
             if (i > EquippedItemCount)
             {
-                GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[0].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
-                newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
-               
+                if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.Helmet)
+                {
+                    GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[0].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
+                }
+                else if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.armor)
+                {
+                    GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[1].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
+                }
+                else if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.shoes)
+                {
+                    GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[2].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
+                }
+
+
             }
         }
 

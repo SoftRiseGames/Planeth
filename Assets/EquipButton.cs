@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EquipButton : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class EquipButton : MonoBehaviour
     private void Awake()
     {
         //ScriptableObjectDataManager.Instance.LoadData(gameObject);
+    }
+    private void Start()
+    {
+        if (clothes.isWear == true)
+            gameObject.GetComponent<Button>().interactable = false;
+        else
+            gameObject.GetComponent<Button>().interactable = true;
     }
     public void isEquip()
     {
