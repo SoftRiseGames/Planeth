@@ -1,14 +1,9 @@
 {
     "buttonDatas": [
         {
-            "isName": "a",
-            "isTaken": true,
-            "isWear": false
-        },
-        {
             "isName": "b",
             "isTaken": true,
-            "isWear": false
+            "isWear": true
         },
         {
             "isName": "Alevli_Kilic",

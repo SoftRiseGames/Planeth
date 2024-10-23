@@ -122,7 +122,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
             buttonDataList.buttonDatas.Clear();
 
     }
-
+    
     void LoadEquippedData()
     {
         if (File.Exists(EquippedItemDataPath))
@@ -140,5 +140,26 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             Debug.Log("No existing data file found, starting fresh.");
         }
+    }
+
+    public void UpdateSavedData(So_Clothe_Settings so_Clothe)
+    {
+        
+        LoadData();
+        for (int i = 0; i < buttonDataList.buttonDatas.Count; i++)
+        {
+            if (buttonDataList.buttonDatas[i].isName == so_Clothe.name)
+            {
+                buttonDataList.buttonDatas[i].isTaken = so_Clothe.isTaken;
+                buttonDataList.buttonDatas[i].isWear = so_Clothe.isWear;
+
+                
+                break; 
+            }
+        }
+
+        
+        Outputjson();
+
     }
 }

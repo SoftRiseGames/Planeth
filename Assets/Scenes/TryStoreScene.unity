@@ -152,6 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9140d52f257286b458937b3ff46558a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CoinValue: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
+  buttonDataList:
+    buttonDatas: []
 --- !u!4 &667968438
 Transform:
   m_ObjectHideFlags: 0

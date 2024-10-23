@@ -21,7 +21,15 @@ public class EquipButton : MonoBehaviour
             ScriptableObjectDataManager.Instance.SaveWearData(takenitems);
         }
         */
+        foreach (So_Clothe_Settings equippedItem in equipList.EquippedData)
+        {
+            equippedItem.isWear = false;
+            ScriptableObjectDataManager.Instance.UpdateSavedData(equippedItem);
+        }
+            
+            
         clothes.isWear = true;
-        //ScriptableObjectDataManager.Instance.SaveData(gameObject,this.gameObject.name);
+        ScriptableObjectDataManager.Instance.UpdateSavedData(clothes);
+
     }
 }
