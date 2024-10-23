@@ -12,7 +12,7 @@ public class MarketingButtonOptions : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] Image Skin;
     [SerializeField] SO_ValueMaker GameTotalCoin;
-    public bool isTaken;
+    
 
     private void Awake()
     {
@@ -25,14 +25,10 @@ public class MarketingButtonOptions : MonoBehaviour
         // Arka plan ve metinleri oluþtur
         ReCreate();
     }
-    private void Update()
-    {
-        if (ButtonSettingObject.isTaken)
-            isTaken = true;
-    }
+   
     void ifTake()
     {
-        if (isTaken == true)
+        if (ButtonSettingObject.isTaken == true)
         {
             Debug.Log("alýndý");
             gameObject.GetComponent<Button>().interactable = false;

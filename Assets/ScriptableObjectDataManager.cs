@@ -23,11 +23,11 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+      
         savePath = Application.dataPath + "/Datas.json";
         CoinSavePath = Application.dataPath + "/Amounts.json";
         EquippedItemDataPath = Application.dataPath + "/EquippedItemDataPath.json";
-
+        LoadEquippedData();
         //
     }
 
@@ -88,6 +88,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         for(int i = 0; i<ItemHolder.EquippedData.Count; i++)
         {
             equippedLister.EquippedData.Add(ItemHolder.EquippedData[i]);
+            
         }
     }
    
@@ -116,4 +117,28 @@ public class ScriptableObjectDataManager : MonoBehaviour
             Debug.Log("No existing data file found, starting fresh.");
         }
     }
+
+    void LoadEquippedData()
+    {
+        if (File.Exists(EquippedItemDataPath))
+        {
+            string EquippedData = File.ReadAllText(EquippedItemDataPath);
+            EquippedLister loadedEquippedLister = JsonUtility.FromJson<EquippedLister>(EquippedData);
+
+            
+            ItemHolder.EquippedData.Clear();
+            for (int i = 0; i < loadedEquippedLister.EquippedData.Count; i++)
+            {
+                ItemHolder.EquippedData.Add(loadedEquippedLister.EquippedData[i]);
+                ItemHolder.EquippedData[i].isTaken = true;
+            }
+        }
+        else
+        {
+            Debug.Log("Sahip olunan item yok");
+        }
+
+    }
+
+    
 }
