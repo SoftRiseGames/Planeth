@@ -23,21 +23,24 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-      
+
         savePath = Application.dataPath + "/Datas.json";
         CoinSavePath = Application.dataPath + "/Amounts.json";
         EquippedItemDataPath = Application.dataPath + "/EquippedItemDataPath.json";
-        LoadEquippedData();
+
         //
     }
 
-    ButtonDataList buttonDataList = new ButtonDataList();
+    public ButtonDataList buttonDataList = new ButtonDataList();
     CurrencyData currencyData = new CurrencyData();
     EquippedLister equippedLister = new EquippedLister();
 
+    private void Start()
+    {
+        LoadEquippedData();
+    }
 
-   
-
+    [System.Serializable]
     public class ButtonData
     {
         public string isName;
@@ -55,7 +58,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         public int Amount;
     }
 
-
+    [System.Serializable]
     public class ButtonDataList
     {
         public List<ButtonData> buttonDatas = new List<ButtonData>(); // Diziyi List'e çevirdik
@@ -85,11 +88,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
     }
     void EquippedDatas()
     {
-        for(int i = 0; i<ItemHolder.EquippedData.Count; i++)
-        {
-            equippedLister.EquippedData.Add(ItemHolder.EquippedData[i]);
-            
-        }
+        equippedLister.EquippedData = ItemHolder.EquippedData;
     }
    
     void Outputjson()
@@ -97,13 +96,13 @@ public class ScriptableObjectDataManager : MonoBehaviour
         
         string ItemDatas = JsonUtility.ToJson(buttonDataList,true);
         string CurrencyDatas = JsonUtility.ToJson(currencyData);
-        string EquippedDatas = JsonUtility.ToJson(equippedLister,true);
+        string EquippedDatas = JsonUtility.ToJson(equippedLister);
         File.WriteAllText(savePath, ItemDatas);
         File.WriteAllText(CoinSavePath, CurrencyDatas);
         File.WriteAllText(EquippedItemDataPath, EquippedDatas);
         // File.WriteAllText(CoinSavePath, CurrencyDatas);
     }
-
+   
     // JSON dosyasýný okuma fonksiyonu
     void LoadData()
     {
@@ -117,28 +116,29 @@ public class ScriptableObjectDataManager : MonoBehaviour
             Debug.Log("No existing data file found, starting fresh.");
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+            buttonDataList.buttonDatas.Clear();
+
+    }
 
     void LoadEquippedData()
     {
         if (File.Exists(EquippedItemDataPath))
         {
-            string EquippedData = File.ReadAllText(EquippedItemDataPath);
-            EquippedLister loadedEquippedLister = JsonUtility.FromJson<EquippedLister>(EquippedData);
-
-            
+            string EquipedDataStr = File.ReadAllText(EquippedItemDataPath);
+            equippedLister = JsonUtility.FromJson<EquippedLister>(EquipedDataStr);
             ItemHolder.EquippedData.Clear();
-            for (int i = 0; i < loadedEquippedLister.EquippedData.Count; i++)
+            for(int i = 0; i<equippedLister.EquippedData.Count; i++)
             {
-                ItemHolder.EquippedData.Add(loadedEquippedLister.EquippedData[i]);
+                ItemHolder.EquippedData.Add(equippedLister.EquippedData[i]);
                 ItemHolder.EquippedData[i].isTaken = true;
             }
         }
         else
         {
-            Debug.Log("Sahip olunan item yok");
+            Debug.Log("No existing data file found, starting fresh.");
         }
-
     }
-
-    
 }

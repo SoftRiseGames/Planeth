@@ -1358,6 +1358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CoinValue: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
+  buttonDataList:
+    buttonDatas: []
 --- !u!1 &465066440
 GameObject:
   m_ObjectHideFlags: 0
