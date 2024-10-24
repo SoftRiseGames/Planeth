@@ -1,4 +1,4 @@
-
+ 
 #if UNITY_EDITOR
 using System.Collections;
 using System.Collections.Generic;
@@ -57,11 +57,11 @@ public class WearableMaker : OdinEditorWindow
         int enumtyper = ((int)WearableType);
         newWearable.WearableType = (ObjectType)enumtyper;
 
-        // ScriptableObject'i kaydetme iþlemi
-        string path = "Assets/ScriptableObjects/Wearables";
+        
+        string path = "Assets/Resources/Wearables";
         if (!AssetDatabase.IsValidFolder(path))
         {
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Wearables");
+            AssetDatabase.CreateFolder("Assets/Resources", "Wearables");
         }
 
         string assetPath = AssetDatabase.GenerateUniqueAssetPath($"{path}/"+ObjectFileName+".asset");
@@ -75,8 +75,8 @@ public class WearableMaker : OdinEditorWindow
     [Button("Tara ve Yükle")]
     private void TaraVeYukle()
     {
-        // ScriptableObject dizinini tara
-        string[] guids = AssetDatabase.FindAssets("t:So_Clothe_Settings", new[] { "Assets/ScriptableObjects/Wearables" });
+        
+        string[] guids = AssetDatabase.FindAssets("t:So_Clothe_Settings", new[] { "Assets/Resources/Wearables" });
 
         bool found = false;
 
@@ -84,19 +84,14 @@ public class WearableMaker : OdinEditorWindow
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
             string assetName = System.IO.Path.GetFileNameWithoutExtension(path);
-
-            // Tam olarak ObjectLoad ile ayný ismi kontrol et
+            
             if (assetName == ObjectLoad)
             {
                 loadedWearable = AssetDatabase.LoadAssetAtPath<So_Clothe_Settings>(path);
 
                 if (loadedWearable != null)
                 {
-                    // Yüklenen ScriptableObject'in özelliklerini mevcut pencereye aktar
-                    /*
-                    Background[0] = loadedWearable.Background;
-                    Skin = loadedWearable.Skin;
-                    */
+
                     CoinBooster = loadedWearable.CoinBooster;
                     ClickBooster = loadedWearable.ClickBooster;
                     price = loadedWearable.price;
@@ -107,7 +102,7 @@ public class WearableMaker : OdinEditorWindow
                     Debug.Log($"Wearable '{ObjectLoad}' baþarýyla yüklendi.");
                     Debug.Log(loadedWearable.name);
                     found = true;
-                    break; // Doðru varlýk bulunduðunda döngüyü durdur
+                    break; 
                 }
             }
         }
@@ -121,10 +116,7 @@ public class WearableMaker : OdinEditorWindow
     [Button("Güncelle")]
     private void UpdateObject()
     {
-        /*
-        Background[0] = loadedWearable.Background;
-        Skin = loadedWearable.Skin;
-        */
+      
         loadedWearable.CoinBooster = CoinBooster;
         loadedWearable.ClickBooster = ClickBooster;
         loadedWearable.price = price;

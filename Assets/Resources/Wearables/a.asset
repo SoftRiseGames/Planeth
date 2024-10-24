@@ -19,5 +19,5 @@ MonoBehaviour:
   ClickBooster: 0
   price: 20
   WearableType: 1
-  isTaken: 1
+  isTaken: 0
   isWear: 0
