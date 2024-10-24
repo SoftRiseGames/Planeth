@@ -6,7 +6,7 @@ using System;
 
 public class Enemies : MonoBehaviour
 {
-    [SerializeField] SO_Enemytypes enemies; 
+    public SO_Enemytypes enemies; 
     public bool isDamagable;
     public static Action isSpawn;
     public static Action isDeath;
@@ -22,17 +22,30 @@ public class Enemies : MonoBehaviour
     private void OnEnable()
     {
         CharacterDedectionControl.isEnemysDecreasingHealth += DecreaseHealth;
-        InvokeRepeating("EnemyWaitStatus", 0, 6);
+        /*
+        if (enemies.enemy == EnemyType.EnemyType2)
+            InvokeRepeating("EnemyWaitStatus", 0, 6);
+        else
+            return;
+        */
+
     }
     private void OnDisable()
     {
         CharacterDedectionControl.isEnemysDecreasingHealth -= DecreaseHealth;
-        CancelInvoke("EnemyWaitStatus");
+
+        /*
+        if (enemies.enemy == EnemyType.EnemyType2)
+            CancelInvoke("EnemyWaitStatus");
+        else
+            return;
+        */
     }
     async void EnemyWaitStatus()
     {
         if(enemies.enemy == EnemyType.EnemyType2)
         {
+
             isDamagable = true;
             GetComponent<SpriteRenderer>().color = Color.white;
             await Task.Delay(3000);
@@ -45,6 +58,7 @@ public class Enemies : MonoBehaviour
         if(health <= 0)
         {
             isDeath?.Invoke();
+            Debug.Log("zero");
             Destroy(this.gameObject);
         }
             

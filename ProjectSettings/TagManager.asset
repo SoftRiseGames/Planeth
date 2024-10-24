@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Store
   - EquippedItem
+  - enemy
   layers:
   - Default
   - TransparentFX
