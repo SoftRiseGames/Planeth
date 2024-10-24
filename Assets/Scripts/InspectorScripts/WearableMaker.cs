@@ -12,7 +12,7 @@ using UnityEngine.UI;
 public class WearableMaker : OdinEditorWindow
 {
     [Title("Sprites")]
-    public Sprite[] Background;
+    public Sprite Background;
     public Sprite Skin;
     [Title("Boosters")]
     public int CoinBooster;
@@ -54,6 +54,8 @@ public class WearableMaker : OdinEditorWindow
         newWearable.ClickBooster = ClickBooster;
         newWearable.price = price;
         newWearable.ObjectName = ObjectName;
+        newWearable.Skin = Skin;
+        newWearable.Background = Background;
         int enumtyper = ((int)WearableType);
         newWearable.WearableType = (ObjectType)enumtyper;
 
@@ -96,6 +98,8 @@ public class WearableMaker : OdinEditorWindow
                     ClickBooster = loadedWearable.ClickBooster;
                     price = loadedWearable.price;
                     ObjectName = loadedWearable.ObjectName;
+                    Background = loadedWearable.Background;
+                    Skin = loadedWearable.Skin;
                     int enumtyper = ((int)loadedWearable.WearableType);
                     WearableType = (ObjectType)enumtyper;
 
@@ -121,6 +125,8 @@ public class WearableMaker : OdinEditorWindow
         loadedWearable.ClickBooster = ClickBooster;
         loadedWearable.price = price;
         loadedWearable.ObjectName = ObjectName;
+        loadedWearable.Skin = Skin;
+        loadedWearable.Background = Background;
         int enumtyper = ((int)WearableType);
         loadedWearable.WearableType = (ObjectType)enumtyper;
     }

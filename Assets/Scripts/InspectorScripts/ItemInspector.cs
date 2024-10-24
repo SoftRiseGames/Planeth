@@ -98,6 +98,8 @@ public class ItemInspector : OdinEditorWindow
         RectTransform rectTransform = CanvasUnderObject.transform.GetChild(0).GetComponent<RectTransform>();
 
         float paddingHorizontal = gridControl.padding.left + gridControl.padding.right;
+
+        gridControl.spacing = new Vector2(DistanceBetweenObject, LowerDistance);
         float availableWidth = rectTransform.rect.width - paddingHorizontal - (gridControl.spacing.x * (CellCount - 1));
 
 
