@@ -19,8 +19,9 @@ public class Controlls : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
             IsActionCharacter?.Invoke();
         else if(Input.GetMouseButtonUp(0))
-            IsNonActionCharater?.Invoke();;
+            IsNonActionCharater?.Invoke();
     }
+
 
     private void Update()
     {

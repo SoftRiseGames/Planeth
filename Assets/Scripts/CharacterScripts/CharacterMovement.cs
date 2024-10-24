@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
         CharacterDedectionControl.isEnemyCollide -= isPositionReset;
         CharacterZeroMovement -= ZeroMovement;
     }
-
+    
     void CharacterIsMove()
     {
         if (!isReposition && !isAttack)
@@ -69,6 +69,7 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         CharacterMove();
+        Debug.Log(isMove);
     }
 
     void CharacterMove()
@@ -95,15 +96,26 @@ public class CharacterMovement : MonoBehaviour
             );
         }
     }
-
+    
     async void CharacterPositionReset(int delayTime)
     {
+        bool isMoveChecker = false;
         isReposition = true;
+       
+        if (isMove == true)
+            isMoveChecker = true;
+        else
+            isMoveChecker = false;
+
         CharacterZeroMovement?.Invoke();
         gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => StartCharacterFall());
         await Task.Delay(delayTime);
         isReposition = false;
         attackChecker = false;
+
+        if (isMoveChecker == true)
+            isMove = true;
+        
     }
 
     void isPositionReset()
@@ -121,7 +133,7 @@ public class CharacterMovement : MonoBehaviour
 
     IEnumerator StartFallCoroutine()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         rb.gravityScale = 3f;
     }
 
