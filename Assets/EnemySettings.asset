@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemySettings
   m_EditorClassIdentifier: 
   enemy: 1
-  enemySprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  EnemyHealth: 0
+  enemySprite: {fileID: 7482667652216324306, guid: 35cbd45a4e6a43142845a055ae067cfd, type: 3}
+  EnemyHealth: 1
   EnemyDamageAnim: {fileID: 0}
   EnemySpikeAnim: {fileID: 0}

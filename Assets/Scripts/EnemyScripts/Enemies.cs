@@ -18,6 +18,9 @@ public class Enemies : MonoBehaviour
         
         gameObject.GetComponent<SpriteRenderer>().sprite = enemies.enemySprite;
         health = enemies.EnemyHealth;
+
+        if (enemies.enemy == EnemyType.EnemyType2)
+            InvokeRepeating("EnemyWaitStatus", 0, 6);
     }
     private void OnEnable()
     {
@@ -41,16 +44,22 @@ public class Enemies : MonoBehaviour
             return;
         */
     }
-    async void EnemyWaitStatus()
+
+    IEnumerator EnemySpikeModeWait(int delay)
+    {
+        isDamagable = true;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        yield return new WaitForSeconds(3);
+        isDamagable = false;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
+    }
+     void EnemyWaitStatus()
     {
         if(enemies.enemy == EnemyType.EnemyType2)
         {
+            StartCoroutine(EnemySpikeModeWait(3));
+            
 
-            isDamagable = true;
-            GetComponent<SpriteRenderer>().color = Color.white;
-            await Task.Delay(3000);
-            isDamagable = false;
-            GetComponent<SpriteRenderer>().color = Color.yellow;
         }
     }
     private void Update()
@@ -58,7 +67,6 @@ public class Enemies : MonoBehaviour
         if(health <= 0)
         {
             isDeath?.Invoke();
-            Debug.Log("zero");
             Destroy(this.gameObject);
         }
             
