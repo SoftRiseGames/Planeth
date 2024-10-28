@@ -10,7 +10,8 @@ public class SO_Enemytypes : ScriptableObject
     public Animator EnemyDamageAnim;
     public Animator EnemySpikeAnim;
     public float SpeedForXaxis;
-    public float SpeedForYaxis;
+    public float enemyFallTimer;
+    public float EnemyFallSpeed;
 }
 public enum EnemyType
 {

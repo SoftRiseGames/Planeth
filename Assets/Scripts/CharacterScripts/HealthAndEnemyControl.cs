@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 using UnityEngine.UI;
+
 public class HealthAndEnemyControl : MonoBehaviour
 {
     public List<Image> HealthObjects;
@@ -21,8 +22,12 @@ public class HealthAndEnemyControl : MonoBehaviour
     [Header("Enemy Spawn Options")]
     [SerializeField] int MinEnemyCount;
     [SerializeField] int MaxEnemyCount;
+
     [Header("Spawn Position MinMax Randomizer")]
     [SerializeField] float MaxExtraVertical;
+    [SerializeField] float minDistance = 1.5f;  // Minimum mesafe
+
+    private List<Vector2> usedPositions = new List<Vector2>();
 
     private void OnEnable()
     {
@@ -31,6 +36,7 @@ public class HealthAndEnemyControl : MonoBehaviour
         Enemies.isDeath += EnemyDecreaseCount;
         Enemies.isSpawn += EnemyStartCount;
     }
+
     private void OnDisable()
     {
         CharacterDedectionControl.isEnemyDecreasingOurhealth -= DecrasingHealth;
@@ -38,49 +44,80 @@ public class HealthAndEnemyControl : MonoBehaviour
         Enemies.isDeath -= EnemyDecreaseCount;
         Enemies.isSpawn -= EnemyStartCount;
     }
+
     void IncreasingHealth()
     {
-
+        // Saðlýk artýrma iþlemi için gerekli kodlar
     }
+
     private void Start()
     {
         EnemyReposition();
     }
+
     private void Update()
     {
         if (enemyCount <= 0)
             EnemyReposition();
-
     }
+
     void EnemyStartCount()
     {
-        enemyCount = enemyCount + 1;
+        enemyCount += 1;
     }
+
     void EnemyDecreaseCount()
     {
-        enemyCount = enemyCount - 1;
+        enemyCount -= 1;
     }
+
     void DecrasingHealth()
     {
         if (HealthControl >= 0)
         {
             HealthObjects[HealthControl].gameObject.SetActive(false);
-            HealthControl = HealthControl - 1;
+            HealthControl -= 1;
         }
         else
-            Debug.Log("game Over");
+            Debug.Log("Game Over");
     }
+
     void EnemyReposition()
     {
-        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount+1);
+        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
+        usedPositions.Clear(); 
+
         for (int i = 0; i < HowManyEnemySpawn; i++)
         {
-            GameObject spawningGameobject = Instantiate(enemyObject, new Vector2(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y), Quaternion.identity); 
+            GameObject spawningGameobject = Instantiate(enemyObject, SpawnPoint.position, Quaternion.identity);
+
             int RandomEnemyType = UnityEngine.Random.Range(0, enemytypes.Count);
             spawningGameobject.GetComponent<Enemies>().enemies = enemytypes[RandomEnemyType];
-            int RandomPositioner = UnityEngine.Random.Range(0, PositionPoint.Count);
-            spawningGameobject.transform.DOMove(new Vector2( PositionPoint[RandomPositioner].transform.position.x,UnityEngine.Random.Range(PositionPoint[RandomPositioner].transform.position.y, PositionPoint[RandomPositioner].transform.position.y+MaxExtraVertical)), 1);
 
+            Vector2 spawnPosition = SpawnPoint.position;
+            bool positionFound = false;
+
+            while (!positionFound)
+            {
+                int RandomPositioner = UnityEngine.Random.Range(0, PositionPoint.Count);
+                spawnPosition = new Vector2(
+                    PositionPoint[RandomPositioner].position.x,
+                    UnityEngine.Random.Range(PositionPoint[RandomPositioner].position.y, PositionPoint[RandomPositioner].position.y + MaxExtraVertical)
+                );
+
+                positionFound = true; 
+                foreach (Vector2 usedPos in usedPositions)
+                {
+                    if (Vector2.Distance(usedPos, spawnPosition) < minDistance)
+                    {
+                        positionFound = false; 
+                        break;
+                    }
+                }
+            }
+
+            usedPositions.Add(spawnPosition); 
+            spawningGameobject.transform.DOMove(spawnPosition, 1);
         }
     }
 }
