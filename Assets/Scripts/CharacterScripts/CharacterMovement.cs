@@ -100,7 +100,7 @@ public class CharacterMovement : MonoBehaviour
         }
     }
     
-    async void CharacterPositionReset(int delayTime)
+    void CharacterPositionReset(float delayTime)
     {
         ObjectCollider.enabled = false;
         bool isMoveChecker = false;
@@ -112,19 +112,22 @@ public class CharacterMovement : MonoBehaviour
             isMoveChecker = false;
 
         CharacterZeroMovement?.Invoke();
-        gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => { StartCharacterFall(); ObjectCollider.enabled = true;});
-        await Task.Delay(delayTime);
-        isReposition = false;
-        attackChecker = false;
+        gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => 
+        { 
+            StartCharacterFall(); 
+            ObjectCollider.enabled = true;
+            isReposition = false;
+            attackChecker = false;
 
-        if (isMoveChecker == true)
-            isMove = true;
+            if (isMoveChecker == true)
+                isMove = true;
+        });
         
     }
 
     void isPositionReset()
     {
-        CharacterPositionReset(500);
+        CharacterPositionReset(.5f);
     }
 
     void StartCharacterFall()
