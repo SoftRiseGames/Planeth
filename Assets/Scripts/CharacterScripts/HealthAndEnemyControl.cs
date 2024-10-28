@@ -9,9 +9,11 @@ public class HealthAndEnemyControl : MonoBehaviour
 {
     public List<Image> HealthObjects;
     private int enemyCount = 0;
+    private int StaticEnemyCount = 0;
     int HealthControl = 2;
     public static Action IncreaseHealth;
     public static Action DecreaseHealth;
+    bool LeastOneKill;
 
     [Header("Enemy Setup")]
     [SerializeField] List<SO_Enemytypes> enemytypes;
@@ -57,18 +59,31 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     private void Update()
     {
-        if (enemyCount <= 0)
+        if ((enemyCount <= 0) || ((MaxEnemyCount-enemyCount<=2) && LeastOneKill == true))
+        {
             StartCoroutine(EnemySpawnRoutine());
+        }
+        
+
     }
 
     void EnemyStartCount()
     {
         enemyCount += 1;
+        StaticEnemyCount += 1;
     }
 
     void EnemyDecreaseCount()
     {
         enemyCount -= 1;
+        RandomBeforeZeroEnemy();
+    }
+
+    void RandomBeforeZeroEnemy()
+    {
+        int RandomBeforeEnemy = UnityEngine.Random.Range(0, 101);
+        if (RandomBeforeEnemy > 50)
+            StartCoroutine(EnemySpawnRoutine());
     }
 
     void DecrasingHealth()
@@ -84,7 +99,12 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     IEnumerator EnemySpawnRoutine()
     {
-        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
+        int HowManyEnemySpawn = 0;
+        if (enemyCount<= 0)
+             HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
+        else if(enemyCount<= 2 && enemyCount>0)
+            HowManyEnemySpawn = UnityEngine.Random.Range(0, MaxEnemyCount-enemyCount);
+
         usedPositions.Clear();
 
         for (int i = 0; i < HowManyEnemySpawn; i++)
@@ -117,7 +137,7 @@ public class HealthAndEnemyControl : MonoBehaviour
             }
 
             usedPositions.Add(spawnPosition);
-            spawningGameobject.transform.DOMove(spawnPosition, 1).SetEase(Ease.Flash);
+            spawningGameobject.transform.DOMove(spawnPosition, .5f).SetEase(Ease.Flash);
 
             yield return new WaitForSeconds(0.5f); 
         }

@@ -680,7 +680,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1795593963}
   enemyObject: {fileID: 1180269318588663116, guid: aed13dcabe87edb408017d8b39da6385, type: 3}
   MinEnemyCount: 2
-  MaxEnemyCount: 4
+  MaxEnemyCount: 7
   MaxExtraVertical: 5
   minDistance: 1.5
 --- !u!1 &412174999
@@ -2304,6 +2304,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c69fb6a483626b4e9c14dba93fb5df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MinCooldown: 0.2
+  MaxCooldown: 0.4
 --- !u!61 &1978400168
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -16,14 +16,16 @@ public class CharacterMovement : MonoBehaviour
     Coroutine fallCoroutine;
     BoxCollider2D ObjectCollider;
     public static Action CharacterZeroMovement;
-
+    float Cooldown;
+    [SerializeField] float MinCooldown;
+    [SerializeField] float MaxCooldown;
     private void Start()
     {
         ObjectCollider = GetComponent<BoxCollider2D>();
         defaultYPosition = gameObject.transform.position.y;
         rb = GetComponent<Rigidbody2D>();
-        StartCharacterFall(); 
-        
+        StartCharacterFall();
+
     }
 
     private void OnEnable()
@@ -41,20 +43,20 @@ public class CharacterMovement : MonoBehaviour
         CharacterDedectionControl.isEnemyCollide -= isPositionReset;
         CharacterZeroMovement -= ZeroMovement;
     }
-    
+
     void CharacterIsMove()
     {
         if (!isReposition && !isAttack)
         {
             isMove = true;
             isAttack = false;
-            StartCharacterFall(); 
+            StartCharacterFall();
         }
     }
 
     void CharacterIsNonMove()
     {
-        if (!isReposition)
+        if (!isReposition ||(Cooldown> MinCooldown && Cooldown<MaxCooldown))
         {
             isMove = false;
             isAttack = true;
@@ -72,7 +74,7 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         CharacterMove();
-        
+
     }
 
     void CharacterMove()
@@ -99,30 +101,30 @@ public class CharacterMovement : MonoBehaviour
             );
         }
     }
-    
+
     void CharacterPositionReset(float delayTime)
     {
         ObjectCollider.enabled = false;
         bool isMoveChecker = false;
         isReposition = true;
-       
+
         if (isMove == true)
             isMoveChecker = true;
         else
             isMoveChecker = false;
 
         CharacterZeroMovement?.Invoke();
-        gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => 
-        { 
-            StartCharacterFall(); 
+        gameObject.transform.DOMoveY(defaultYPosition, .3f).OnUpdate(() => { Cooldown += Time.deltaTime; }).OnComplete(() =>
+        {
+            StartCharacterFall();
             ObjectCollider.enabled = true;
             isReposition = false;
             attackChecker = false;
 
             if (isMoveChecker == true)
                 isMove = true;
-        });
-        
+        }).SetEase(Ease.Linear);
+
     }
 
     void isPositionReset()
@@ -149,9 +151,9 @@ public class CharacterMovement : MonoBehaviour
         if (fallCoroutine != null)
         {
             StopCoroutine(fallCoroutine);
-            fallCoroutine = null; 
+            fallCoroutine = null;
         }
         rb.gravityScale = 0f;
-        rb.velocity = Vector2.zero; 
+        rb.velocity = Vector2.zero;
     }
 }
