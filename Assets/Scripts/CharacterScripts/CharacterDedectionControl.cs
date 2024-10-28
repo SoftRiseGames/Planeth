@@ -15,10 +15,12 @@ public class CharacterDedectionControl : MonoBehaviour
             isEnemyCollide?.Invoke();
             if(collision.gameObject.tag == "enemy")
             {
-                if (collision.gameObject.GetComponent<Enemies>().isDamagable == false)
+                if (collision.gameObject.GetComponent<Enemies>().isHasSpike == true)
                     isEnemyDecreasingOurhealth?.Invoke();
                 else if (collision.gameObject.GetComponent<Enemies>().isDamagable == true)
                     collision.gameObject.GetComponent<Enemies>().health = collision.gameObject.GetComponent<Enemies>().health - GetComponent<CharacterDataScripts>().DamagePower;
+                else
+                    return;
             }
           
         }

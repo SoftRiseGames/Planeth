@@ -12,7 +12,8 @@ public class SO_Enemytypes : ScriptableObject
 }
 public enum EnemyType
 {
-    EnemyType1,
-    EnemyType2
+    NoGuard,
+    GuardedAndHasSpikes,
+    OnlyGuarded
 }
 

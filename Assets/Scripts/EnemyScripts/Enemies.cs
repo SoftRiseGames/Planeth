@@ -7,11 +7,11 @@ using System;
 public class Enemies : MonoBehaviour
 {
     public SO_Enemytypes enemies; 
-    public bool isDamagable;
+    public bool isHasSpike;
     public static Action isSpawn;
     public static Action isDeath;
     public int health;
-
+    public bool isDamagable;
     private void Start()
     {
         isSpawn?.Invoke();
@@ -19,7 +19,7 @@ public class Enemies : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = enemies.enemySprite;
         health = enemies.EnemyHealth;
 
-        if (enemies.enemy == EnemyType.EnemyType2)
+        if (enemies.enemy == EnemyType.GuardedAndHasSpikes || enemies.enemy == EnemyType.OnlyGuarded)
             InvokeRepeating("EnemyWaitStatus", 0, 6);
     }
     private void OnEnable()
@@ -36,31 +36,35 @@ public class Enemies : MonoBehaviour
     private void OnDisable()
     {
         CharacterDedectionControl.isEnemysDecreasingHealth -= DecreaseHealth;
-
-        /*
-        if (enemies.enemy == EnemyType.EnemyType2)
-            CancelInvoke("EnemyWaitStatus");
-        else
-            return;
-        */
+        
     }
 
     IEnumerator EnemySpikeModeWait(int delay)
     {
+        isHasSpike = false;
+        GetComponent<SpriteRenderer>().color = Color.white;
+        yield return new WaitForSeconds(delay);
+        isHasSpike = true;
+        GetComponent<SpriteRenderer>().color = Color.yellow;
+    }
+    IEnumerator EnemyDamagableModeWait(int delay)
+    {
         isDamagable = true;
         GetComponent<SpriteRenderer>().color = Color.white;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(delay);
         isDamagable = false;
         GetComponent<SpriteRenderer>().color = Color.yellow;
     }
+    
      void EnemyWaitStatus()
     {
-        if(enemies.enemy == EnemyType.EnemyType2)
+        if (enemies.enemy == EnemyType.GuardedAndHasSpikes)
         {
+            StartCoroutine(EnemyDamagableModeWait(3));
             StartCoroutine(EnemySpikeModeWait(3));
-            
-
         }
+        else if (enemies.enemy == EnemyType.OnlyGuarded)
+            StartCoroutine(EnemyDamagableModeWait(3));
     }
     private void Update()
     {
