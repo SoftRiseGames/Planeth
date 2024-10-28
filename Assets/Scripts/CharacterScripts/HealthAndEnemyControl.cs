@@ -52,13 +52,13 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     private void Start()
     {
-        EnemyReposition();
+        StartCoroutine(EnemySpawnRoutine());
     }
 
     private void Update()
     {
         if (enemyCount <= 0)
-            EnemyReposition();
+            StartCoroutine(EnemySpawnRoutine());
     }
 
     void EnemyStartCount()
@@ -82,10 +82,10 @@ public class HealthAndEnemyControl : MonoBehaviour
             Debug.Log("Game Over");
     }
 
-    void EnemyReposition()
+    IEnumerator EnemySpawnRoutine()
     {
         int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
-        usedPositions.Clear(); 
+        usedPositions.Clear();
 
         for (int i = 0; i < HowManyEnemySpawn; i++)
         {
@@ -105,19 +105,21 @@ public class HealthAndEnemyControl : MonoBehaviour
                     UnityEngine.Random.Range(PositionPoint[RandomPositioner].position.y, PositionPoint[RandomPositioner].position.y + MaxExtraVertical)
                 );
 
-                positionFound = true; 
+                positionFound = true;
                 foreach (Vector2 usedPos in usedPositions)
                 {
                     if (Vector2.Distance(usedPos, spawnPosition) < minDistance)
                     {
-                        positionFound = false; 
+                        positionFound = false;
                         break;
                     }
                 }
             }
 
-            usedPositions.Add(spawnPosition); 
-            spawningGameobject.transform.DOMove(spawnPosition, 1);
+            usedPositions.Add(spawnPosition);
+            spawningGameobject.transform.DOMove(spawnPosition, 1).SetEase(Ease.Flash);
+
+            yield return new WaitForSeconds(0.5f); // Her düþmaný spawn ederken 0.5 saniye bekle
         }
     }
 }
