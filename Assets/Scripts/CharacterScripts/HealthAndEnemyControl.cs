@@ -119,7 +119,7 @@ public class HealthAndEnemyControl : MonoBehaviour
             usedPositions.Add(spawnPosition);
             spawningGameobject.transform.DOMove(spawnPosition, 1).SetEase(Ease.Flash);
 
-            yield return new WaitForSeconds(0.5f); // Her düþmaný spawn ederken 0.5 saniye bekle
+            yield return new WaitForSeconds(0.5f); 
         }
     }
 }

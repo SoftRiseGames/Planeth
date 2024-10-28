@@ -19,6 +19,7 @@ public class Enemies : MonoBehaviour
     float FallTimer;
     float FallSpeed;
 
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -100,8 +101,7 @@ public class Enemies : MonoBehaviour
         
         if (health <= 0)
         {
-            isDeath?.Invoke();
-            Destroy(this.gameObject);
+            Kill();
         }
 
         
@@ -110,7 +110,11 @@ public class Enemies : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, -FallSpeed * Time.fixedDeltaTime);
         }
     }
-
+    void Kill()
+    {
+        isDeath?.Invoke();
+        Destroy(this.gameObject);
+    }
     void FallTimerDecrease()
     {
         FallTimer -= Time.deltaTime;
@@ -119,5 +123,20 @@ public class Enemies : MonoBehaviour
     void DecreaseHealth()
     {
         health -= 1;
+    }
+
+    IEnumerator AutoKill()
+    {
+        yield return new WaitForSeconds(3.5f);
+        Kill();
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "killer")
+        {
+            Kill();
+        }
     }
 }
