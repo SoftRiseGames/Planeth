@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DG.Tweening;
+using UnityEngine.UI;
 public class HealthAndEnemyControl : MonoBehaviour
 {
-    public List<GameObject> HealthObjects;
+    public List<Image> HealthObjects;
     private int enemyCount = 0;
     int HealthControl = 2;
     public static Action IncreaseHealth;
@@ -19,6 +20,9 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     [Header("Enemy Spawn Options")]
     [SerializeField] int MinEnemyCount;
+
+    [Header("Spawn Position MinMax Randomizer")]
+    [SerializeField] float MaxExtraVertical;
 
     private void OnEnable()
     {
@@ -68,13 +72,14 @@ public class HealthAndEnemyControl : MonoBehaviour
     }
     void EnemyReposition()
     {
-        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, PositionPoint.Count);
+        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, PositionPoint.Count+1);
         for (int i = 0; i < HowManyEnemySpawn; i++)
         {
             GameObject spawningGameobject = Instantiate(enemyObject, new Vector2(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y), Quaternion.identity); 
             int RandomEnemyType = UnityEngine.Random.Range(0, enemytypes.Count);
             spawningGameobject.GetComponent<Enemies>().enemies = enemytypes[RandomEnemyType];
-            spawningGameobject.transform.DOMove(new Vector2(PositionPoint[i].transform.position.x,PositionPoint[i].transform.position.y), 1);
+            int RandomPositioner = UnityEngine.Random.Range(0, PositionPoint.Count);
+            spawningGameobject.transform.DOMove(new Vector2( PositionPoint[RandomPositioner].transform.position.x,UnityEngine.Random.Range(PositionPoint[RandomPositioner].transform.position.y, PositionPoint[RandomPositioner].transform.position.y+MaxExtraVertical)), 1);
 
         }
     }
