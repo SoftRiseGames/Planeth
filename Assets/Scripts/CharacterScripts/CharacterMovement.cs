@@ -13,14 +13,17 @@ public class CharacterMovement : MonoBehaviour
     bool attackChecker;
     float defaultYPosition;
     Rigidbody2D rb;
-    Coroutine fallCoroutine; 
+    Coroutine fallCoroutine;
+    BoxCollider2D ObjectCollider;
     public static Action CharacterZeroMovement;
 
     private void Start()
     {
+        ObjectCollider = GetComponent<BoxCollider2D>();
         defaultYPosition = gameObject.transform.position.y;
         rb = GetComponent<Rigidbody2D>();
         StartCharacterFall(); 
+        
     }
 
     private void OnEnable()
@@ -99,6 +102,7 @@ public class CharacterMovement : MonoBehaviour
     
     async void CharacterPositionReset(int delayTime)
     {
+        ObjectCollider.enabled = false;
         bool isMoveChecker = false;
         isReposition = true;
        
@@ -108,7 +112,7 @@ public class CharacterMovement : MonoBehaviour
             isMoveChecker = false;
 
         CharacterZeroMovement?.Invoke();
-        gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => StartCharacterFall());
+        gameObject.transform.DOMoveY(defaultYPosition, .5f).OnComplete(() => { StartCharacterFall(); ObjectCollider.enabled = true;});
         await Task.Delay(delayTime);
         isReposition = false;
         attackChecker = false;

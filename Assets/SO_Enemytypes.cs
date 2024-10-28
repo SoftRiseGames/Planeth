@@ -9,6 +9,8 @@ public class SO_Enemytypes : ScriptableObject
     public int EnemyHealth;
     public Animator EnemyDamageAnim;
     public Animator EnemySpikeAnim;
+    public float SpeedForXaxis;
+    public float SpeedForYaxis;
 }
 public enum EnemyType
 {

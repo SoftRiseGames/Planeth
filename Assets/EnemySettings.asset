@@ -17,3 +17,5 @@ MonoBehaviour:
   EnemyHealth: 1
   EnemyDamageAnim: {fileID: 0}
   EnemySpikeAnim: {fileID: 0}
+  SpeedForXaxis: 100
+  SpeedForYaxis: 0

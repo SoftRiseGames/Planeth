@@ -550,6 +550,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 1795593963}
   enemyObject: {fileID: 1180269318588663116, guid: aed13dcabe87edb408017d8b39da6385, type: 3}
   MinEnemyCount: 2
+  MaxEnemyCount: 4
   MaxExtraVertical: 5
 --- !u!1 &412174999
 GameObject:

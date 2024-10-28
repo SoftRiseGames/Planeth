@@ -20,7 +20,7 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     [Header("Enemy Spawn Options")]
     [SerializeField] int MinEnemyCount;
-
+    [SerializeField] int MaxEnemyCount;
     [Header("Spawn Position MinMax Randomizer")]
     [SerializeField] float MaxExtraVertical;
 
@@ -72,7 +72,7 @@ public class HealthAndEnemyControl : MonoBehaviour
     }
     void EnemyReposition()
     {
-        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, PositionPoint.Count+1);
+        int HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount+1);
         for (int i = 0; i < HowManyEnemySpawn; i++)
         {
             GameObject spawningGameobject = Instantiate(enemyObject, new Vector2(SpawnPoint.transform.position.x, SpawnPoint.transform.position.y), Quaternion.identity); 

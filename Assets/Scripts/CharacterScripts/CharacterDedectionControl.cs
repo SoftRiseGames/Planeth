@@ -8,9 +8,10 @@ public class CharacterDedectionControl : MonoBehaviour
     public static Action isEnemyDecreasingOurhealth;
     public static Action isEnemyIncreasinghealth;
     public static Action isEnemysDecreasingHealth;
+    
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "enemy" || collision.gameObject.name == "fallground")
+        if ((collision.gameObject.tag == "enemy" || collision.gameObject.name == "fallground"))
         {
             isEnemyCollide?.Invoke();
             if(collision.gameObject.tag == "enemy")
