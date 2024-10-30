@@ -10,14 +10,21 @@ public class EquipButton : MonoBehaviour
 
     private void Awake()
     {
-        //ScriptableObjectDataManager.Instance.LoadData(gameObject);
-    }
-    private void Start()
-    {
         if (clothes.isWear == true)
             gameObject.GetComponent<Button>().interactable = false;
         else
             gameObject.GetComponent<Button>().interactable = true;
+        //ScriptableObjectDataManager.Instance.LoadData(gameObject);
+    }
+    private void Start()
+    {
+
+       
+    }
+
+    private void Update()
+    {
+        RefreshButton();
     }
     public void isEquip()
     {
@@ -36,5 +43,11 @@ public class EquipButton : MonoBehaviour
         gameObject.GetComponent<Button>().interactable = false;
         ScriptableObjectDataManager.Instance.UpdateSavedData(clothes);
 
+    }
+
+    void RefreshButton()
+    {
+        if (clothes.isWear == false)
+            gameObject.GetComponent<Button>().interactable = true;
     }
 }

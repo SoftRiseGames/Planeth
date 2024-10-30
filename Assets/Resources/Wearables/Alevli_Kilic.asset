@@ -15,8 +15,7 @@ MonoBehaviour:
   Background: {fileID: 0}
   Skin: {fileID: 0}
   ObjectName: "alevli k\u0131l\u0131\xE7"
-  CoinBooster: 50
-  ClickBooster: 20
+  ObjectDoubler: 0
   price: 0
   WearableType: 2
   isTaken: 0

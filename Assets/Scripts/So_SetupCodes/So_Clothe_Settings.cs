@@ -6,8 +6,7 @@ public class So_Clothe_Settings : ScriptableObject
     public Sprite Background;
     public Sprite Skin;
     public string ObjectName;
-    public int CoinBooster;
-    public int ClickBooster;
+    public int ObjectDoubler;
     public int price;
     public ObjectType WearableType;
     public bool isTaken;

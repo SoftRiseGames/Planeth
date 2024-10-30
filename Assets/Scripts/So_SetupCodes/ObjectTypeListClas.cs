@@ -1,9 +1,10 @@
 
 public enum ObjectType
 {
-    Hand = 0,
+    Glove = 0,
     Helmet = 1,
-    armor = 2,
-    shoes = 3
+    Armor = 2,
+    Shoes = 3,
+    Sword = 4
 }
 

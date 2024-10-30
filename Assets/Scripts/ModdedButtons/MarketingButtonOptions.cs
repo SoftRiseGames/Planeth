@@ -54,7 +54,7 @@ public class MarketingButtonOptions : MonoBehaviour
             GameTotalCoin.Amount -= ButtonSettingObject.price;
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(this.ButtonSettingObject);
-            ScriptableObjectDataManager.Instance.SaveDatas(ButtonSettingObject);
+            ScriptableObjectDataManager.Instance.SaveData(ButtonSettingObject);
          
         }
     }

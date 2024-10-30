@@ -15,8 +15,7 @@ MonoBehaviour:
   Background: {fileID: 0}
   Skin: {fileID: 0}
   ObjectName: deneme
-  CoinBooster: 1
-  ClickBooster: 1
+  ObjectDoubler: 0
   price: 10
   WearableType: 1
   isTaken: 0

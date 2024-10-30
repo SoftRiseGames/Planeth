@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class ScriptableObjectDataManager : MonoBehaviour
 {
-
-
     public ButtonDataList buttonDataList = new ButtonDataList();
-    CurrencyData currencyData = new CurrencyData();
-    EquippedLister equippedLister = new EquippedLister();
+    private CurrencyData currencyData = new CurrencyData();
+    private EquippedLister equippedLister = new EquippedLister();
 
     public static ScriptableObjectDataManager Instance { get; private set; }
     private string savePath;
-    private string CoinSavePath;
-    private string EquippedItemDataPath;
+    private string coinSavePath;
+    private string equippedDataPath;
     public SO_ValueMaker CoinValue;
     public EquippedItem ItemHolder;
 
+    string equippedDataStr;
+    string DataStr;
     private void Awake()
     {
-        savePath = Application.dataPath + "/Datas.json";
-        CoinSavePath = Application.dataPath + "/Amounts.json";
-        EquippedItemDataPath = Application.dataPath + "/EquippedItemDataPath.json";
-        
-        // Singleton pattern implementation
+        savePath = Path.Combine(Application.dataPath, "Datas.json");
+        coinSavePath = Path.Combine(Application.dataPath, "Amounts.json");
+        equippedDataPath = Path.Combine(Application.dataPath, "EquippedItemDataPath.json");
+
         if (Instance == null)
         {
             Instance = this;
@@ -33,12 +32,18 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        LoadEquippedData();
+
+        equippedDataStr = File.ReadAllText(equippedDataPath);
+        equippedLister = JsonUtility.FromJson<EquippedLister>(equippedDataStr);
+
+        DataStr = File.ReadAllText(savePath);
+        buttonDataList = JsonUtility.FromJson<ButtonDataList>(DataStr);
 
     }
+
     private void Start()
     {
-        
+        LoadEquippedData();
     }
 
     [System.Serializable]
@@ -49,9 +54,15 @@ public class ScriptableObjectDataManager : MonoBehaviour
         public bool isWear;
     }
 
+    [System.Serializable]
+    public class ButtonDataList
+    {
+        public List<ButtonData> buttonDatas = new List<ButtonData>();
+    }
+
     public class EquippedLister
     {
-        public List<string> EquippedDataNames = new List<string>(); // Objelerin isimlerini sakla
+        public List<string> EquippedDataNames = new List<string>();
     }
 
     public class CurrencyData
@@ -59,55 +70,40 @@ public class ScriptableObjectDataManager : MonoBehaviour
         public int Amount;
     }
 
-    [System.Serializable]
-    public class ButtonDataList
+    public void SaveData(So_Clothe_Settings soClothe)
     {
-        public List<ButtonData> buttonDatas = new List<ButtonData>(); // Diziyi List'e çevirdik
-    }
+        LoadButtonData();
 
-    // Veriyi kaydetme fonksiyonu
-    public void SaveDatas(So_Clothe_Settings so_Clothe)
-    {
-        LoadData();
-        // Yeni ButtonData oluþtur
         ButtonData buttonData = new ButtonData
         {
-            isName = so_Clothe.name,
-            isTaken = so_Clothe.isTaken,
-            isWear = so_Clothe.isWear
+            isName = soClothe.name,
+            isTaken = soClothe.isTaken,
+            isWear = soClothe.isWear
         };
         buttonDataList.buttonDatas.Add(buttonData);
-        SaveCoinDatas();
-        EquippedDatas();
-        Outputjson();
-    }
 
-    void SaveCoinDatas()
-    {
         currencyData.Amount = CoinValue.Amount;
+        UpdateEquippedData();
+        WriteToJson();
     }
 
-    void EquippedDatas()
+    private void UpdateEquippedData()
     {
         equippedLister.EquippedDataNames.Clear();
         foreach (var item in ItemHolder.EquippedData)
         {
-            equippedLister.EquippedDataNames.Add(item.name); // Objelerin isimlerini kaydet
+            equippedLister.EquippedDataNames.Add(item.name);
         }
     }
 
-    void Outputjson()
+    private void WriteToJson()
     {
-        string ItemDatas = JsonUtility.ToJson(buttonDataList, true);
-        string CurrencyDatas = JsonUtility.ToJson(currencyData);
-        string EquippedDatas = JsonUtility.ToJson(equippedLister);
-        File.WriteAllText(savePath, ItemDatas);
-        File.WriteAllText(CoinSavePath, CurrencyDatas);
-        File.WriteAllText(EquippedItemDataPath, EquippedDatas);
+        File.WriteAllText(savePath, JsonUtility.ToJson(buttonDataList, true));
+        File.WriteAllText(coinSavePath, JsonUtility.ToJson(currencyData));
+        File.WriteAllText(equippedDataPath, JsonUtility.ToJson(equippedLister));
     }
 
-    // JSON dosyasýný okuma fonksiyonu
-    void LoadData()
+    private void LoadButtonData()
     {
         if (File.Exists(savePath))
         {
@@ -120,34 +116,35 @@ public class ScriptableObjectDataManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LoadEquippedData()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-            buttonDataList.buttonDatas.Clear();
-    }
-
-    // Objelerin isimleriyle verileri yükle
-    void LoadEquippedData()
-    {
-        if (File.Exists(EquippedItemDataPath))
+        if (File.Exists(equippedDataPath))
         {
-            string equippedDataStr = File.ReadAllText(EquippedItemDataPath);
-            equippedLister = JsonUtility.FromJson<EquippedLister>(equippedDataStr);
+            
             ItemHolder.EquippedData.Clear();
-
+            int i = 0;
             foreach (string itemName in equippedLister.EquippedDataNames)
             {
-                // Ýsme göre ScriptableObject'i bul
                 So_Clothe_Settings item = Resources.Load<So_Clothe_Settings>("Wearables/" + itemName);
+                Debug.Log(i);
                 if (item != null)
                 {
                     item.isTaken = true;
-                    ItemHolder.EquippedData.Add(item); // Geri yüklenen objeyi listeye ekle
+
+                    if (itemName == buttonDataList.buttonDatas[i].isName && buttonDataList.buttonDatas[i].isWear == true)
+                        item.isWear = true;
+                    else
+                        item.isWear = false;
+                    
+                    
+                    ItemHolder.EquippedData.Add(item);
                 }
                 else
                 {
                     Debug.LogWarning($"Item {itemName} not found in Resources.");
                 }
+                i = i + 1;
+
             }
         }
         else
@@ -156,19 +153,25 @@ public class ScriptableObjectDataManager : MonoBehaviour
         }
     }
 
-    public void UpdateSavedData(So_Clothe_Settings so_Clothe)
+    public void UpdateSavedData(So_Clothe_Settings soClothe)
     {
-        LoadData();
-        for (int i = 0; i < buttonDataList.buttonDatas.Count; i++)
+        LoadButtonData();
+
+        var buttonData = buttonDataList.buttonDatas.Find(data => data.isName == soClothe.name);
+        if (buttonData != null)
         {
-            if (buttonDataList.buttonDatas[i].isName == so_Clothe.name)
-            {
-                buttonDataList.buttonDatas[i].isTaken = so_Clothe.isTaken;
-                buttonDataList.buttonDatas[i].isWear = so_Clothe.isWear;
-                break;
-            }
+            buttonData.isTaken = soClothe.isTaken;
+            buttonData.isWear = soClothe.isWear;
         }
 
-        Outputjson();
+        WriteToJson();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            buttonDataList.buttonDatas.Clear();
+        }
     }
 }
