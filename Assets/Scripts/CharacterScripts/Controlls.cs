@@ -13,13 +13,26 @@ public class Controlls : MonoBehaviour
     public static Action IsActionCharacter;
     public static Action IsNonActionCharater;
     public static Action CharacterZeroMovement;
+
+    public static Action Launch;
+
+    bool isStart;
    
     void MouseZeroActions()
     {
-        if(Input.GetMouseButtonDown(0))
-            IsActionCharacter?.Invoke();
-        else if(Input.GetMouseButtonUp(0))
-            IsNonActionCharater?.Invoke();
+        if (isStart)
+        {
+            if (Input.GetMouseButtonDown(0))
+                IsActionCharacter?.Invoke();
+            else if (Input.GetMouseButtonUp(0))
+                IsNonActionCharater?.Invoke();
+        }
+        else if (!isStart)
+        {
+            if (Input.GetMouseButtonDown(0))
+                Launch?.Invoke();
+        }
+        
     }
 
 

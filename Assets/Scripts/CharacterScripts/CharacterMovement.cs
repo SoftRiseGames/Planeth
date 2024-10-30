@@ -19,8 +19,11 @@ public class CharacterMovement : MonoBehaviour
     float Cooldown;
     [SerializeField] float MinCooldown;
     [SerializeField] float MaxCooldown;
+    bool isStart = false;
+    private float StartSpeed;
     private void Start()
     {
+
         ObjectCollider = GetComponent<BoxCollider2D>();
         defaultYPosition = gameObject.transform.position.y;
         rb = GetComponent<Rigidbody2D>();
@@ -30,18 +33,26 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        Controlls.IsActionCharacter += CharacterIsMove;
-        Controlls.IsNonActionCharater += CharacterIsNonMove;
-        CharacterDedectionControl.isEnemyCollide += isPositionReset;
-        CharacterZeroMovement += ZeroMovement;
+        if (isStart)
+        {
+            Controlls.IsActionCharacter += CharacterIsMove;
+            Controlls.IsNonActionCharater += CharacterIsNonMove;
+            CharacterDedectionControl.isEnemyCollide += isPositionReset;
+            CharacterZeroMovement += ZeroMovement;
+        }
+       
     }
 
     private void OnDisable()
     {
-        Controlls.IsActionCharacter -= CharacterIsMove;
-        Controlls.IsNonActionCharater -= CharacterIsNonMove;
-        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
-        CharacterZeroMovement -= ZeroMovement;
+        if (isStart)
+        {
+            Controlls.IsActionCharacter -= CharacterIsMove;
+            Controlls.IsNonActionCharater -= CharacterIsNonMove;
+            CharacterDedectionControl.isEnemyCollide -= isPositionReset;
+            CharacterZeroMovement -= ZeroMovement;
+        }
+       
     }
 
     void CharacterIsMove()
@@ -134,7 +145,7 @@ public class CharacterMovement : MonoBehaviour
 
     void StartCharacterFall()
     {
-        if (fallCoroutine == null)
+        if (fallCoroutine == null && isStart)
         {
             fallCoroutine = StartCoroutine(StartFallCoroutine());
         }

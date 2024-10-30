@@ -126,7 +126,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
             foreach (string itemName in equippedLister.EquippedDataNames)
             {
                 So_Clothe_Settings item = Resources.Load<So_Clothe_Settings>("Wearables/" + itemName);
-                Debug.Log(i);
+               
                 if (item != null)
                 {
                     item.isTaken = true;
