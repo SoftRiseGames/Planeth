@@ -20,26 +20,30 @@ public class Controlls : MonoBehaviour
    
     void MouseZeroActions()
     {
-        if (isStart)
-        {
-            if (Input.GetMouseButtonDown(0))
-                IsActionCharacter?.Invoke();
-            else if (Input.GetMouseButtonUp(0))
-                IsNonActionCharater?.Invoke();
-        }
-        else if (!isStart)
-        {
-            if (Input.GetMouseButtonDown(0))
-                Launch?.Invoke();
-        }
-        
+        if (Input.GetMouseButtonDown(0))
+            IsActionCharacter?.Invoke();
+        else if (Input.GetMouseButtonUp(0))
+            IsNonActionCharater?.Invoke();
+    }
+    void mouseLaunchAction()
+    {
+        if (Input.GetMouseButtonDown(0))
+            Launch?.Invoke();
+        else if (Input.GetMouseButtonUp(0))
+            isStart = true;
     }
 
 
     private void Update()
     {
         RaycastCheck();
-        MouseZeroActions();
+        
+        
+        if (isStart)
+            MouseZeroActions();
+        else if (!isStart)
+            mouseLaunchAction();
+
     }
    
     void RaycastCheck()

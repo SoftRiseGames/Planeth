@@ -30,20 +30,26 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     private List<Vector2> usedPositions = new List<Vector2>();
 
+    bool isStart;
     private void OnEnable()
     {
         CharacterDedectionControl.isEnemyDecreasingOurhealth += DecrasingHealth;
         CharacterDedectionControl.isEnemyIncreasinghealth += IncreasingHealth;
         Enemies.isDeath += EnemyDecreaseCount;
         Enemies.isSpawn += EnemyStartCount;
+        CharacterMovement.EnemyCome += StartActivate;
     }
-
+    void StartActivate()
+    {
+        isStart = true;
+    }
     private void OnDisable()
     {
         CharacterDedectionControl.isEnemyDecreasingOurhealth -= DecrasingHealth;
         CharacterDedectionControl.isEnemyIncreasinghealth -= IncreasingHealth;
         Enemies.isDeath -= EnemyDecreaseCount;
         Enemies.isSpawn -= EnemyStartCount;
+        CharacterMovement.EnemyCome += StartActivate;
     }
 
     void IncreasingHealth()
@@ -99,47 +105,51 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     IEnumerator EnemySpawnRoutine()
     {
-        int HowManyEnemySpawn = 0;
-        if (enemyCount<= 0)
-             HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
-        else if(enemyCount<= UnityEngine.Random.Range(2,5) && enemyCount>0)
-            HowManyEnemySpawn = UnityEngine.Random.Range(0, MaxEnemyCount-enemyCount);
-
-        usedPositions.Clear();
-
-        for (int i = 0; i < HowManyEnemySpawn; i++)
+        if (isStart)
         {
-            GameObject spawningGameobject = Instantiate(enemyObject, SpawnPoint.position, Quaternion.identity);
+            int HowManyEnemySpawn = 0;
+            if (enemyCount <= 0)
+                HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
+            else if (enemyCount <= UnityEngine.Random.Range(2, 5) && enemyCount > 0)
+                HowManyEnemySpawn = UnityEngine.Random.Range(0, MaxEnemyCount - enemyCount);
 
-            int RandomEnemyType = UnityEngine.Random.Range(0, enemytypes.Count);
-            spawningGameobject.GetComponent<Enemies>().enemies = enemytypes[RandomEnemyType];
+            usedPositions.Clear();
 
-            Vector2 spawnPosition = SpawnPoint.position;
-            bool positionFound = false;
-
-            while (!positionFound)
+            for (int i = 0; i < HowManyEnemySpawn; i++)
             {
-                int RandomPositioner = UnityEngine.Random.Range(0, PositionPoint.Count);
-                spawnPosition = new Vector2(
-                    PositionPoint[RandomPositioner].position.x,
-                    UnityEngine.Random.Range(PositionPoint[RandomPositioner].position.y, PositionPoint[RandomPositioner].position.y + MaxExtraVertical)
-                );
+                GameObject spawningGameobject = Instantiate(enemyObject, SpawnPoint.position, Quaternion.identity);
 
-                positionFound = true;
-                foreach (Vector2 usedPos in usedPositions)
+                int RandomEnemyType = UnityEngine.Random.Range(0, enemytypes.Count);
+                spawningGameobject.GetComponent<Enemies>().enemies = enemytypes[RandomEnemyType];
+
+                Vector2 spawnPosition = SpawnPoint.position;
+                bool positionFound = false;
+
+                while (!positionFound)
                 {
-                    if (Vector2.Distance(usedPos, spawnPosition) < minDistance)
+                    int RandomPositioner = UnityEngine.Random.Range(0, PositionPoint.Count);
+                    spawnPosition = new Vector2(
+                        PositionPoint[RandomPositioner].position.x,
+                        UnityEngine.Random.Range(PositionPoint[RandomPositioner].position.y, PositionPoint[RandomPositioner].position.y + MaxExtraVertical)
+                    );
+
+                    positionFound = true;
+                    foreach (Vector2 usedPos in usedPositions)
                     {
-                        positionFound = false;
-                        break;
+                        if (Vector2.Distance(usedPos, spawnPosition) < minDistance)
+                        {
+                            positionFound = false;
+                            break;
+                        }
                     }
                 }
+
+                usedPositions.Add(spawnPosition);
+                spawningGameobject.transform.DOMove(spawnPosition, .5f).SetEase(Ease.Flash);
+
+                yield return new WaitForSeconds(0.5f);
             }
-
-            usedPositions.Add(spawnPosition);
-            spawningGameobject.transform.DOMove(spawnPosition, .5f).SetEase(Ease.Flash);
-
-            yield return new WaitForSeconds(0.5f); 
+        
         }
     }
 }

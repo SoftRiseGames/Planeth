@@ -2894,7 +2894,7 @@ Transform:
   m_GameObject: {fileID: 1978400164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.42, z: 0}
+  m_LocalPosition: {x: 0, y: -7.47, z: 0}
   m_LocalScale: {x: 0.8077873, y: 0.8077873, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2914,6 +2914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinCooldown: 0.2
   MaxCooldown: 0.4
+  CharacterHeight: 0
 --- !u!61 &1978400168
 BoxCollider2D:
   m_ObjectHideFlags: 0

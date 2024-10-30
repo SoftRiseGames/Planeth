@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
 
 public class MissileLaunch : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MissileLaunch : MonoBehaviour
     [SerializeField] Image Background;
     [SerializeField] Image Handle;
 
+    public static Action MissileTime;
     
     private float sliderOff;
 
@@ -47,9 +49,11 @@ public class MissileLaunch : MonoBehaviour
     void Missile()
     {
         missileValue = StartMissile.value;
+        MissileTime?.Invoke();
         isGameStart = true;
         Debug.Log("missile!!!");
         Debug.Log(isGameStart);
+        
         AfterMissile();
         // Sequence'i durdur
         if (missileSequence != null)

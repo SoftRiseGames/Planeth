@@ -20,18 +20,18 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float MinCooldown;
     [SerializeField] float MaxCooldown;
     bool isStart = false;
+    public static Action EnemyCome;
     private float StartSpeed;
     private void Start()
     {
 
         ObjectCollider = GetComponent<BoxCollider2D>();
-        defaultYPosition = gameObject.transform.position.y;
+        
         rb = GetComponent<Rigidbody2D>();
         StartCharacterFall();
 
     }
-
-    private void OnEnable()
+    void EventTrigger()
     {
         if (isStart)
         {
@@ -40,19 +40,21 @@ public class CharacterMovement : MonoBehaviour
             CharacterDedectionControl.isEnemyCollide += isPositionReset;
             CharacterZeroMovement += ZeroMovement;
         }
-       
+    }
+    private void OnEnable()
+    {
+         if (!isStart)
+            MissileLaunch.MissileTime += CharacterStart;
     }
 
     private void OnDisable()
     {
-        if (isStart)
-        {
-            Controlls.IsActionCharacter -= CharacterIsMove;
-            Controlls.IsNonActionCharater -= CharacterIsNonMove;
-            CharacterDedectionControl.isEnemyCollide -= isPositionReset;
-            CharacterZeroMovement -= ZeroMovement;
-        }
-       
+        Controlls.IsActionCharacter -= CharacterIsMove;
+        Controlls.IsNonActionCharater -= CharacterIsNonMove;
+        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
+        MissileLaunch.MissileTime -= CharacterStart;
+        CharacterZeroMovement -= ZeroMovement;
+        MissileLaunch.MissileTime -= CharacterStart;
     }
 
     void CharacterIsMove()
@@ -166,5 +168,12 @@ public class CharacterMovement : MonoBehaviour
         }
         rb.gravityScale = 0f;
         rb.velocity = Vector2.zero;
+    }
+
+    void CharacterStart()
+    {
+        Debug.Log("missile");
+        gameObject.transform.DOMoveY(4.24f, .5f).OnComplete(() => { isStart = true; EventTrigger(); defaultYPosition = gameObject.transform.position.y; EnemyCome?.Invoke(); });
+       
     }
 }
