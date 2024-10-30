@@ -10,7 +10,13 @@ public class MissileLaunch : MonoBehaviour
     private float StartMissileValues;
     private bool isGameStart;
     private float missileValue;
-    private Sequence missileSequence; // Sequence referansýný saklamak için
+    private Sequence missileSequence;
+
+    [SerializeField] Image Background;
+    [SerializeField] Image Handle;
+
+    
+    private float sliderOff;
 
     void Start()
     {
@@ -33,14 +39,18 @@ public class MissileLaunch : MonoBehaviour
     {
         StartMissile.value = StartMissileValues;
     }
-
+    void AfterMissile()
+    {
+        Handle.DOFade(0, .5f);
+        Background.DOFade(0, .5f);
+    }
     void Missile()
     {
         missileValue = StartMissile.value;
         isGameStart = true;
         Debug.Log("missile!!!");
         Debug.Log(isGameStart);
-
+        AfterMissile();
         // Sequence'i durdur
         if (missileSequence != null)
         {
