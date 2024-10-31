@@ -21,7 +21,11 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float MaxCooldown;
     bool isStart = false;
     public static Action EnemyCome;
-    private float StartSpeed;
+
+    public float CharacterAttackSpeed;
+    public float HorizontalMovementSpeed;
+
+    public float SpeedMeter;
     private void Start()
     {
 
@@ -41,6 +45,8 @@ public class CharacterMovement : MonoBehaviour
             CharacterZeroMovement += ZeroMovement;
         }
     }
+
+    
     private void OnEnable()
     {
          if (!isStart)
@@ -88,6 +94,8 @@ public class CharacterMovement : MonoBehaviour
     {
         CharacterMove();
 
+        if (isStart)
+            SpeedMeter -= 1 * Time.deltaTime;
     }
 
     void CharacterMove()
@@ -100,7 +108,7 @@ public class CharacterMovement : MonoBehaviour
                 gameObject.transform.position = Vector2.MoveTowards(
                     new Vector2(transform.position.x, gameObject.transform.position.y),
                     new Vector2(mousePosition.x, gameObject.transform.position.y),
-                    1 * Time.fixedDeltaTime
+                    HorizontalMovementSpeed * Time.deltaTime
                 );
             }
         }
@@ -110,7 +118,7 @@ public class CharacterMovement : MonoBehaviour
             attackChecker = true;
             gameObject.transform.position = new Vector2(
                 gameObject.transform.position.x,
-                gameObject.transform.position.y - 7 * Time.fixedDeltaTime
+                gameObject.transform.position.y - CharacterAttackSpeed * Time.deltaTime
             );
         }
     }

@@ -21,8 +21,7 @@ public class MissileLaunch : MonoBehaviour
 
     public float maxRocketSpeed;
 
-    private float RocketMultiplier;
-    
+    public CharacterMovement Character;
     void Start()
     {
         isGameStart = false;
@@ -52,8 +51,8 @@ public class MissileLaunch : MonoBehaviour
     void Missile()
     {
         missileValue = StartMissile.value*maxRocketSpeed;
-        int MissileIntegerValue = (int)missileValue;
-        Debug.Log(MissileIntegerValue);
+        Character.SpeedMeter = missileValue;
+        Debug.Log(missileValue);
         MissileTime?.Invoke();
         isGameStart = true;
         

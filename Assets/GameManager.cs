@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] SO_ValueMaker GameTotalCoin;
     [SerializeField] EquippedItem ItemHolder;
     [SerializeField] RocketDatas RocketData;
+    [SerializeField] TextMeshProUGUI DistanceMeterText;
+    [SerializeField] CharacterMovement Character;
+    private int DistanceValue;
    
     private void Awake()
     {
@@ -16,27 +20,17 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ScriptableObjectDataManager.Instance.LoadEquippedData();
+        
     }
 
-    private void OnEnable()
-    {
-       
-    }
+    
     private void Update()
     {
-        /*
-        if(Input.GetKeyDown(KeyCode.K))
-            ScriptableObjectDataManager.Instance.DeleteAllJsonFiles();
-        */
+        DistanceInformation();
     }
-    void LoadWearData()
+    void DistanceInformation()
     {
-       
-        foreach(So_Clothe_Settings equippedItem in ItemHolder.EquippedData)
-        {
-            Debug.Log("kontrol");
-        }
-        
+        DistanceMeterText.text = "Distance " + Character.SpeedMeter.ToString("00");
     }
 
     void StartSprites()
