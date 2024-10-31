@@ -3,12 +3,12 @@
         {
             "isName": "Alevli_Kilic",
             "isTaken": true,
-            "isWear": false
+            "isWear": true
         },
         {
             "isName": "b",
             "isTaken": true,
-            "isWear": true
+            "isWear": false
         }
     ]
 }

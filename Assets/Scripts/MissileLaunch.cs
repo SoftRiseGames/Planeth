@@ -7,6 +7,7 @@ using System;
 
 public class MissileLaunch : MonoBehaviour
 {
+    
     [SerializeField] Slider StartMissile;
     private float StartMissileValues;
     private bool isGameStart;
@@ -17,9 +18,11 @@ public class MissileLaunch : MonoBehaviour
     [SerializeField] Image Handle;
 
     public static Action MissileTime;
-    
-    private float sliderOff;
 
+    public float maxRocketSpeed;
+
+    private float RocketMultiplier;
+    
     void Start()
     {
         isGameStart = false;
@@ -48,14 +51,14 @@ public class MissileLaunch : MonoBehaviour
     }
     void Missile()
     {
-        missileValue = StartMissile.value;
+        missileValue = StartMissile.value*maxRocketSpeed;
+        Debug.Log(missileValue);
         MissileTime?.Invoke();
         isGameStart = true;
-        Debug.Log("missile!!!");
-        Debug.Log(isGameStart);
+        
         
         AfterMissile();
-        // Sequence'i durdur
+        
         if (missileSequence != null)
         {
             missileSequence.Kill();
@@ -66,7 +69,7 @@ public class MissileLaunch : MonoBehaviour
     {
         if (!isGameStart)
         {
-            missileSequence = DOTween.Sequence(); // Sequence referansý oluþtur
+            missileSequence = DOTween.Sequence(); 
 
             missileSequence.Append(DOTween.To(() => StartMissileValues, x => StartMissileValues = x, 1, .7f).OnUpdate(() =>
             {
@@ -78,7 +81,7 @@ public class MissileLaunch : MonoBehaviour
                 StartMissile.value = StartMissileValues;
             }).SetEase(Ease.Linear));
 
-            // Sonsuz döngü olarak ayarla
+            
             missileSequence.SetLoops(-1).SetEase(Ease.Linear);
         }
     }

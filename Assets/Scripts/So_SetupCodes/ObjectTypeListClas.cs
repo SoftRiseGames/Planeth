@@ -5,6 +5,7 @@ public enum ObjectType
     Helmet = 1,
     Armor = 2,
     Shoes = 3,
-    Sword = 4
+    Sword = 4,
+    Rocket = 5
 }
 

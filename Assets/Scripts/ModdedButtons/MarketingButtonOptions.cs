@@ -33,7 +33,6 @@ public class MarketingButtonOptions : MonoBehaviour
     {
         if (ButtonSettingObject.isTaken == true)
         {
-            Debug.Log("alýndý");
             gameObject.GetComponent<Button>().interactable = false;
         }
         

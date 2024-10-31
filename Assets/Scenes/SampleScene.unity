@@ -1212,6 +1212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 950101801}
   - component: {fileID: 950101802}
+  - component: {fileID: 950101803}
   m_Layer: 5
   m_Name: StartMissile
   m_TagString: Untagged
@@ -1292,6 +1293,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &950101803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950101800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c1bdc3de9207d4aa1eb4cd76d8c0df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rockethandle: {fileID: 0}
+  RocketBackground: {fileID: 0}
 --- !u!1 &987933124
 GameObject:
   m_ObjectHideFlags: 0
@@ -2097,8 +2112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bba37f88f517dc458466f32e548b7bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData: {fileID: 0}
   GameTotalCoin: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
+  RocketData: {fileID: 0}
 --- !u!4 &1402539944
 Transform:
   m_ObjectHideFlags: 0
@@ -2129,6 +2146,7 @@ MonoBehaviour:
   StartMissile: {fileID: 950101802}
   Background: {fileID: 987933126}
   Handle: {fileID: 39012189}
+  maxRocketSpeed: 20
 --- !u!1 &1533751117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,10 +2214,10 @@ RectTransform:
   - {fileID: 1602773934}
   m_Father: {fileID: 5773601663507767024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 561.75, y: -188.25}
-  m_SizeDelta: {x: 376.5, y: 376.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536083814
 MonoBehaviour:
@@ -2693,10 +2711,10 @@ RectTransform:
   - {fileID: 1653767452}
   m_Father: {fileID: 5773601663507767024}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 182.25, y: -188.25}
-  m_SizeDelta: {x: 376.5, y: 376.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1831845289
 MonoBehaviour:
@@ -2914,7 +2932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinCooldown: 0.2
   MaxCooldown: 0.4
-  CharacterHeight: 0
 --- !u!61 &1978400168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4297,7 +4314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4173054468133182322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4595,7 +4612,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00036621094}
-  m_SizeDelta: {x: 0, y: -823.5}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5968185855116824984
 MonoBehaviour:

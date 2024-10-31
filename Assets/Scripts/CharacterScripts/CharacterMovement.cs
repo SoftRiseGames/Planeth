@@ -172,7 +172,6 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterStart()
     {
-        Debug.Log("missile");
         gameObject.transform.DOMoveY(4.24f, .5f).OnComplete(() => { isStart = true; EventTrigger(); defaultYPosition = gameObject.transform.position.y; EnemyCome?.Invoke(); });
        
     }

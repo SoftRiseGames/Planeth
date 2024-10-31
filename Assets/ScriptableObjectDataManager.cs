@@ -43,7 +43,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
 
     private void Start()
     {
-        LoadEquippedData();
+        
     }
 
     [System.Serializable]
@@ -96,14 +96,14 @@ public class ScriptableObjectDataManager : MonoBehaviour
         }
     }
 
-    private void WriteToJson()
+    public void WriteToJson()
     {
         File.WriteAllText(savePath, JsonUtility.ToJson(buttonDataList, true));
         File.WriteAllText(coinSavePath, JsonUtility.ToJson(currencyData));
         File.WriteAllText(equippedDataPath, JsonUtility.ToJson(equippedLister));
     }
 
-    private void LoadButtonData()
+    public void LoadButtonData()
     {
         if (File.Exists(savePath))
         {
@@ -116,7 +116,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         }
     }
 
-    private void LoadEquippedData()
+    public void LoadEquippedData()
     {
         if (File.Exists(equippedDataPath))
         {
