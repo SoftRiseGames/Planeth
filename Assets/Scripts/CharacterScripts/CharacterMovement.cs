@@ -32,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
         ObjectCollider = GetComponent<BoxCollider2D>();
         
         rb = GetComponent<Rigidbody2D>();
-        StartCharacterFall();
+       
 
     }
     void EventTrigger()
@@ -189,5 +189,6 @@ public class CharacterMovement : MonoBehaviour
         isStart = true;
         EventTrigger();
         EnemyCome?.Invoke();
+        StartCharacterFall();
     }
 }

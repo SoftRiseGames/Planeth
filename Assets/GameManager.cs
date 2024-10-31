@@ -30,7 +30,11 @@ public class GameManager : MonoBehaviour
     }
     void DistanceInformation()
     {
-        DistanceMeterText.text = "Distance " + Character.SpeedMeter.ToString("00");
+        if (Character.SpeedMeter >= 10)
+            DistanceMeterText.text = "Distance " + Character.SpeedMeter.ToString("00");
+        else if(Character.SpeedMeter<10)
+            DistanceMeterText.text = "Distance " + Character.SpeedMeter.ToString("0");
+
     }
 
     void StartSprites()
