@@ -17,9 +17,9 @@ MonoBehaviour:
   ObjectName: "alevli k\u0131l\u0131\xE7"
   ObjectDoubler: 0
   price: 0
-  WearableType: 5
-  isTaken: 0
-  isWear: 0
+  WearableType: 3
+  isTaken: 1
+  isWear: 1
   Rockethandle: {fileID: 0}
   RocketBackground: {fileID: 0}
   RocketMaxSpeed: 0
