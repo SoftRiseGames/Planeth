@@ -94,7 +94,7 @@ public class CharacterMovement : MonoBehaviour
     {
         CharacterMove();
 
-        if (isStart)
+        if (isStart && SpeedMeter>0)
             SpeedMeter -= 1 * Time.deltaTime;
     }
 
