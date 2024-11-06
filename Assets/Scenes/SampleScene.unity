@@ -1016,11 +1016,13 @@ MonoBehaviour:
   - {fileID: 1015166073}
   - {fileID: 1533751118}
   SpawnPoint: {fileID: 1795593963}
-  enemyObject: {fileID: 1180269318588663116, guid: aed13dcabe87edb408017d8b39da6385, type: 3}
   MinEnemyCount: 2
   MaxEnemyCount: 7
   MaxExtraVertical: 5
   minDistance: 1.5
+  pooledObject: []
+  AmounToPool: 15
+  Enemy: {fileID: 1180269318588663116, guid: aed13dcabe87edb408017d8b39da6385, type: 3}
 --- !u!1 &461843539
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,12 +3049,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lava: {fileID: 2066303282}
   speed: 5
-  AlertLevel:
-  - 1517.71
-  - 1401.71
-  - 922.71
-  - 567.71
   character: {fileID: 1978400167}
+  AnchorPoints:
+  - AllObject:
+    - Location:
+      - 0
+      - 0
+  - AllObject:
+    - Location:
+      - 0
+      - 0
+  - AllObject:
+    - Location:
+      - 0
+      - 0
 --- !u!1 &1978400164
 GameObject:
   m_ObjectHideFlags: 0
@@ -3300,7 +3310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 28.976013, y: -1520}
+  m_AnchoredPosition: {x: 28.976013, y: -1615}
   m_SizeDelta: {x: 285.18396, y: 236.57898}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066303284

@@ -34,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
        
 
+
     }
     void EventTrigger()
     {

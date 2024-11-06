@@ -113,7 +113,7 @@ public class Enemies : MonoBehaviour
     void Kill()
     {
         isDeath?.Invoke();
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
     void FallTimerDecrease()
     {
