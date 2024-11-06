@@ -18,7 +18,7 @@ public class HealthAndEnemyControl : MonoBehaviour
     [SerializeField] List<SO_Enemytypes> enemytypes;
     [SerializeField] List<Transform> PositionPoint;
     [SerializeField] Transform SpawnPoint;
-    //[SerializeField] GameObject enemyObject;
+    [SerializeField] GameObject enemyObject;
 
     [Header("Enemy Spawn Options")]
     [SerializeField] int MinEnemyCount;
@@ -26,16 +26,9 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     [Header("Spawn Position MinMax Randomizer")]
     [SerializeField] float MaxExtraVertical;
-    [SerializeField] float minDistance = 1.5f;  // Minimum mesafe
+    [SerializeField] float minDistance = 1.5f;  
 
-    [Header("Pool Settings")]
-    public List<GameObject> pooledObject;
-    public static HealthAndEnemyControl instance;
-    [SerializeField] int AmounToPool;
-    [SerializeField] private GameObject Enemy;
-
-    private List<Vector2> usedPositions = new List<Vector2>();
-
+    private List<Vector2> usedPositions;
 
     bool isStart;
     private void OnEnable()
@@ -44,7 +37,7 @@ public class HealthAndEnemyControl : MonoBehaviour
         CharacterDedectionControl.isEnemyIncreasinghealth += IncreasingHealth;
         Enemies.isDeath += EnemyDecreaseCount;
         Enemies.isSpawn += EnemyStartCount;
-        CharacterMovement.EnemyCome += StartActivate;
+        CharacterMovement.EnemyComeAndGameStart += StartActivate;
     }
     void StartActivate()
     {
@@ -56,7 +49,7 @@ public class HealthAndEnemyControl : MonoBehaviour
         CharacterDedectionControl.isEnemyIncreasinghealth -= IncreasingHealth;
         Enemies.isDeath -= EnemyDecreaseCount;
         Enemies.isSpawn -= EnemyStartCount;
-        CharacterMovement.EnemyCome += StartActivate;
+        CharacterMovement.EnemyComeAndGameStart += StartActivate;
     }
 
     void IncreasingHealth()
@@ -66,12 +59,6 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     private void Start()
     {
-        for (int i = 0; i < AmounToPool; i++)
-        {
-            GameObject obj = Instantiate(Enemy);
-            obj.SetActive(false);
-            pooledObject.Add(obj);
-        }
         StartCoroutine(EnemySpawnRoutine());
     }
 
@@ -115,15 +102,6 @@ public class HealthAndEnemyControl : MonoBehaviour
         else
             Debug.Log("Game Over");
     }
-    public GameObject GetPooledObject()
-    {
-        for (int i = 0; i < pooledObject.Count; i++)
-        {
-            if (!pooledObject[i].activeInHierarchy)
-                return pooledObject[i];
-        }
-        return null;
-    }
 
     IEnumerator EnemySpawnRoutine()
     {
@@ -139,9 +117,8 @@ public class HealthAndEnemyControl : MonoBehaviour
 
             for (int i = 0; i < HowManyEnemySpawn; i++)
             {
-                //GameObject spawningGameobject = Instantiate(enemyObject, SpawnPoint.position, Quaternion.identity);
-                GameObject spawningGameobject = GetPooledObject();
-                spawningGameobject.SetActive(true);
+                GameObject spawningGameobject = Instantiate(enemyObject, SpawnPoint.position, Quaternion.identity);
+
                 int RandomEnemyType = UnityEngine.Random.Range(0, enemytypes.Count);
                 spawningGameobject.GetComponent<Enemies>().enemies = enemytypes[RandomEnemyType];
 

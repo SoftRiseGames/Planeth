@@ -31,7 +31,7 @@ public class So_Clothe_Settings : ScriptableObject
 
 
 
-
+#if UNITY_EDITOR
     [CustomEditor(typeof(So_Clothe_Settings))]
     public class So_Clothe_SettingsEditor : Editor
     {
@@ -78,4 +78,5 @@ public class So_Clothe_Settings : ScriptableObject
             serializedObject.ApplyModifiedProperties();
         }
     }
+#endif
 }

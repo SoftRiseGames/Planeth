@@ -9,10 +9,10 @@ public class LavaCodes : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] CharacterMovement character;
 
-    [SerializeField] List<ObjectAllDatas> AnchorPoints = new List<ObjectAllDatas>();
+    [SerializeField] List<float> AnchorPoints;
 
 
-
+    bool isGameStart = false;
 
     void Start()
     {
@@ -22,27 +22,38 @@ public class LavaCodes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpeedControl();
+        if(isGameStart)
+            SpeedControl();
+    }
+
+    private void OnEnable()
+    {
+        CharacterMovement.EnemyComeAndGameStart += GameStart;
+    }
+    private void OnDisable()
+    {
+        CharacterMovement.EnemyComeAndGameStart -= GameStart;
+    }
+
+    void GameStart()
+    {
+        isGameStart = true;
     }
     void SpeedControl()
     {
-        /*
-        if (character.SpeedMeter - speed > 3 && character.SpeedMeter - speed < 6)
-            Lava.GetComponent<Image>().rectTransform.DOAnchorPosY(AlertLevel[1], .2f);
-        */
+        
+        if (character.SpeedMeter - speed > 8 && character.SpeedMeter - speed < 12)
+            Lava.GetComponent<Image>().rectTransform.DOAnchorPosY(AnchorPoints[1], .2f);
+        else if(character.SpeedMeter - speed > 4 && character.SpeedMeter - speed < 7)
+            Lava.GetComponent<Image>().rectTransform.DOAnchorPosY(AnchorPoints[2], .2f);
+        else if (character.SpeedMeter - speed <= 4)
+            Lava.GetComponent<Image>().rectTransform.DOAnchorPosY(AnchorPoints[4], .2f);
+
+
     }
 
    
         
 }
-[System.Serializable]
-public class ObjectLocation
-{
-    public List<float> Location;
-}
-[System.Serializable]
-public class ObjectAllDatas
-{
-    public List<ObjectLocation> AllObject;
-}
+
 

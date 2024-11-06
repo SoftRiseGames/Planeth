@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ScriptableObjectDataManager.Instance.LoadEquippedData();
+        Application.targetFrameRate = 60;
         
     }
 

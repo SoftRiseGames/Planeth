@@ -91,7 +91,7 @@ public class Enemies : MonoBehaviour
         else if (MovementPositionXRandomizer == 1)
             speedX = enemies.SpeedForXaxis * -1;
 
-        rb.velocity = new Vector2(speedX, 0) * Time.fixedDeltaTime;
+        rb.linearVelocity = new Vector2(speedX, 0) * Time.fixedDeltaTime;
     }
 
     private void Update()
@@ -107,13 +107,13 @@ public class Enemies : MonoBehaviour
         
         if (FallTimer <= 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, -FallSpeed * Time.fixedDeltaTime);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -FallSpeed * Time.fixedDeltaTime);
         }
     }
     void Kill()
     {
         isDeath?.Invoke();
-        gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
     void FallTimerDecrease()
     {

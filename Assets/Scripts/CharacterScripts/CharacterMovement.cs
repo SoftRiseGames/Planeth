@@ -20,7 +20,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float MinCooldown;
     [SerializeField] float MaxCooldown;
     bool isStart = false;
-    public static Action EnemyCome;
+    public static Action EnemyComeAndGameStart;
 
     public float CharacterAttackSpeed;
     public float HorizontalMovementSpeed;
@@ -33,7 +33,6 @@ public class CharacterMovement : MonoBehaviour
         
         rb = GetComponent<Rigidbody2D>();
        
-
 
     }
     void EventTrigger()
@@ -176,7 +175,7 @@ public class CharacterMovement : MonoBehaviour
             fallCoroutine = null;
         }
         rb.gravityScale = 0f;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 
     void CharacterStart()
@@ -189,7 +188,7 @@ public class CharacterMovement : MonoBehaviour
         await Task.Delay(2000);
         isStart = true;
         EventTrigger();
-        EnemyCome?.Invoke();
+        EnemyComeAndGameStart?.Invoke();
         StartCharacterFall();
     }
 }
