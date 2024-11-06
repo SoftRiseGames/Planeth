@@ -112,8 +112,10 @@ public class HealthAndEnemyControl : MonoBehaviour
                 HowManyEnemySpawn = UnityEngine.Random.Range(MinEnemyCount, MaxEnemyCount + 1);
             else if (enemyCount <= UnityEngine.Random.Range(2, 5) && enemyCount > 0)
                 HowManyEnemySpawn = UnityEngine.Random.Range(0, MaxEnemyCount - enemyCount);
+            
+            if(usedPositions != null)
+                usedPositions.Clear();
 
-            usedPositions.Clear();
 
             for (int i = 0; i < HowManyEnemySpawn; i++)
             {
@@ -134,17 +136,24 @@ public class HealthAndEnemyControl : MonoBehaviour
                     );
 
                     positionFound = true;
-                    foreach (Vector2 usedPos in usedPositions)
+
+                    if(usedPositions != null)
                     {
-                        if (Vector2.Distance(usedPos, spawnPosition) < minDistance)
+                        foreach (Vector2 usedPos in usedPositions)
                         {
-                            positionFound = false;
-                            break;
+                            if (Vector2.Distance(usedPos, spawnPosition) < minDistance)
+                            {
+                                positionFound = false;
+                                break;
+                            }
                         }
                     }
+                    
                 }
 
-                usedPositions.Add(spawnPosition);
+                if(usedPositions != null)
+                    usedPositions.Add(spawnPosition);
+
                 spawningGameobject.transform.DOMove(spawnPosition, .5f).SetEase(Ease.Flash);
 
                 yield return new WaitForSeconds(0.5f);
