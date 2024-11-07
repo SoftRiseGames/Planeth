@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using System;
 using DG.Tweening;
+
 public class CharacterMovement : MonoBehaviour
 {
     bool isMove;
@@ -26,15 +27,13 @@ public class CharacterMovement : MonoBehaviour
     public float HorizontalMovementSpeed;
 
     public float SpeedMeter;
+
     private void Start()
     {
-
         ObjectCollider = GetComponent<BoxCollider2D>();
-        
         rb = GetComponent<Rigidbody2D>();
-       
-
     }
+
     void EventTrigger()
     {
         if (isStart)
@@ -46,21 +45,29 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-    
     private void OnEnable()
     {
-         if (!isStart)
+        if (!isStart)
             MissileLaunch.MissileTime += CharacterStart;
     }
 
     private void OnDisable()
     {
+        StopAllCoroutines(); // T�m coroutineleri durdurur
+        DOTween.Kill(this);   // Bu nesne ile ili�kili t�m DOTween i�lemlerini durdurur
+
         Controlls.IsActionCharacter -= CharacterIsMove;
         Controlls.IsNonActionCharater -= CharacterIsNonMove;
         CharacterDedectionControl.isEnemyCollide -= isPositionReset;
         MissileLaunch.MissileTime -= CharacterStart;
         CharacterZeroMovement -= ZeroMovement;
         MissileLaunch.MissileTime -= CharacterStart;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines(); // T�m coroutineleri durdurur
+        DOTween.Kill(this);   // Bu nesne ile ili�kili t�m DOTween i�lemlerini durdurur
     }
 
     void CharacterIsMove()
@@ -75,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterIsNonMove()
     {
-        if (!isReposition ||(Cooldown> MinCooldown && Cooldown<MaxCooldown))
+        if (!isReposition || (Cooldown > MinCooldown && Cooldown < MaxCooldown))
         {
             isMove = false;
             isAttack = true;
@@ -94,7 +101,7 @@ public class CharacterMovement : MonoBehaviour
     {
         CharacterMove();
 
-        if (isStart && SpeedMeter>0)
+        if (isStart && SpeedMeter > 0)
             SpeedMeter -= 1 * Time.deltaTime;
     }
 
@@ -135,17 +142,20 @@ public class CharacterMovement : MonoBehaviour
             isMoveChecker = false;
 
         CharacterZeroMovement?.Invoke();
-        gameObject.transform.DOMoveY(defaultYPosition, .3f).OnUpdate(() => { Cooldown += Time.deltaTime; }).OnComplete(() =>
-        {
-            StartCharacterFall();
-            ObjectCollider.enabled = true;
-            isReposition = false;
-            attackChecker = false;
+        gameObject.transform.DOMoveY(defaultYPosition, .3f)
+            .SetEase(Ease.Linear)
+            .OnUpdate(() => { Cooldown += Time.deltaTime; })
+            .OnComplete(() =>
+            {
+                StartCharacterFall();
+                ObjectCollider.enabled = true;
+                isReposition = false;
+                attackChecker = false;
 
-            if (isMoveChecker == true)
-                isMove = true;
-        }).SetEase(Ease.Linear);
-
+                if (isMoveChecker == true)
+                    isMove = true;
+            })
+            .SetTarget(this); // Bu animasyonu CharacterMovement nesnesine ba�lar
     }
 
     void isPositionReset()
@@ -180,9 +190,13 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterStart()
     {
-        gameObject.transform.DOMoveY(4.24f, .5f).OnComplete(() => {defaultYPosition = gameObject.transform.position.y; StartGame(); });
-       
+        gameObject.transform.DOMoveY(4.24f, .5f).OnComplete(() =>
+        {
+            defaultYPosition = gameObject.transform.position.y;
+            StartGame();
+        }).SetTarget(this); 
     }
+
     async void StartGame()
     {
         await Task.Delay(2000);
