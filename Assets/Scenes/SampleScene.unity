@@ -3338,7 +3338,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinCooldown: 0.2
   MaxCooldown: 0.4
-  CharacterAttackSpeed: 70
   HorizontalMovementSpeed: 10
   SpeedMeter: 0
 --- !u!61 &1978400168
@@ -3445,9 +3444,10 @@ MonoBehaviour:
   SwordSprite: {fileID: 0}
   ChanceToItemDrop: 0
   TotalHealth: 0
-  MaxSpeed: 0
-  AttackSpeed: 0
-  DamagePower: 1
+  MaxSpeed: 50
+  MaxIncreaseSpeedMultiplier: 3
+  AttackSpeed: 80
+  DamagePower: 3
   EquippedItems: {fileID: 0}
 --- !u!1 &2115764207
 GameObject:

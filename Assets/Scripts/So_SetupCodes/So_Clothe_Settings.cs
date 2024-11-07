@@ -8,7 +8,7 @@ public class So_Clothe_Settings : ScriptableObject
     public Sprite Background;
     public Sprite Skin;
     public string ObjectName;
-    public int ObjectDoubler;
+    public int ObjectMainFeatureValue;
     public int price;
     public ObjectType WearableType;
     public bool isTaken;
@@ -29,6 +29,8 @@ public class So_Clothe_Settings : ScriptableObject
     [Header("After Take Object")]
     public Sprite SwordWearSprite;
 
+    [Header("After Take Object")]
+    public int MaxSpeedIncreaseValue;
 
 
 #if UNITY_EDITOR
@@ -42,7 +44,7 @@ public class So_Clothe_Settings : ScriptableObject
             EditorGUILayout.PropertyField(serializedObject.FindProperty("Background"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("Skin"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectName"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectDoubler"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectMainFeatureValue"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("price"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("WearableType"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("isTaken"));
@@ -70,6 +72,7 @@ public class So_Clothe_Settings : ScriptableObject
             else if(settings.WearableType == ObjectType.Shoes)
             {
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("ShoesWearSprite"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("MaxSpeedIncreaseValue"));
             }
             else if(settings.WearableType == ObjectType.Sword)
             {

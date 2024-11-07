@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour
     bool isStart = false;
     public static Action EnemyComeAndGameStart;
 
-    public float CharacterAttackSpeed;
+    
     public float HorizontalMovementSpeed;
 
     public float SpeedMeter;
@@ -125,7 +125,7 @@ public class CharacterMovement : MonoBehaviour
             attackChecker = true;
             gameObject.transform.position = new Vector2(
                 gameObject.transform.position.x,
-                gameObject.transform.position.y - CharacterAttackSpeed * Time.deltaTime
+                gameObject.transform.position.y - GetComponent<CharacterDataScripts>().AttackSpeed * Time.deltaTime
             );
         }
     }

@@ -15,6 +15,7 @@ public class CharacterDataScripts : MonoBehaviour
     public int ChanceToItemDrop;
     public int TotalHealth;
     public int MaxSpeed;
+    public int MaxIncreaseSpeedMultiplier;
     public int AttackSpeed;
     public int DamagePower;
 

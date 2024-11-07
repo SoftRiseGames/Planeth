@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void StartSprites()
+    void StartOptions()
     {
         foreach (So_Clothe_Settings equippedItem in ItemHolder.EquippedData)
         {
@@ -46,27 +46,28 @@ public class GameManager : MonoBehaviour
             {
                 if (equippedItem.WearableType == ObjectType.Helmet)
                 {
-                    characterData.ChanceToItemDrop = equippedItem.ObjectDoubler;
+                    characterData.ChanceToItemDrop = equippedItem.ObjectMainFeatureValue;
                     characterData.HelmetSprite = equippedItem.HelmetWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Armor)
                 {
-                    characterData.TotalHealth = equippedItem.ObjectDoubler;
+                    characterData.TotalHealth = equippedItem.ObjectMainFeatureValue;
                    characterData.ArmorSprite = equippedItem.ArmorWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Shoes)
                 {
-                    characterData.MaxSpeed = equippedItem.ObjectDoubler;
+                    characterData.MaxSpeed = equippedItem.ObjectMainFeatureValue;
+                    characterData.MaxIncreaseSpeedMultiplier = equippedItem.MaxSpeedIncreaseValue;
                     characterData.ShoesSprite = equippedItem.ShoesWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Glove)
                 {
-                    characterData.AttackSpeed = equippedItem.ObjectDoubler;
+                    characterData.AttackSpeed = equippedItem.ObjectMainFeatureValue;
                     characterData.HandSprite = equippedItem.GloveWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Sword)
                 {
-                    characterData.DamagePower = equippedItem.ObjectDoubler;
+                    characterData.DamagePower = equippedItem.ObjectMainFeatureValue;
                     characterData.SwordSprite = equippedItem.SwordWearSprite;
                 }
                 else if(equippedItem.WearableType == ObjectType.Rocket)

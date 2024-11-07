@@ -19,7 +19,16 @@ public class CharacterDedectionControl : MonoBehaviour
                 if (collision.gameObject.GetComponent<Enemies>().isHasSpike == true)
                     isEnemyDecreasingOurhealth?.Invoke();
                 else if (collision.gameObject.GetComponent<Enemies>().isDamagable == true)
+                {
                     collision.gameObject.GetComponent<Enemies>().health = collision.gameObject.GetComponent<Enemies>().health - GetComponent<CharacterDataScripts>().DamagePower;
+
+
+                    if(GetComponent<CharacterMovement>().SpeedMeter< GetComponent<CharacterDataScripts>().MaxSpeed)
+                    {
+                        GetComponent<CharacterMovement>().SpeedMeter = GetComponent<CharacterMovement>().SpeedMeter + GetComponent<CharacterDataScripts>().MaxIncreaseSpeedMultiplier;
+                    }
+                    
+                }
                 else
                     return;
             }

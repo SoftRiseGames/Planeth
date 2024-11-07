@@ -42,12 +42,14 @@ public class LavaCodes : MonoBehaviour
     void SpeedControl()
     {
         
-        if (character.SpeedMeter - speed > 8 && character.SpeedMeter - speed < 12)
+        if (character.SpeedMeter - speed > 8 && character.SpeedMeter - speed <= 12)
             Lava.transform.DOMoveY(AnchorPoints[1], .2f);
         else if(character.SpeedMeter - speed > 4 && character.SpeedMeter - speed < 7)
             Lava.transform.DOMoveY(AnchorPoints[2], .2f);
         else if (character.SpeedMeter - speed <= 4)
             Lava.transform.DOMoveY(AnchorPoints[3], .2f);
+        else if(character.SpeedMeter - speed>12)
+            Lava.transform.DOMoveY(AnchorPoints[0], .2f);
 
 
     }

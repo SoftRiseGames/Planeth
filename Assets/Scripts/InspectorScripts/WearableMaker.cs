@@ -50,7 +50,7 @@ public class WearableMaker : OdinEditorWindow
         newWearable.Background = Background[0];
         newWearable.Skin = Skin;
         */
-        newWearable.ObjectDoubler = ObjectDoubler;
+        newWearable.ObjectMainFeatureValue = ObjectDoubler;
         newWearable.price = price;
         newWearable.ObjectName = ObjectName;
         newWearable.Skin = Skin;
@@ -93,7 +93,7 @@ public class WearableMaker : OdinEditorWindow
                 if (loadedWearable != null)
                 {
 
-                    ObjectDoubler = loadedWearable.ObjectDoubler;
+                    ObjectDoubler = loadedWearable.ObjectMainFeatureValue;
                     price = loadedWearable.price;
                     ObjectName = loadedWearable.ObjectName;
                     Background = loadedWearable.Background;
@@ -119,7 +119,7 @@ public class WearableMaker : OdinEditorWindow
     private void UpdateObject()
     {
       
-        loadedWearable.ObjectDoubler = ObjectDoubler;
+        loadedWearable.ObjectMainFeatureValue = ObjectDoubler;
         loadedWearable.price = price;
         loadedWearable.ObjectName = ObjectName;
         loadedWearable.Skin = Skin;
