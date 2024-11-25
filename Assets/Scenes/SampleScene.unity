@@ -3336,9 +3336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c69fb6a483626b4e9c14dba93fb5df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinCooldown: 0.2
-  MaxCooldown: 0.4
-  HorizontalMovementSpeed: 10
   SpeedMeter: 0
 --- !u!61 &1978400168
 BoxCollider2D:
@@ -3448,6 +3445,8 @@ MonoBehaviour:
   MaxIncreaseSpeedMultiplier: 3
   AttackSpeed: 80
   DamagePower: 3
+  HorizontalMovementSpeed: 10
+  CooldownEnd: 0
   EquippedItems: {fileID: 0}
 --- !u!1 &2115764207
 GameObject:
@@ -5673,6 +5672,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
+  - {fileID: 767467885}
   - {fileID: 991104237}
   - {fileID: 1682172342}
   - {fileID: 1018758662}
@@ -5683,7 +5683,6 @@ SceneRoots:
   - {fileID: 1385903065}
   - {fileID: 395228124}
   - {fileID: 247740916}
-  - {fileID: 767467885}
   - {fileID: 461843541}
   - {fileID: 1795593963}
   - {fileID: 230743530}

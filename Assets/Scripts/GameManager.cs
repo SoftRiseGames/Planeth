@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        //StartOptions();
         ScriptableObjectDataManager.Instance.LoadEquippedData();
         Application.targetFrameRate = 60;
         

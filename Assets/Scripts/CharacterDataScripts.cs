@@ -18,7 +18,9 @@ public class CharacterDataScripts : MonoBehaviour
     public int MaxIncreaseSpeedMultiplier;
     public int AttackSpeed;
     public int DamagePower;
-
+    public float HorizontalMovementSpeed;
+    public float CooldownEnd;
+    
 
 
     [SerializeField] EquippedItem EquippedItems;

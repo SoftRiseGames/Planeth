@@ -7,31 +7,46 @@ using DG.Tweening;
 
 public class CharacterMovement : MonoBehaviour
 {
+    //Kontrol boolları
     bool isMove;
     bool isAttack;
     bool isRepositioning;
     bool isReposition;
     bool attackChecker;
+    bool isStart = false;
     float defaultYPosition;
+
+    //colliderler
     Rigidbody2D rb;
     Coroutine fallCoroutine;
     BoxCollider2D ObjectCollider;
+
+    //Eventler
     public static Action CharacterZeroMovement;
-    float Cooldown;
-    [SerializeField] float MinCooldown;
-    [SerializeField] float MaxCooldown;
-    bool isStart = false;
     public static Action EnemyComeAndGameStart;
 
+    //ardı ardına vurma mekaniği için !!!
+    float Cooldown;
     
-    public float HorizontalMovementSpeed;
+    //[SerializeField] float MinCooldown;
+    float FinishCooldown;
+
+    float HorizontalMovementSpeed;
+    float AttackSpeed;
+    
 
     public float SpeedMeter;
-
-    private void Start()
+    private void Awake()
     {
         ObjectCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        HorizontalMovementSpeed = GetComponent<CharacterDataScripts>().HorizontalMovementSpeed;
+        FinishCooldown = GetComponent<CharacterDataScripts>().CooldownEnd;
+        AttackSpeed = GetComponent<CharacterDataScripts>().AttackSpeed;
     }
 
     void EventTrigger()
@@ -53,9 +68,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        StopAllCoroutines(); // T�m coroutineleri durdurur
-        DOTween.Kill(this);   // Bu nesne ile ili�kili t�m DOTween i�lemlerini durdurur
-
+        StopAllCoroutines(); 
+        DOTween.Kill(this);   
         Controlls.IsActionCharacter -= CharacterIsMove;
         Controlls.IsNonActionCharater -= CharacterIsNonMove;
         CharacterDedectionControl.isEnemyCollide -= isPositionReset;
@@ -66,8 +80,8 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        StopAllCoroutines(); // T�m coroutineleri durdurur
-        DOTween.Kill(this);   // Bu nesne ile ili�kili t�m DOTween i�lemlerini durdurur
+        StopAllCoroutines(); 
+        DOTween.Kill(this);   
     }
 
     void CharacterIsMove()
@@ -82,7 +96,7 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterIsNonMove()
     {
-        if (!isReposition || (Cooldown > MinCooldown && Cooldown < MaxCooldown))
+        if (!isReposition)
         {
             isMove = false;
             isAttack = true;
@@ -125,7 +139,7 @@ public class CharacterMovement : MonoBehaviour
             attackChecker = true;
             gameObject.transform.position = new Vector2(
                 gameObject.transform.position.x,
-                gameObject.transform.position.y - GetComponent<CharacterDataScripts>().AttackSpeed * Time.deltaTime
+                gameObject.transform.position.y - AttackSpeed * Time.deltaTime
             );
         }
     }

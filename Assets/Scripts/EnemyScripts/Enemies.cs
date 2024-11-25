@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using DG.Tweening;
 public class Enemies : MonoBehaviour
 {
     public SO_Enemytypes enemies;
@@ -48,6 +48,10 @@ public class Enemies : MonoBehaviour
     private void OnDisable()
     {
         CharacterDedectionControl.isEnemysDecreasingHealth -= DecreaseHealth;
+    }
+    private void OnDestroy()
+    {
+        DOTween.Kill(this);
     }
 
     IEnumerator EnemySpikeModeWait(int delay)
