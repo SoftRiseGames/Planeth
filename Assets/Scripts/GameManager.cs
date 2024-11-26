@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] RocketDatas RocketData;
     [SerializeField] TextMeshProUGUI DistanceMeterText;
     [SerializeField] CharacterMovement Character;
+    [SerializeField] HealthAndEnemyControl totalHealth;
     private int DistanceValue;
    
     private void Awake()
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (equippedItem.WearableType == ObjectType.Armor)
                 {
-                    characterData.TotalHealth = equippedItem.ObjectMainFeatureValue;
+                    totalHealth.TotalHealth = equippedItem.ObjectMainFeatureValue;
                    characterData.ArmorSprite = equippedItem.ArmorWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Shoes)

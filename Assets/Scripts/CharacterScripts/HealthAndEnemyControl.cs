@@ -1,15 +1,15 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using DG.Tweening;
 using UnityEngine.UI;
 
 public class HealthAndEnemyControl : MonoBehaviour
 {
     public List<Image> HealthObjects;
     private int enemyCount = 0;
-    int HealthControl = 2;
+    public int TotalHealth;
     public static Action IncreaseHealth;
     public static Action DecreaseHealth;
     
@@ -31,6 +31,7 @@ public class HealthAndEnemyControl : MonoBehaviour
     private List<Vector2> usedPositions;
 
     bool isStart;
+    
     private void OnEnable()
     {
         CharacterDedectionControl.isEnemyDecreasingOurhealth += DecrasingHealth;
@@ -60,8 +61,20 @@ public class HealthAndEnemyControl : MonoBehaviour
     private void Start()
     {
         StartCoroutine(EnemySpawnRoutine());
+        HealthStart();
+        Debug.Log(TotalHealth);
     }
-
+    void HealthStart()
+    {
+        for(int i= 0; i<HealthObjects.Count; i++)
+        {
+            Debug.Log("control");
+            if (i < TotalHealth)
+                HealthObjects[i].gameObject.SetActive(true);
+            else
+                return;
+        }
+    }
     private void Update()
     {
         if (enemyCount <= 0)
@@ -94,10 +107,11 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     void DecrasingHealth()
     {
-        if (HealthControl >= 0)
+        if (TotalHealth >= 0)
         {
-            HealthObjects[HealthControl].gameObject.SetActive(false);
-            HealthControl -= 1;
+            TotalHealth -= 1;
+            HealthObjects[TotalHealth].gameObject.SetActive(false);
+            Debug.Log(TotalHealth);
         }
         else
             Debug.Log("Game Over");
