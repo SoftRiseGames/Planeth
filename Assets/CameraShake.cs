@@ -29,7 +29,6 @@ public class CameraShake : MonoBehaviour
         if (timerHolder <= 0)
         {
             instance.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0;
-            return;
         }
             
         
