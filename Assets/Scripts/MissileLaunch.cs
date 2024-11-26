@@ -52,7 +52,6 @@ public class MissileLaunch : MonoBehaviour
     {
         missileValue = StartMissile.value*maxRocketSpeed;
         Character.SpeedMeter = missileValue;
-        Debug.Log(missileValue);
         MissileTime?.Invoke();
         isGameStart = true;
         

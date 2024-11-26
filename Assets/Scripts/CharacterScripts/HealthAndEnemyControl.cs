@@ -62,13 +62,13 @@ public class HealthAndEnemyControl : MonoBehaviour
     {
         StartCoroutine(EnemySpawnRoutine());
         HealthStart();
-        Debug.Log(TotalHealth);
+        
     }
     void HealthStart()
     {
         for(int i= 0; i<HealthObjects.Count; i++)
         {
-            Debug.Log("control");
+            
             if (i < TotalHealth)
                 HealthObjects[i].gameObject.SetActive(true);
             else
@@ -107,11 +107,11 @@ public class HealthAndEnemyControl : MonoBehaviour
 
     void DecrasingHealth()
     {
-        if (TotalHealth >= 0)
+        if (TotalHealth > 0)
         {
             TotalHealth -= 1;
             HealthObjects[TotalHealth].gameObject.SetActive(false);
-            Debug.Log(TotalHealth);
+            
         }
         else
             Debug.Log("Game Over");
