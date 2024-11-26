@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbbe71bb189e8940b35ef416aaf3283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intencity: 0.5
+  intencity: 0.1
   time: 0.1
   instance: {fileID: 54846883}
 --- !u!114 &54846885
