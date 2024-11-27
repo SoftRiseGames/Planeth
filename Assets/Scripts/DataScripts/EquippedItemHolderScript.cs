@@ -5,18 +5,16 @@ using UnityEngine;
 public class EquippedItemHolderScript : MonoBehaviour
 {
     public EquippedItem EquippedItem;
-    public List<GameObject> EquippedItemMenu;
     [SerializeField] GameObject EquipButton;
     private int EquippedItemCount;
+    public List<GameObject> EquippedItemMenu;
 
+
+    //0 for helmet
+    //1 for armor
+    //2 for shoes
     private void Start()
     {
-        /*
-        if (PlayerPrefs.HasKey("TotalEquippedItem"))
-            EquippedItemCount = PlayerPrefs.GetInt("TotalEquippedItem");
-        else
-            
-        */
         foreach (GameObject EquippedObject in EquippedItemMenu)
             EquippedObject.SetActive(false);
 
@@ -25,12 +23,6 @@ public class EquippedItemHolderScript : MonoBehaviour
         EquippedItemCount = -1;
         EquipItemList();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-            EquipItemList();
-    }
-    
     void EquipItemList()
     {
 
