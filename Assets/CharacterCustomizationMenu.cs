@@ -12,6 +12,7 @@ public class CharacterCustomizationMenu : MonoBehaviour
 
     public EquippedItem equippedItem;
     public GameObject[] CustomizationButtons;
+    public GameObject[] CharacterVisuals;
 
     void Start()
     {
@@ -29,18 +30,21 @@ public class CharacterCustomizationMenu : MonoBehaviour
                     CustomizationButtons[0].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[0].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
+                    CharacterVisuals[0].GetComponent<Image>().sprite = equippedItem.HelmetWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Armor)
                 {
                     CustomizationButtons[1].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[1].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
+                    CharacterVisuals[1].GetComponent<Image>().sprite = equippedItem.ArmorWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Shoes)
                 {
                     CustomizationButtons[2].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[2].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[2].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
+                    CharacterVisuals[2].GetComponent<Image>().sprite = equippedItem.ShoesWearSprite;
                 }
             }
            

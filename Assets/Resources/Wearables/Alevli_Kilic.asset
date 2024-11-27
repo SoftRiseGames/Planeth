@@ -15,7 +15,7 @@ MonoBehaviour:
   Background: {fileID: 0}
   Skin: {fileID: 0}
   ObjectName: "alevli k\u0131l\u0131\xE7"
-  ObjectDoubler: 0
+  ObjectMainFeatureValue: 0
   price: 0
   WearableType: 3
   isTaken: 1
@@ -28,3 +28,4 @@ MonoBehaviour:
   ShoesWearSprite: {fileID: 0}
   GloveWearSprite: {fileID: 0}
   SwordWearSprite: {fileID: 0}
+  MaxSpeedIncreaseValue: 0

@@ -13,6 +13,8 @@ public class EquippedItemHolderScript : MonoBehaviour
     //0 for helmet
     //1 for armor
     //2 for shoes
+    //3 for sword
+    //4 for glove
     private void Start()
     {
         foreach (GameObject EquippedObject in EquippedItemMenu)
