@@ -60,12 +60,15 @@ public class GameManager : MonoBehaviour
                 {
                     characterData.MaxSpeed = equippedItem.ObjectMainFeatureValue;
                     characterData.MaxIncreaseSpeedMultiplier = equippedItem.MaxSpeedIncreaseValue;
-                    characterData.ShoesSprite = equippedItem.ShoesWearSprite;
+                    characterData.ShoesLSprite = equippedItem.ShoesLWearSprite;
+                    characterData.ShoesRSprite = equippedItem.ShoesRWearSprite;
+
                 }
                 else if (equippedItem.WearableType == ObjectType.Glove)
                 {
                     characterData.AttackSpeed = equippedItem.ObjectMainFeatureValue;
-                    characterData.HandSprite = equippedItem.GloveWearSprite;
+                    characterData.HandLSprite = equippedItem.GloveLWearSprite;
+                    characterData.HandRSprite = equippedItem.GloveRWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Sword)
                 {

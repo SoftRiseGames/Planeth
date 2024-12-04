@@ -49,6 +49,16 @@ public class EquippedItemHolderScript : MonoBehaviour
                     GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[2].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
                     newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
                 }
+                else if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.Sword)
+                {
+                    GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[3].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
+                }
+                else if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.Glove)
+                {
+                    GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[4].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
+                }
 
 
             }

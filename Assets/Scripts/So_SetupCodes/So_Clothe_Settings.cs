@@ -23,9 +23,11 @@ public class So_Clothe_Settings : ScriptableObject
     [Header("After Take Object")]
     public Sprite ArmorWearSprite;
     [Header("After Take Object")]
-    public Sprite ShoesWearSprite;
+    public Sprite ShoesLWearSprite;
+    public Sprite ShoesRWearSprite;
     [Header("After Take Object")]
-    public Sprite GloveWearSprite;
+    public Sprite GloveLWearSprite;
+    public Sprite GloveRWearSprite;
     [Header("After Take Object")]
     public Sprite SwordWearSprite;
 
@@ -63,7 +65,8 @@ public class So_Clothe_Settings : ScriptableObject
             }
             else if(settings.WearableType == ObjectType.Glove)
             {
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("GloveWearSprite"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("GloveLWearSprite"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("GloveRWearSprite"));
             }
             else if(settings.WearableType == ObjectType.Helmet)
             {
@@ -71,7 +74,8 @@ public class So_Clothe_Settings : ScriptableObject
             }
             else if(settings.WearableType == ObjectType.Shoes)
             {
-                EditorGUILayout.PropertyField(serializedObject.FindProperty("ShoesWearSprite"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("ShoesLWearSprite"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("ShoesRWearSprite"));
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("MaxSpeedIncreaseValue"));
             }
             else if(settings.WearableType == ObjectType.Sword)

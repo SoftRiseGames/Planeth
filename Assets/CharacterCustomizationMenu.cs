@@ -44,7 +44,23 @@ public class CharacterCustomizationMenu : MonoBehaviour
                     CustomizationButtons[2].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[2].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[2].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
-                    CharacterVisuals[2].GetComponent<Image>().sprite = equippedItem.ShoesWearSprite;
+                    CharacterVisuals[2].transform.GetChild(0).GetComponent<Image>().sprite = equippedItem.ShoesLWearSprite;
+                    CharacterVisuals[2].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.ShoesRWearSprite;
+                }
+                else if (equippedItem.WearableType == ObjectType.Sword)
+                {
+                    CustomizationButtons[3].GetComponent<Image>().sprite = equippedItem.Background;
+                    CustomizationButtons[3].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
+                    CustomizationButtons[3].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
+                    CharacterVisuals[3].GetComponent<Image>().sprite = equippedItem.SwordWearSprite;
+                }
+                else if (equippedItem.WearableType == ObjectType.Glove)
+                {
+                    CustomizationButtons[4].GetComponent<Image>().sprite = equippedItem.Background;
+                    CustomizationButtons[4].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
+                    CustomizationButtons[4].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
+                    CharacterVisuals[4].transform.GetChild(0).GetComponent<Image>().sprite = equippedItem.GloveLWearSprite;
+                    CharacterVisuals[4].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.GloveRWearSprite;
                 }
             }
            

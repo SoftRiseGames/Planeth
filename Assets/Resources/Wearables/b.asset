@@ -15,8 +15,17 @@ MonoBehaviour:
   Background: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   Skin: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   ObjectName: Keskin Kask
-  ObjectDoubler: 0
+  ObjectMainFeatureValue: 0
   price: 0
   WearableType: 2
-  isTaken: 0
-  isWear: 0
+  isTaken: 1
+  isWear: 1
+  Rockethandle: {fileID: 0}
+  RocketBackground: {fileID: 0}
+  RocketMaxSpeed: 0
+  HelmetWearSprite: {fileID: 0}
+  ArmorWearSprite: {fileID: 0}
+  ShoesWearSprite: {fileID: 0}
+  GloveWearSprite: {fileID: 0}
+  SwordWearSprite: {fileID: 0}
+  MaxSpeedIncreaseValue: 0

@@ -8,8 +8,10 @@ public class CharacterDataScripts : MonoBehaviour
     
     public Sprite HelmetSprite;
     public Sprite ArmorSprite;
-    public Sprite ShoesSprite;
-    public Sprite HandSprite;
+    public Sprite ShoesLSprite;
+    public Sprite ShoesRSprite;
+    public Sprite HandLSprite;
+    public Sprite HandRSprite;
     public Sprite SwordSprite;
 
     public int ChanceToItemDrop;
