@@ -131,14 +131,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1777726099623050466, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3443116482158645343, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
-      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
-      value: 1801810542
-      objectReference: {fileID: 0}
     - target: {fileID: 5651932253255421405, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -222,14 +214,6 @@ PrefabInstance:
     - target: {fileID: 8158761895949614585, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_Name
       value: StoreSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 8663514017591257050, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
-      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
-      value: 1801810542
-      objectReference: {fileID: 0}
-    - target: {fileID: 8857309041209544769, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
-      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
-      value: 1801810542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

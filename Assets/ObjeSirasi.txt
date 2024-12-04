@@ -1,0 +1,5 @@
+ //0 for helmet
+    //1 for armor
+    //2 for shoes
+    //3 for sword
+    //4 for glove
