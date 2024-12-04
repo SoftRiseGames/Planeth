@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 3ba7d432ebc590f4b9da049fb3108503
+guid: c9f0c6c1e47f25a40a76bc59233dba86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7028616704906629411
-    second: 7_0
+      213: 4130640169021434097
+    second: 5_0
   - first:
-      213: -922402802239089382
-    second: 7_1
+      213: -7200132072931614835
+    second: 5_1
   - first:
-      213: 1526234616134381953
-    second: 7_2
+      213: -3609754129978504188
+    second: 5_2
+  - first:
+      213: -4309224192539515645
+    second: 5_3
+  - first:
+      213: 2426446623490865320
+    second: 5_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -132,13 +138,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 7_0
+      name: 5_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 493
-        width: 223
-        height: 260
+        x: 4
+        y: 684
+        width: 156
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 321165667a9aa8160800000000000000
-      internalID: 7028616704906629411
+      spriteID: 1f86b71495bf25930800000000000000
+      internalID: 4130640169021434097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 7_1
+      name: 5_1
       rect:
         serializedVersion: 2
-        x: 103
-        y: 349
-        width: 781
-        height: 800
+        x: 92
+        y: 539
+        width: 649
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +175,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a15d6b8d987f233f0800000000000000
-      internalID: -922402802239089382
+      spriteID: d8f9301170ef31c90800000000000000
+      internalID: -7200132072931614835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 7_2
+      name: 5_2
       rect:
         serializedVersion: 2
-        x: 763
-        y: 493
-        width: 223
-        height: 260
+        x: 667
+        y: 492
+        width: 331
+        height: 476
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,8 +197,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 181389a0c464e2510800000000000000
-      internalID: 1526234616134381953
+      spriteID: 40cc12c7eb397edc0800000000000000
+      internalID: -3609754129978504188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_3
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 419
+        width: 149
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 305a92a9d6f8234c0800000000000000
+      internalID: -4309224192539515645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_4
+      rect:
+        serializedVersion: 2
+        x: 507
+        y: 419
+        width: 149
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a87e9329587ca120800000000000000
+      internalID: 2426446623490865320
       vertices: []
       indices: 
       edges: []
@@ -210,7 +260,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      5_0: 4130640169021434097
+      5_1: -7200132072931614835
+      5_2: -3609754129978504188
+      5_3: -4309224192539515645
+      5_4: 2426446623490865320
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

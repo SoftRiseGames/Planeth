@@ -9,6 +9,16 @@
             "isName": "b",
             "isTaken": true,
             "isWear": true
+        },
+        {
+            "isName": "Clothe",
+            "isTaken": true,
+            "isWear": false
+        },
+        {
+            "isName": "deneme",
+            "isTaken": true,
+            "isWear": false
         }
     ]
 }

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce97998998bdc384db7fcadba325ab1a, type: 3}
   m_Name: EquippedItemHolder
   m_EditorClassIdentifier: 
-  EquippedData: []
+  EquippedData:
+  - {fileID: 11400000, guid: 1c181d514c360cc4780da821773f5a63, type: 2}
+  - {fileID: 11400000, guid: 8de7a12f4edef864d95030f6d8691917, type: 2}
