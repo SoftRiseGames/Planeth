@@ -15,7 +15,8 @@ public class EquippedItemHolderScript : MonoBehaviour
     //2 for shoes
     //3 for sword
     //4 for glove
-    private void Start()
+
+    private void Awake()
     {
         foreach (GameObject EquippedObject in EquippedItemMenu)
             EquippedObject.SetActive(false);
@@ -23,7 +24,14 @@ public class EquippedItemHolderScript : MonoBehaviour
         EquippedItemMenu[0].SetActive(true);
 
         EquippedItemCount = -1;
+
+        
+
+    }
+    private void Start()
+    {
         EquipItemList();
+
     }
     void EquipItemList()
     {
@@ -47,6 +55,7 @@ public class EquippedItemHolderScript : MonoBehaviour
                 else if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.Shoes)
                 {
                     GameObject newButton = Instantiate(EquipButton, EquippedItemMenu[2].transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).transform);
+                    Debug.Log("a");
                     newButton.GetComponent<EquipButton>().clothes = equippeditems.EquippedItem.EquippedData[i];
                 }
                 else if (equippeditems.EquippedItem.EquippedData[i].WearableType == ObjectType.Sword)

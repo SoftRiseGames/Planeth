@@ -32,18 +32,24 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (File.Exists(equippedDataPath))
+        {
+            equippedDataStr = File.ReadAllText(equippedDataPath);
+            equippedLister = JsonUtility.FromJson<EquippedLister>(equippedDataStr);
+        }
 
-        equippedDataStr = File.ReadAllText(equippedDataPath);
-        equippedLister = JsonUtility.FromJson<EquippedLister>(equippedDataStr);
-
-        DataStr = File.ReadAllText(savePath);
-        buttonDataList = JsonUtility.FromJson<ButtonDataList>(DataStr);
+        if (File.Exists(savePath))
+        {
+            DataStr = File.ReadAllText(savePath);
+            buttonDataList = JsonUtility.FromJson<ButtonDataList>(DataStr);
+        }
+       
 
     }
 
     private void Start()
     {
-        
+        LoadEquippedData();
     }
 
     [System.Serializable]
@@ -158,6 +164,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         LoadButtonData();
 
         var buttonData = buttonDataList.buttonDatas.Find(data => data.isName == soClothe.name);
+
         if (buttonData != null)
         {
             buttonData.isTaken = soClothe.isTaken;

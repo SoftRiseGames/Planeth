@@ -14,4 +14,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquippedData:
   - {fileID: 11400000, guid: 1c181d514c360cc4780da821773f5a63, type: 2}
-  - {fileID: 11400000, guid: 8de7a12f4edef864d95030f6d8691917, type: 2}

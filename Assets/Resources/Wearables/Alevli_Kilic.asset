@@ -18,14 +18,16 @@ MonoBehaviour:
   ObjectMainFeatureValue: 0
   price: 0
   WearableType: 3
-  isTaken: 1
-  isWear: 1
+  isTaken: 0
+  isWear: 0
   Rockethandle: {fileID: 0}
   RocketBackground: {fileID: 0}
   RocketMaxSpeed: 0
   HelmetWearSprite: {fileID: 0}
   ArmorWearSprite: {fileID: 0}
-  ShoesWearSprite: {fileID: 0}
-  GloveWearSprite: {fileID: 0}
+  ShoesLWearSprite: {fileID: 0}
+  ShoesRWearSprite: {fileID: 0}
+  GloveLWearSprite: {fileID: 0}
+  GloveRWearSprite: {fileID: 0}
   SwordWearSprite: {fileID: 0}
   MaxSpeedIncreaseValue: 0

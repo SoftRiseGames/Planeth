@@ -13,14 +13,22 @@ public class MenuButtonEvents : MonoBehaviour
     //2 for shoes
     //3 for sword
     //4 for glove
+
+    string ActivatedAsyncSceneByName;
     public void StoreMenu()
     {
-        SceneManager.LoadSceneAsync(3,LoadSceneMode.Additive);
+        StartCoroutine(LoadAsyncScene(3,"Store"));
     }
-
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("SceneName"))
+            ActivatedAsyncSceneByName = PlayerPrefs.GetString("SceneName");
+        else
+            ActivatedAsyncSceneByName = null;
+    }
     public void EquippedMenu()
     {
-        SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
+        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
     }
     public void MainGame()
     {
@@ -31,32 +39,42 @@ public class MenuButtonEvents : MonoBehaviour
     {
         int selectedButton = 0;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadEquippedItems());
+        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
     }
     public void CharacterCustomizationArmor()
     {
         int selectedButton = 1;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadEquippedItems());
+        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
     }
     public void CharacterCustomizationShoes()
     {
         int selectedButton = 2;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadEquippedItems());
+        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
     }
     public void CharacterCustomizationSword()
     {
         int selectedButton = 3;
-        PlayerPrefs.SetInt("SelectedButton", selectedButton); 
-        StartCoroutine(LoadEquippedItems());
+        PlayerPrefs.SetInt("SelectedButton", selectedButton);
+        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
     }
     public void CharacterCustomizationGlove()
     {
         int selectedButton = 4;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadEquippedItems());
+        StartCoroutine(LoadAsyncScene(4,"EquippedItem"));
         
+    }
+    private IEnumerator LoadAsyncScene(int SceneIndex, string SceneName)
+    {
+        PlayerPrefs.SetString("SceneName", SceneName);
+        var progress = SceneManager.LoadSceneAsync(SceneIndex, LoadSceneMode.Additive);
+        while (!progress.isDone)
+        {
+            yield return null;
+        }
+
     }
 
     public void MapPanel()
@@ -64,17 +82,18 @@ public class MenuButtonEvents : MonoBehaviour
         SceneManager.LoadScene(2);
     }
 
+  
+    public void ClosePage()
+    {
+        SceneManager.UnloadSceneAsync(ActivatedAsyncSceneByName);
+    }
     public void FirstVillageMenu()
     {
+        
         SceneManager.LoadScene(5);
     }
 
-    private IEnumerator LoadEquippedItems()
-    {
-        var progress = SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
-        while (!progress.isDone)
-            yield return null;
-    }
+   
     
 
 }

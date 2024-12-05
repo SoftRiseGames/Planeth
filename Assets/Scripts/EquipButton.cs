@@ -14,14 +14,8 @@ public class EquipButton : MonoBehaviour
             gameObject.GetComponent<Button>().interactable = false;
         else
             gameObject.GetComponent<Button>().interactable = true;
-        //ScriptableObjectDataManager.Instance.LoadData(gameObject);
     }
-    private void Start()
-    {
-
-       
-    }
-
+  
     private void Update()
     {
         RefreshButton();
