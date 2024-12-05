@@ -17,7 +17,7 @@ public class MenuButtonEvents : MonoBehaviour
     string ActivatedAsyncSceneByName;
     public void StoreMenu()
     {
-        StartCoroutine(LoadAsyncScene(4,"Store"));
+        StartCoroutine(LoadAsyncScene("Store"));
     }
     private void Start()
     {
@@ -28,7 +28,7 @@ public class MenuButtonEvents : MonoBehaviour
     }
     public void EquippedMenu()
     {
-        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene("EquippedItem"));
     }
     public void MainGame()
     {
@@ -46,37 +46,37 @@ public class MenuButtonEvents : MonoBehaviour
     {
         int selectedButton = 0;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene("EquippedItem"));
     }
     public void CharacterCustomizationArmor()
     {
         int selectedButton = 1;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene("EquippedItem"));
     }
     public void CharacterCustomizationShoes()
     {
         int selectedButton = 2;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene("EquippedItem"));
     }
     public void CharacterCustomizationSword()
     {
         int selectedButton = 3;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene("EquippedItem"));
     }
     public void CharacterCustomizationGlove()
     {
         int selectedButton = 4;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(5,"EquippedItem"));
+        StartCoroutine(LoadAsyncScene("EquippedItem"));
         
     }
-    private IEnumerator LoadAsyncScene(int SceneIndex, string SceneName)
+    private IEnumerator LoadAsyncScene(string SceneName)
     {
         PlayerPrefs.SetString("SceneName", SceneName);
-        var progress = SceneManager.LoadSceneAsync(SceneIndex, LoadSceneMode.Additive);
+        var progress = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Additive);
         while (!progress.isDone)
         {
             yield return null;
