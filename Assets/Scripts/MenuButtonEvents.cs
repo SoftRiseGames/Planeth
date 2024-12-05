@@ -15,12 +15,17 @@ public class MenuButtonEvents : MonoBehaviour
     //4 for glove
     public void StoreMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadSceneAsync(3,LoadSceneMode.Additive);
+    }
+
+    public void EquippedMenu()
+    {
+        SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
     }
     public void MainGame()
     {
         SceneManager.LoadScene(0);
-    }
+    }   
 
     public void CharacterCustomizationHelmet()
     {
@@ -52,6 +57,16 @@ public class MenuButtonEvents : MonoBehaviour
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
         StartCoroutine(LoadEquippedItems());
         
+    }
+
+    public void MapPanel()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void FirstVillageMenu()
+    {
+        SceneManager.LoadScene(5);
     }
 
     private IEnumerator LoadEquippedItems()

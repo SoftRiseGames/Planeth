@@ -6,13 +6,22 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/CharacterCustomization.unity
+    guid: 8e88ea53b0e592a44ac4cf116b7ce4ec
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/sahneaktarimdeneme.unity
+    path: Assets/Scenes/Mainmenu.unity
+    guid: ee13dcb595128e94d9b098e03cb7de06
+  - enabled: 1
+    path: Assets/Scenes/Store.unity
+    guid: 6d9a5f5fecc1eb3478f07fbac816d77c
+  - enabled: 1
+    path: Assets/Scenes/EquippedItem.unity
     guid: 3f13096e6587f3c4ba41d5d17af2d208
-  - enabled: 0
-    path: Assets/Scenes/CharacterCustomization.unity
-    guid: 8e88ea53b0e592a44ac4cf116b7ce4ec
+  - enabled: 1
+    path: Assets/Scenes/VillageMenu.unity
+    guid: 928b0f2fa2d11d3448602c80f9f75a9f
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
