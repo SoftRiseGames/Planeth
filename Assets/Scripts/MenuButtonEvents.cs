@@ -17,7 +17,7 @@ public class MenuButtonEvents : MonoBehaviour
     string ActivatedAsyncSceneByName;
     public void StoreMenu()
     {
-        StartCoroutine(LoadAsyncScene(3,"Store"));
+        StartCoroutine(LoadAsyncScene(4,"Store"));
     }
     private void Start()
     {
@@ -28,42 +28,49 @@ public class MenuButtonEvents : MonoBehaviour
     }
     public void EquippedMenu()
     {
-        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
     }
     public void MainGame()
     {
+        SceneManager.LoadScene(3);
+    }
+    public void Back()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+    public void CharacterCustomizationScene()
+    {
         SceneManager.LoadScene(0);
-    }   
-
+    }
     public void CharacterCustomizationHelmet()
     {
         int selectedButton = 0;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
     }
     public void CharacterCustomizationArmor()
     {
         int selectedButton = 1;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
     }
     public void CharacterCustomizationShoes()
     {
         int selectedButton = 2;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
     }
     public void CharacterCustomizationSword()
     {
         int selectedButton = 3;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(4, "EquippedItem"));
+        StartCoroutine(LoadAsyncScene(5, "EquippedItem"));
     }
     public void CharacterCustomizationGlove()
     {
         int selectedButton = 4;
         PlayerPrefs.SetInt("SelectedButton", selectedButton);
-        StartCoroutine(LoadAsyncScene(4,"EquippedItem"));
+        StartCoroutine(LoadAsyncScene(5,"EquippedItem"));
         
     }
     private IEnumerator LoadAsyncScene(int SceneIndex, string SceneName)
@@ -79,7 +86,7 @@ public class MenuButtonEvents : MonoBehaviour
 
     public void MapPanel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 
   
@@ -90,7 +97,7 @@ public class MenuButtonEvents : MonoBehaviour
     public void FirstVillageMenu()
     {
         
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(2);
     }
 
    
