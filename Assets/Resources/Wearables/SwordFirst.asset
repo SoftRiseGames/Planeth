@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
+  m_Name: SwordFirst
+  m_EditorClassIdentifier: 
+  Background: {fileID: 4336526279709279265, guid: a0a42dc3387e31141bc6fb02920434cb, type: 3}
+  Skin: {fileID: 6914154902746628804, guid: 9501935b755251045b91a1147ad0336f, type: 3}
+  ObjectName: "Basit K\u0131l\u0131\xE7"
+  ObjectMainFeatureValue: 3
+  price: 0
+  WearableType: 4
+  isTaken: 1
+  isWear: 1
+  Rockethandle: {fileID: 0}
+  RocketBackground: {fileID: 0}
+  RocketMaxSpeed: 0
+  HelmetWearSprite: {fileID: 0}
+  ArmorWearSprite: {fileID: 0}
+  ShoesLWearSprite: {fileID: 0}
+  ShoesRWearSprite: {fileID: 0}
+  GloveLWearSprite: {fileID: 0}
+  GloveRWearSprite: {fileID: 0}
+  SwordWearSprite: {fileID: 6914154902746628804, guid: 9501935b755251045b91a1147ad0336f, type: 3}
+  MaxSpeedIncreaseValue: 0
