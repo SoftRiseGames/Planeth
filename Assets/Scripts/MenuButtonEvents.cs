@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
-
+using System;
 public class MenuButtonEvents : MonoBehaviour
 {
     //Ana oyun sahnesi 0 
@@ -15,6 +15,7 @@ public class MenuButtonEvents : MonoBehaviour
     //4 for glove
 
     string ActivatedAsyncSceneByName;
+    public static Action isTransition;
     public void StoreMenu()
     {
         StartCoroutine(LoadAsyncScene("Store"));
@@ -98,6 +99,10 @@ public class MenuButtonEvents : MonoBehaviour
     {
         
         SceneManager.LoadScene(2);
+    }
+    public void TransitionEvent()
+    {
+        isTransition?.Invoke();
     }
 
    

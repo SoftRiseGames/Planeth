@@ -39,6 +39,7 @@ public class EquipButton : MonoBehaviour
 
     }
 
+
     void RefreshButton()
     {
         if (clothes.isWear == false)
