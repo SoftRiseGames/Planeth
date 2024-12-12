@@ -24,6 +24,8 @@ public class CharacterMovement : MonoBehaviour
     //Eventler
     public static Action CharacterZeroMovement;
     public static Action EnemyComeAndGameStart;
+    public static Action CharacterReturnPosition;
+    public static Action CharacterEndAction;
 
     //ardı ardına vurma mekaniği için !!!
     float Cooldown;
@@ -158,9 +160,10 @@ public class CharacterMovement : MonoBehaviour
         CharacterZeroMovement?.Invoke();
         gameObject.transform.DOMoveY(defaultYPosition, .3f)
             .SetEase(Ease.Linear)
-            .OnUpdate(() => { Cooldown += Time.deltaTime; })
+            .OnUpdate(() => { Cooldown += Time.deltaTime; CharacterReturnPosition?.Invoke(); })
             .OnComplete(() =>
             {
+                CharacterEndAction?.Invoke();
                 StartCharacterFall();
                 ObjectCollider.enabled = true;
                 isReposition = false;
@@ -169,7 +172,7 @@ public class CharacterMovement : MonoBehaviour
                 if (isMoveChecker == true)
                     isMove = true;
             })
-            .SetTarget(this); // Bu animasyonu CharacterMovement nesnesine ba�lar
+            .SetTarget(this);
     }
 
     void isPositionReset()

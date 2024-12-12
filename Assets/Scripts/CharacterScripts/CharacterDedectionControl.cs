@@ -20,8 +20,8 @@ public class CharacterDedectionControl : MonoBehaviour
                     isEnemyDecreasingOurhealth?.Invoke();
                 else if (collision.gameObject.GetComponent<Enemies>().isDamagable == true)
                 {
+                    isEnemysDecreasingHealth?.Invoke();
                     collision.gameObject.GetComponent<Enemies>().health = collision.gameObject.GetComponent<Enemies>().health - GetComponent<CharacterDataScripts>().DamagePower;
-
 
                     if(GetComponent<CharacterMovement>().SpeedMeter< GetComponent<CharacterDataScripts>().MaxSpeed)
                     {
