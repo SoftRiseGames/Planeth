@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: EnemySettings 1
   m_EditorClassIdentifier: 
   enemy: 1
-  enemySprite: {fileID: 7482667652216324306, guid: 35cbd45a4e6a43142845a055ae067cfd, type: 3}
+  enemySprite: {fileID: 6653994858678897968, guid: 55dc3a25e195ea04eac0f112884ff0f8, type: 3}
   EnemyHealth: 3
   EnemyDamageAnim: {fileID: 0}
   EnemySpikeAnim: {fileID: 0}
   SpeedForXaxis: 200
   enemyFallTimer: 10
   EnemyFallSpeed: 100
+  EnemyScale: 0.5

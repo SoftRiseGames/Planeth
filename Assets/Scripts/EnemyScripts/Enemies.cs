@@ -31,6 +31,8 @@ public class Enemies : MonoBehaviour
             InvokeRepeating("EnemyWaitStatus", 0, 6);
 
         StartMovement();
+
+        this.gameObject.transform.localScale = new Vector2(enemies.EnemyScale, enemies.EnemyScale);
     }
 
     void CharacterClasses()

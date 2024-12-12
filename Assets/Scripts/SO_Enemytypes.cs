@@ -12,6 +12,7 @@ public class SO_Enemytypes : ScriptableObject
     public float SpeedForXaxis;
     public float enemyFallTimer;
     public float EnemyFallSpeed;
+    public float EnemyScale;
 }
 public enum EnemyType
 {
