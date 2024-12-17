@@ -29,13 +29,15 @@ public class CharacterMovement : MonoBehaviour
 
     //ardı ardına vurma mekaniği için !!!
     float Cooldown;
+    
+    //[SerializeField] float MinCooldown;
     float FinishCooldown;
 
     float HorizontalMovementSpeed;
     float AttackSpeed;
+    
 
     public float SpeedMeter;
-
     private void Awake()
     {
         ObjectCollider = GetComponent<BoxCollider2D>();
@@ -44,64 +46,9 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        var characterData = GetComponent<CharacterDataScripts>();
-        if (characterData != null)
-        {
-            HorizontalMovementSpeed = characterData.HorizontalMovementSpeed;
-            FinishCooldown = characterData.CooldownEnd;
-            AttackSpeed = characterData.AttackSpeed;
-        }
-    }
-
-    private void OnEnable()
-    {
-        if (!isStart)
-            MissileLaunch.MissileTime += CharacterStart;
-    }
-
-    private void OnDisable()
-    {
-        CleanUpBeforeDestroy();
-    }
-
-    private void OnDestroy()
-    {
-        CleanUpBeforeDestroy();
-    }
-
-    private void CleanUpBeforeDestroy()
-    {
-        if (gameObject == null || !this) return; // Null güvenliği
-
-        StopAllCoroutines();
-        if (DOTween.IsTweening(this))
-            DOTween.Kill(this);
-
-        // Eventlerden güvenli çıkış
-        if (Controlls.IsActionCharacter != null)
-            Controlls.IsActionCharacter -= CharacterIsMove;
-
-        if (Controlls.IsNonActionCharater != null)
-            Controlls.IsNonActionCharater -= CharacterIsNonMove;
-
-        if (CharacterDedectionControl.isEnemyCollide != null)
-            CharacterDedectionControl.isEnemyCollide -= isPositionReset;
-
-        if (MissileLaunch.MissileTime != null)
-            MissileLaunch.MissileTime -= CharacterStart;
-
-        if (CharacterZeroMovement != null)
-            CharacterZeroMovement -= ZeroMovement;
-    }
-
-    private void Update()
-    {
-        if (gameObject == null || !this) return; // Null güvenliği
-
-        CharacterMove();
-
-        if (isStart && SpeedMeter > 0)
-            SpeedMeter -= 1 * Time.deltaTime;
+        HorizontalMovementSpeed = GetComponent<CharacterDataScripts>().HorizontalMovementSpeed;
+        FinishCooldown = GetComponent<CharacterDataScripts>().CooldownEnd;
+        AttackSpeed = GetComponent<CharacterDataScripts>().AttackSpeed;
     }
 
     void EventTrigger()
@@ -113,6 +60,39 @@ public class CharacterMovement : MonoBehaviour
             CharacterDedectionControl.isEnemyCollide += isPositionReset;
             CharacterZeroMovement += ZeroMovement;
         }
+    }
+
+    private void OnEnable()
+    {
+        if (!isStart)
+            MissileLaunch.MissileTime += CharacterStart;
+
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines(); 
+        DOTween.Kill(this);   
+        Controlls.IsActionCharacter -= CharacterIsMove;
+        Controlls.IsNonActionCharater -= CharacterIsNonMove;
+        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
+        MissileLaunch.MissileTime -= CharacterStart;
+        CharacterZeroMovement -= ZeroMovement;
+        MissileLaunch.MissileTime -= CharacterStart;
+    }
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines(); 
+        DOTween.Kill(this);
+
+        Controlls.IsActionCharacter -= CharacterIsMove;
+        Controlls.IsNonActionCharater -= CharacterIsNonMove;
+        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
+        MissileLaunch.MissileTime -= CharacterStart;
+        CharacterZeroMovement -= ZeroMovement;
+        MissileLaunch.MissileTime -= CharacterStart;
+
     }
 
     void CharacterIsMove()
@@ -142,6 +122,14 @@ public class CharacterMovement : MonoBehaviour
         characterNonFall();
     }
 
+    private void Update()
+    {
+        CharacterMove();
+
+        if (isStart && SpeedMeter > 0)
+            SpeedMeter -= 1 * Time.deltaTime;
+    }
+
     void CharacterMove()
     {
         if (isMove)
@@ -149,9 +137,9 @@ public class CharacterMovement : MonoBehaviour
             if (!attackChecker)
             {
                 Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                transform.position = Vector2.MoveTowards(
-                    new Vector2(transform.position.x, transform.position.y),
-                    new Vector2(mousePosition.x, transform.position.y),
+                gameObject.transform.position = Vector2.MoveTowards(
+                    new Vector2(transform.position.x, gameObject.transform.position.y),
+                    new Vector2(mousePosition.x, gameObject.transform.position.y),
                     HorizontalMovementSpeed * Time.deltaTime
                 );
             }
@@ -160,24 +148,26 @@ public class CharacterMovement : MonoBehaviour
         if (isAttack)
         {
             attackChecker = true;
-            transform.position = new Vector2(
-                transform.position.x,
-                transform.position.y - AttackSpeed * Time.deltaTime
+            gameObject.transform.position = new Vector2(
+                gameObject.transform.position.x,
+                gameObject.transform.position.y - AttackSpeed * Time.deltaTime
             );
         }
     }
 
     void CharacterPositionReset(float delayTime)
     {
-        if (gameObject == null || !this) return; // Null güvenliği
-
         ObjectCollider.enabled = false;
-        bool isMoveChecker = isMove;
-
+        bool isMoveChecker = false;
         isReposition = true;
-        CharacterZeroMovement?.Invoke();
 
-        transform.DOMoveY(defaultYPosition, .3f)
+        if (isMove == true)
+            isMoveChecker = true;
+        else
+            isMoveChecker = false;
+
+        CharacterZeroMovement?.Invoke();
+        gameObject.transform.DOMoveY(defaultYPosition, .3f)
             .SetEase(Ease.Linear)
             .OnUpdate(() => { Cooldown += Time.deltaTime; CharacterReturnPosition?.Invoke(); })
             .OnComplete(() =>
@@ -188,7 +178,7 @@ public class CharacterMovement : MonoBehaviour
                 isReposition = false;
                 attackChecker = false;
 
-                if (isMoveChecker)
+                if (isMoveChecker == true)
                     isMove = true;
             })
             .SetTarget(this);
@@ -210,8 +200,7 @@ public class CharacterMovement : MonoBehaviour
     IEnumerator StartFallCoroutine()
     {
         yield return new WaitForSeconds(1.5f);
-        if (rb != null)
-            rb.gravityScale = 3f;
+        rb.gravityScale = 3f;
     }
 
     void characterNonFall()
@@ -221,28 +210,22 @@ public class CharacterMovement : MonoBehaviour
             StopCoroutine(fallCoroutine);
             fallCoroutine = null;
         }
-
-        if (rb != null)
-        {
-            rb.gravityScale = 0f;
-            rb.linearVelocity = Vector2.zero;
-        }
+        rb.gravityScale = 0f;
+        rb.linearVelocity = Vector2.zero;
     }
 
     void CharacterStart()
     {
-        transform.DOMoveY(4.24f, .5f).OnComplete(() =>
+        gameObject.transform.DOMoveY(4.24f, .5f).OnComplete(() =>
         {
-            defaultYPosition = transform.position.y;
+            defaultYPosition = gameObject.transform.position.y;
             StartGame();
-        }).SetTarget(this);
+        }).SetTarget(this); 
     }
 
     async void StartGame()
     {
         await Task.Delay(2000);
-        if (gameObject == null || !this) return; // Null güvenliği
-
         isStart = true;
         EventTrigger();
         EnemyComeAndGameStart?.Invoke();

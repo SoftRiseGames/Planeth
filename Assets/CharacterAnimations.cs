@@ -15,6 +15,13 @@ public class CharacterAnimations : MonoBehaviour
         CharacterMovement.CharacterReturnPosition += CharacterReturnPosition;
         CharacterMovement.CharacterEndAction += CharacterEndAnimaton;
     }
+    private void OnDisable()
+    {
+        Controlls.IsNonActionCharater -= CharacterAttack;
+        CharacterDedectionControl.isEnemysDecreasingHealth -= CharacterCollideEnemy;
+        CharacterMovement.CharacterReturnPosition -= CharacterReturnPosition;
+        CharacterMovement.CharacterEndAction -= CharacterEndAnimaton;
+    }
 
     void CharacterAttack() => animator.SetBool("isAttack", true);
     void CharacterCollideEnemy() => animator.SetBool("isSuccesfullAttack", true);

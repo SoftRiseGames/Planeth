@@ -44,12 +44,10 @@ public class Enemies : MonoBehaviour
 
     private void OnEnable()
     {
-        CharacterDedectionControl.isEnemysDecreasingHealth += DecreaseHealth;
     }
 
     private void OnDisable()
     {
-        CharacterDedectionControl.isEnemysDecreasingHealth -= DecreaseHealth;
     }
     private void OnDestroy()
     {
