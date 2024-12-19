@@ -15,7 +15,10 @@ public class MissileLaunch : MonoBehaviour
     private Sequence missileSequence;
 
     [SerializeField] Image Background;
-    [SerializeField] Image Handle;
+   // [SerializeField] Image Handle;
+    [SerializeField] Image Fill;
+
+    [SerializeField] Sprite[] backgroundSprites;
 
     public static Action MissileTime;
 
@@ -42,11 +45,13 @@ public class MissileLaunch : MonoBehaviour
     void Update()
     {
         StartMissile.value = StartMissileValues;
+        MissileEffect();
     }
     void AfterMissile()
     {
-        Handle.DOFade(0, .5f);
+      
         Background.DOFade(0, .5f);
+        Fill.DOFade(0, .5f);
     }
     void Missile()
     {
@@ -63,7 +68,18 @@ public class MissileLaunch : MonoBehaviour
             missileSequence.Kill();
         }
     }
+    void MissileEffect() 
+    {
+        if (StartMissile.value >= StartMissile.maxValue / 2)
+            Background.sprite = backgroundSprites[2];
+        else if(StartMissile.value < StartMissile.maxValue / 2 && StartMissile.value>=.3f)
+            Background.sprite = backgroundSprites[1];
+        else
+            Background.sprite = backgroundSprites[0];
 
+
+
+    }
     void MissileSliderLoop()
     {
         if (!isGameStart)
