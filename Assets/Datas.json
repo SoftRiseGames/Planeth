@@ -1,3 +1,9 @@
 {
-    "buttonDatas": []
+    "buttonDatas": [
+        {
+            "isName": "ArmorFirst",
+            "isTaken": true,
+            "isWear": false
+        }
+    ]
 }

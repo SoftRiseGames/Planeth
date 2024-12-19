@@ -16,13 +16,12 @@ public class MarketingButtonOptions : MonoBehaviour
 
     private void Awake()
     {
-        //ScriptableObjectDataManager.Instance.LoadData(gameObject);
+        //ScriptableObjectDataManager.Instance.LoadEquippedData();
     }
     private void Start()
     {
        
         ifTake();
-        // Arka plan ve metinleri oluþtur
         ReCreate();
     }
     private void Update()
@@ -48,10 +47,12 @@ public class MarketingButtonOptions : MonoBehaviour
     {
         
         int CheckerInt = 0;
+      
         foreach(int i in GameTotalCoin.Amount)
         {
-            if (GameTotalCoin.Amount[i] >= ButtonSettingObject.MaterialRequirement[i])
+            if (i >= ButtonSettingObject.RequirementItem[CheckerInt])
             {
+                Debug.Log("buyukveesit");
                 CheckerInt = CheckerInt + 1;
             }
             else
@@ -61,15 +62,17 @@ public class MarketingButtonOptions : MonoBehaviour
         if (GameTotalCoin.Amount.Count == CheckerInt)
         {
             this.ButtonSettingObject.isTaken = true;
-            foreach (int i in GameTotalCoin.Amount)
+            for (int i = 0; i< ButtonSettingObject.RequirementItem.Count; i++)
             {
-                GameTotalCoin.Amount[i] -= ButtonSettingObject.MaterialRequirement[i];
+                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.RequirementItem[i];
             }
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(this.ButtonSettingObject);
             ScriptableObjectDataManager.Instance.SaveData(ButtonSettingObject);
          
         }
+        
+      
     }
 
     

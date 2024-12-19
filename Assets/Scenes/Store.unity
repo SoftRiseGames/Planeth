@@ -155,10 +155,10 @@ RectTransform:
   - {fileID: 1443816268}
   m_Father: {fileID: 1777726099961527347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 375, y: -375}
+  m_SizeDelta: {x: 750, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &369788089
 MonoBehaviour:
@@ -172,12 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397385703e6cef94aab9af14c6b82747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ButtonSettingObject: {fileID: 11400000, guid: 1c181d514c360cc4780da821773f5a63, type: 2}
+  ButtonSettingObject: {fileID: 11400000, guid: 52d3c7d5e599c38468e290cc6dfaef40, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
   ObjectName: {fileID: 2123495640}
   background: {fileID: 369788091}
   Skin: {fileID: 1443816269}
-  GameTotalCoin: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  GameTotalCoin: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
   isTaken: 0
 --- !u!114 &369788090
 MonoBehaviour:
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonDataList:
     buttonDatas: []
-  CoinValue: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  CoinValue: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
 --- !u!4 &667968438
 Transform:

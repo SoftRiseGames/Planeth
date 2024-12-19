@@ -91,7 +91,10 @@ public class ScriptableObjectDataManager : MonoBehaviour
         UpdateEquippedData();
         WriteToJson();
     }
+    public void CoinSave()
+    {
 
+    }
     private void UpdateEquippedData()
     {
         equippedLister.EquippedDataNames.Clear();

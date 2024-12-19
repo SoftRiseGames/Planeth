@@ -14,6 +14,9 @@ public class So_Clothe_Settings : ScriptableObject
     public ObjectType WearableType;
     public bool isTaken;
     public bool isWear;
+    public List<int> RequirementItem;
+
+
     [Header("After Take Object")]
     public Sprite Rockethandle;
     public Sprite RocketBackground;
@@ -48,7 +51,7 @@ public class So_Clothe_Settings : ScriptableObject
             EditorGUILayout.PropertyField(serializedObject.FindProperty("Skin"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectName"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("ObjectMainFeatureValue"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("price"));
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("RequirementItem"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("WearableType"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("isTaken"));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("isWear"));
