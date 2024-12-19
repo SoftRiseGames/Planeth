@@ -73,7 +73,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
 
     public class CurrencyData
     {
-        public int Amount;
+        public List<int> Amount;
     }
 
     public void SaveData(So_Clothe_Settings soClothe)
@@ -87,7 +87,6 @@ public class ScriptableObjectDataManager : MonoBehaviour
             isWear = soClothe.isWear
         };
         buttonDataList.buttonDatas.Add(buttonData);
-
         currencyData.Amount = CoinValue.Amount;
         UpdateEquippedData();
         WriteToJson();

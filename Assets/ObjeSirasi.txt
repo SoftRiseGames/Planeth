@@ -1,5 +1,13 @@
- //0 for helmet
+    
+// Zýrhlarýn Liste Index Numarasý
+    //0 for helmet
     //1 for armor
     //2 for shoes
     //3 for sword
     //4 for glove
+
+//Paralarýn Liste Index Numarasý
+    //0 Coin
+    //1 for Iron
+    //2 for Gold
+    //3 for hardened steel

@@ -25,7 +25,7 @@ public class WearableMaker : OdinEditorWindow
     public string ObjectFileName;
     public string ObjectLoad;
     [Title("price")]
-    public int price;
+    public List<int> MaterialRequirement;
 
 
  
@@ -42,7 +42,6 @@ public class WearableMaker : OdinEditorWindow
     [Button("Oluþtur")]
     private void Atama()
     {
-        // ScriptableObject yaratma ve kaydetme iþlemi
         So_Clothe_Settings newWearable = ScriptableObject.CreateInstance<So_Clothe_Settings>();
 
         // Ýlgili özellikleri atayýn
@@ -51,7 +50,7 @@ public class WearableMaker : OdinEditorWindow
         newWearable.Skin = Skin;
         */
         newWearable.ObjectMainFeatureValue = ObjectDoubler;
-        newWearable.price = price;
+        newWearable.MaterialRequirement = MaterialRequirement;
         newWearable.ObjectName = ObjectName;
         newWearable.Skin = Skin;
         newWearable.Background = Background;
@@ -94,7 +93,7 @@ public class WearableMaker : OdinEditorWindow
                 {
 
                     ObjectDoubler = loadedWearable.ObjectMainFeatureValue;
-                    price = loadedWearable.price;
+                    MaterialRequirement = loadedWearable.MaterialRequirement;
                     ObjectName = loadedWearable.ObjectName;
                     Background = loadedWearable.Background;
                     Skin = loadedWearable.Skin;
@@ -120,7 +119,7 @@ public class WearableMaker : OdinEditorWindow
     {
       
         loadedWearable.ObjectMainFeatureValue = ObjectDoubler;
-        loadedWearable.price = price;
+        loadedWearable.MaterialRequirement = MaterialRequirement;
         loadedWearable.ObjectName = ObjectName;
         loadedWearable.Skin = Skin;
         loadedWearable.Background = Background;

@@ -46,11 +46,25 @@ public class MarketingButtonOptions : MonoBehaviour
 
     public void TakeItem()
     {
-        if (GameTotalCoin.Amount >= ButtonSettingObject.price)
+        
+        int CheckerInt = 0;
+        foreach(int i in GameTotalCoin.Amount)
         {
-            
+            if (GameTotalCoin.Amount[i] >= ButtonSettingObject.MaterialRequirement[i])
+            {
+                CheckerInt = CheckerInt + 1;
+            }
+            else
+                return;
+
+        }
+        if (GameTotalCoin.Amount.Count == CheckerInt)
+        {
             this.ButtonSettingObject.isTaken = true;
-            GameTotalCoin.Amount -= ButtonSettingObject.price;
+            foreach (int i in GameTotalCoin.Amount)
+            {
+                GameTotalCoin.Amount[i] -= ButtonSettingObject.MaterialRequirement[i];
+            }
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(this.ButtonSettingObject);
             ScriptableObjectDataManager.Instance.SaveData(ButtonSettingObject);

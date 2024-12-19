@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEditor;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName ="Wearable",menuName ="Customizable/Wearable")]
 public class So_Clothe_Settings : ScriptableObject
@@ -9,7 +10,7 @@ public class So_Clothe_Settings : ScriptableObject
     public Sprite Skin;
     public string ObjectName;
     public int ObjectMainFeatureValue;
-    public int price;
+    public List<int> MaterialRequirement;
     public ObjectType WearableType;
     public bool isTaken;
     public bool isWear;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30c19f87063e9794da6c1986c4c54651, type: 3}
   m_Name: EnemySettings 2
   m_EditorClassIdentifier: 
-  enemy: 1
+  enemy: 0
   enemySprite: {fileID: 21300000, guid: f6b57c09539a40642b43950eed242039, type: 3}
   EnemyHealth: 3
   EnemyDamageAnim: {fileID: 0}

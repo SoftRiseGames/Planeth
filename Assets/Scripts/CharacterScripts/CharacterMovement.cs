@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class CharacterMovement : MonoBehaviour
 {
-    //Kontrol boolları
+    // Kontrol bool'ları
     bool isMove;
     bool isAttack;
     bool isRepositioning;
@@ -16,28 +16,26 @@ public class CharacterMovement : MonoBehaviour
     bool isStart = false;
     float defaultYPosition;
 
-    //colliderler
+    // Collider'lar
     Rigidbody2D rb;
     Coroutine fallCoroutine;
     BoxCollider2D ObjectCollider;
 
-    //Eventler
+    // Event'ler
     public static Action CharacterZeroMovement;
     public static Action EnemyComeAndGameStart;
     public static Action CharacterReturnPosition;
     public static Action CharacterEndAction;
 
-    //ardı ardına vurma mekaniği için !!!
+    // Ardışık vurma mekaniği için !!!
     float Cooldown;
-    
-    //[SerializeField] float MinCooldown;
     float FinishCooldown;
 
     float HorizontalMovementSpeed;
     float AttackSpeed;
-    
 
     public float SpeedMeter;
+
     private void Awake()
     {
         ObjectCollider = GetComponent<BoxCollider2D>();
@@ -46,9 +44,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
-        HorizontalMovementSpeed = GetComponent<CharacterDataScripts>().HorizontalMovementSpeed;
-        FinishCooldown = GetComponent<CharacterDataScripts>().CooldownEnd;
-        AttackSpeed = GetComponent<CharacterDataScripts>().AttackSpeed;
+        var characterData = GetComponent<CharacterDataScripts>();
+        HorizontalMovementSpeed = characterData.HorizontalMovementSpeed;
+        FinishCooldown = characterData.CooldownEnd;
+        AttackSpeed = characterData.AttackSpeed;
     }
 
     void EventTrigger()
@@ -65,38 +64,45 @@ public class CharacterMovement : MonoBehaviour
     private void OnEnable()
     {
         if (!isStart)
+        {
             MissileLaunch.MissileTime += CharacterStart;
-
+        }
     }
 
     private void OnDisable()
     {
-        StopAllCoroutines(); 
-        DOTween.Kill(this);   
-        Controlls.IsActionCharacter -= CharacterIsMove;
-        Controlls.IsNonActionCharater -= CharacterIsNonMove;
-        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
-        MissileLaunch.MissileTime -= CharacterStart;
-        CharacterZeroMovement -= ZeroMovement;
-        MissileLaunch.MissileTime -= CharacterStart;
+        CleanUpEvents();
     }
 
     private void OnDestroy()
     {
-        StopAllCoroutines(); 
-        DOTween.Kill(this);
+        CleanUpEvents();
+    }
 
-        Controlls.IsActionCharacter -= CharacterIsMove;
-        Controlls.IsNonActionCharater -= CharacterIsNonMove;
-        CharacterDedectionControl.isEnemyCollide -= isPositionReset;
-        MissileLaunch.MissileTime -= CharacterStart;
-        CharacterZeroMovement -= ZeroMovement;
-        MissileLaunch.MissileTime -= CharacterStart;
+    void CleanUpEvents()
+    {
+        StopAllCoroutines();
+        DOTween.Kill(this, true);
 
+        if (Controlls.IsActionCharacter != null)
+            Controlls.IsActionCharacter -= CharacterIsMove;
+
+        if (Controlls.IsNonActionCharater != null)
+            Controlls.IsNonActionCharater -= CharacterIsNonMove;
+
+        if (CharacterDedectionControl.isEnemyCollide != null)
+            CharacterDedectionControl.isEnemyCollide -= isPositionReset;
+
+        if (MissileLaunch.MissileTime != null)
+            MissileLaunch.MissileTime -= CharacterStart;
+
+        if (CharacterZeroMovement != null)
+            CharacterZeroMovement -= ZeroMovement;
     }
 
     void CharacterIsMove()
     {
+        if (this == null) return;
         if (!isReposition && !isAttack)
         {
             isMove = true;
@@ -107,6 +113,7 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterIsNonMove()
     {
+        if (this == null) return;
         if (!isReposition)
         {
             isMove = false;
@@ -117,6 +124,7 @@ public class CharacterMovement : MonoBehaviour
 
     void ZeroMovement()
     {
+        if (this == null) return;
         isAttack = false;
         isMove = false;
         characterNonFall();
@@ -124,6 +132,7 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
+        if (this == null) return;
         CharacterMove();
 
         if (isStart && SpeedMeter > 0)
@@ -132,6 +141,7 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterMove()
     {
+        if (this == null) return;
         if (isMove)
         {
             if (!attackChecker)
@@ -157,14 +167,11 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterPositionReset(float delayTime)
     {
-        ObjectCollider.enabled = false;
-        bool isMoveChecker = false;
-        isReposition = true;
+        if (this == null) return;
 
-        if (isMove == true)
-            isMoveChecker = true;
-        else
-            isMoveChecker = false;
+        ObjectCollider.enabled = false;
+        bool isMoveChecker = isMove;
+        isReposition = true;
 
         CharacterZeroMovement?.Invoke();
         gameObject.transform.DOMoveY(defaultYPosition, .3f)
@@ -172,39 +179,39 @@ public class CharacterMovement : MonoBehaviour
             .OnUpdate(() => { Cooldown += Time.deltaTime; CharacterReturnPosition?.Invoke(); })
             .OnComplete(() =>
             {
+                if (this == null) return;
                 CharacterEndAction?.Invoke();
                 StartCharacterFall();
                 ObjectCollider.enabled = true;
                 isReposition = false;
                 attackChecker = false;
-
-                if (isMoveChecker == true)
-                    isMove = true;
+                isMove = isMoveChecker;
             })
             .SetTarget(this);
     }
 
     void isPositionReset()
     {
+        if (this == null) return;
         CharacterPositionReset(.5f);
     }
 
     void StartCharacterFall()
     {
-        if (fallCoroutine == null && isStart)
-        {
-            fallCoroutine = StartCoroutine(StartFallCoroutine());
-        }
+        if (this == null || fallCoroutine != null || !isStart) return;
+        fallCoroutine = StartCoroutine(StartFallCoroutine());
     }
 
     IEnumerator StartFallCoroutine()
     {
         yield return new WaitForSeconds(1.5f);
+        if (this == null) yield break;
         rb.gravityScale = 3f;
     }
 
     void characterNonFall()
     {
+        if (this == null) return;
         if (fallCoroutine != null)
         {
             StopCoroutine(fallCoroutine);
@@ -216,16 +223,20 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterStart()
     {
+        if (this == null) return;
         gameObject.transform.DOMoveY(4.24f, .5f).OnComplete(() =>
         {
+            if (this == null) return;
             defaultYPosition = gameObject.transform.position.y;
             StartGame();
-        }).SetTarget(this); 
+        }).SetTarget(this);
     }
 
     async void StartGame()
     {
+        if (this == null) return;
         await Task.Delay(2000);
+        if (this == null) return;
         isStart = true;
         EventTrigger();
         EnemyComeAndGameStart?.Invoke();
