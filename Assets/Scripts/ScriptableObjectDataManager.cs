@@ -80,7 +80,6 @@ public class ScriptableObjectDataManager : MonoBehaviour
             buttonData.isWear = soClothe.isWear;
         }
 
-        // Update currency data
         for (int i = 0; i < CoinValue.Amount.Count; i++)
         {
             if (i >= currencyData.Amount.Count)

@@ -9,6 +9,7 @@ TagManager:
   - enemy
   - killer
   - lava
+  - fallground
   layers:
   - Default
   - TransparentFX

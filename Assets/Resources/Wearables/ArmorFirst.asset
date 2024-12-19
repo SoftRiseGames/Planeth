@@ -18,7 +18,7 @@ MonoBehaviour:
   ObjectMainFeatureValue: 0
   MaterialRequirement: 
   WearableType: 2
-  isTaken: 0
+  isTaken: 1
   isWear: 0
   RequirementItem: 0a0000000500000000000000
   Rockethandle: {fileID: 0}

@@ -7,6 +7,7 @@ public class CharacterDedectionControl : MonoBehaviour
     public static Action isEnemyCollide;
     public static Action isEnemyDecreasingOurhealth;
     public static Action isEnemyIncreasinghealth;
+    public static Action isCollideLava;
     public static Action isEnemysDecreasingHealth;
     
     private void OnCollisionEnter2D(Collision2D collision)
@@ -31,6 +32,10 @@ public class CharacterDedectionControl : MonoBehaviour
                 }
                 else
                     return;
+            }
+            else if(collision.gameObject.tag == "fallground")
+            {
+                isCollideLava?.Invoke();
             }
           
         }

@@ -8,6 +8,7 @@
 
 //Paralarýn Liste Index Numarasý
     //0 Coin
-    //1 for Iron
-    //2 for Gold
-    //3 for hardened steel
+    //1 for leather
+    //2 for Iron
+    //3 for Gold
+    //4 for hardened steel

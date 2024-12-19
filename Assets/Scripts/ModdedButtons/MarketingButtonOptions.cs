@@ -52,7 +52,6 @@ public class MarketingButtonOptions : MonoBehaviour
         {
             if (i >= ButtonSettingObject.RequirementItem[CheckerInt])
             {
-                Debug.Log("buyukveesit");
                 CheckerInt = CheckerInt + 1;
             }
             else
