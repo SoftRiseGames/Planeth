@@ -15,8 +15,6 @@ public class ScriptableObjectDataManager : MonoBehaviour
     public SO_ValueMaker CoinValue;
     public EquippedItem ItemHolder;
 
-    string equippedDataStr;
-    string DataStr;
     private void Awake()
     {
         savePath = Path.Combine(Application.dataPath, "Datas.json");
@@ -31,24 +29,10 @@ public class ScriptableObjectDataManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-        if (File.Exists(equippedDataPath))
-        {
-            equippedDataStr = File.ReadAllText(equippedDataPath);
-            equippedLister = JsonUtility.FromJson<EquippedLister>(equippedDataStr);
+            return;
         }
 
-        if (File.Exists(savePath))
-        {
-            DataStr = File.ReadAllText(savePath);
-            buttonDataList = JsonUtility.FromJson<ButtonDataList>(DataStr);
-        }
-       
-
-    }
-
-    private void Start()
-    {
+        LoadButtonData();
         LoadEquippedData();
     }
 
@@ -73,28 +57,46 @@ public class ScriptableObjectDataManager : MonoBehaviour
 
     public class CurrencyData
     {
-        public List<int> Amount;
+        public List<int> Amount = new List<int>();
     }
 
     public void SaveData(So_Clothe_Settings soClothe)
     {
-        LoadButtonData();
+        var buttonData = buttonDataList.buttonDatas.Find(data => data.isName == soClothe.name);
 
-        ButtonData buttonData = new ButtonData
+        if (buttonData == null)
         {
-            isName = soClothe.name,
-            isTaken = soClothe.isTaken,
-            isWear = soClothe.isWear
-        };
-        buttonDataList.buttonDatas.Add(buttonData);
-        for(int i = 0;i<CoinValue.Amount.Count; i++)
-        {
-            currencyData.Amount[i] = CoinValue.Amount[i];
+            buttonData = new ButtonData
+            {
+                isName = soClothe.name,
+                isTaken = soClothe.isTaken,
+                isWear = soClothe.isWear
+            };
+            buttonDataList.buttonDatas.Add(buttonData);
         }
-       
+        else
+        {
+            buttonData.isTaken = soClothe.isTaken;
+            buttonData.isWear = soClothe.isWear;
+        }
+
+        // Update currency data
+        for (int i = 0; i < CoinValue.Amount.Count; i++)
+        {
+            if (i >= currencyData.Amount.Count)
+            {
+                currencyData.Amount.Add(CoinValue.Amount[i]);
+            }
+            else
+            {
+                currencyData.Amount[i] = CoinValue.Amount[i];
+            }
+        }
+
         UpdateEquippedData();
         WriteToJson();
     }
+
     private void UpdateEquippedData()
     {
         equippedLister.EquippedDataNames.Clear();
@@ -107,8 +109,8 @@ public class ScriptableObjectDataManager : MonoBehaviour
     public void WriteToJson()
     {
         File.WriteAllText(savePath, JsonUtility.ToJson(buttonDataList, true));
-        File.WriteAllText(coinSavePath, JsonUtility.ToJson(currencyData));
-        File.WriteAllText(equippedDataPath, JsonUtility.ToJson(equippedLister));
+        File.WriteAllText(coinSavePath, JsonUtility.ToJson(currencyData, true));
+        File.WriteAllText(equippedDataPath, JsonUtility.ToJson(equippedLister, true));
     }
 
     public void LoadButtonData()
@@ -120,7 +122,21 @@ public class ScriptableObjectDataManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No existing data file found, starting fresh.");
+            Debug.Log("No existing button data file found, starting fresh.");
+        }
+
+        if (File.Exists(coinSavePath))
+        {
+            string coinJson = File.ReadAllText(coinSavePath);
+            currencyData = JsonUtility.FromJson<CurrencyData>(coinJson);
+
+            // Update CoinValue's Amount from loaded data
+            CoinValue.Amount.Clear();
+            CoinValue.Amount.AddRange(currencyData.Amount);
+        }
+        else
+        {
+            Debug.Log("No existing currency data file found, starting fresh.");
         }
     }
 
@@ -128,48 +144,33 @@ public class ScriptableObjectDataManager : MonoBehaviour
     {
         if (File.Exists(equippedDataPath))
         {
-            
+            string equippedJson = File.ReadAllText(equippedDataPath);
+            equippedLister = JsonUtility.FromJson<EquippedLister>(equippedJson);
+
             ItemHolder.EquippedData.Clear();
-            int i = 0;
             foreach (string itemName in equippedLister.EquippedDataNames)
             {
                 So_Clothe_Settings item = Resources.Load<So_Clothe_Settings>("Wearables/" + itemName);
-               
                 if (item != null)
                 {
                     item.isTaken = true;
-
-                    if (itemName == buttonDataList.buttonDatas[i].isName && buttonDataList.buttonDatas[i].isWear == true)
-                        item.isWear = true;
-                    else
-                        item.isWear = false;
-                    
-                    
+                    item.isWear = buttonDataList.buttonDatas.Exists(data => data.isName == itemName && data.isWear);
                     ItemHolder.EquippedData.Add(item);
                 }
                 else
                 {
                     Debug.LogWarning($"Item {itemName} not found in Resources.");
                 }
-                i = i + 1;
-                SO_ValueMaker ValueItem = Resources.Load<SO_ValueMaker>("Values/" + "GameTakenTotalValue");
-                for (int CoinIndexInt = 0; i < coinSavePath.Length; i++)
-                {
-                    ValueItem.Amount[CoinIndexInt] = coinSavePath[CoinIndexInt];
-                }
-
             }
         }
         else
         {
-            Debug.Log("No existing data file found, starting fresh.");
+            Debug.Log("No existing equipped data file found, starting fresh.");
         }
     }
 
     public void UpdateSavedData(So_Clothe_Settings soClothe)
     {
-        LoadButtonData();
-
         var buttonData = buttonDataList.buttonDatas.Find(data => data.isName == soClothe.name);
 
         if (buttonData != null)
@@ -186,6 +187,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             buttonDataList.buttonDatas.Clear();
+            WriteToJson();
         }
     }
 }
