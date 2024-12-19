@@ -2621,7 +2621,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.05
+  m_fontSize: 42
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3754,7 +3754,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.35
+  m_fontSize: 47.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4485,7 +4485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonDataList:
     buttonDatas: []
-  CoinValue: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  CoinValue: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
 --- !u!4 &1518892719
 Transform:
@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48.1
+  m_fontSize: 48.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

@@ -87,13 +87,13 @@ public class ScriptableObjectDataManager : MonoBehaviour
             isWear = soClothe.isWear
         };
         buttonDataList.buttonDatas.Add(buttonData);
-        currencyData.Amount = CoinValue.Amount;
+        for(int i = 0;i<CoinValue.Amount.Count; i++)
+        {
+            currencyData.Amount[i] = CoinValue.Amount[i];
+        }
+       
         UpdateEquippedData();
         WriteToJson();
-    }
-    public void CoinSave()
-    {
-
     }
     private void UpdateEquippedData()
     {
@@ -152,6 +152,11 @@ public class ScriptableObjectDataManager : MonoBehaviour
                     Debug.LogWarning($"Item {itemName} not found in Resources.");
                 }
                 i = i + 1;
+                SO_ValueMaker ValueItem = Resources.Load<SO_ValueMaker>("Values/" + "GameTakenTotalValue");
+                for (int CoinIndexInt = 0; i < coinSavePath.Length; i++)
+                {
+                    ValueItem.Amount[CoinIndexInt] = coinSavePath[CoinIndexInt];
+                }
 
             }
         }
