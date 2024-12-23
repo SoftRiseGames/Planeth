@@ -64,7 +64,6 @@ public class RawMateraiStore : MonoBehaviour
             {
                 GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.MaterialRequipment[i];
             }
-            GetComponent<Button>().interactable = false;
             ScriptableObjectDataManager.Instance.SaveRawMaterialData(ButtonSettingObject);
 
         }

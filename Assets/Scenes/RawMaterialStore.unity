@@ -175,7 +175,7 @@ MonoBehaviour:
   ObjectName: {fileID: 0}
   background: {fileID: 0}
   Skin: {fileID: 0}
-  GameTotalCoin: {fileID: 0}
+  GameTotalCoin: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
 --- !u!114 &26093161
 MonoBehaviour:
   m_ObjectHideFlags: 0
