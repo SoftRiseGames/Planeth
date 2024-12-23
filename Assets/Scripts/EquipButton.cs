@@ -38,6 +38,13 @@ public class EquipButton : MonoBehaviour
         ScriptableObjectDataManager.Instance.UpdateSavedData(clothes);
 
     }
+    public void isUpgrade()
+    {
+        if(clothes.ObjectUpgradeIndex<clothes.ObjectMainFeatureValue.Count)
+            clothes.ObjectUpgradeIndex = clothes.ObjectUpgradeIndex + 1;
+
+        ScriptableObjectDataManager.Instance.UpdateSavedData(clothes);
+    }
 
 
     void RefreshButton()
