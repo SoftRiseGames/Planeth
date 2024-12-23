@@ -42,6 +42,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         public string isName;
         public bool isTaken;
         public bool isWear;
+        public int ObjectUpgaradeIndex; // Upgrade indeksi
     }
 
     [System.Serializable]
@@ -70,7 +71,8 @@ public class ScriptableObjectDataManager : MonoBehaviour
             {
                 isName = soClothe.name,
                 isTaken = soClothe.isTaken,
-                isWear = soClothe.isWear
+                isWear = soClothe.isWear,
+                ObjectUpgaradeIndex = soClothe.ObjectUpgradeIndex
             };
             buttonDataList.buttonDatas.Add(buttonData);
         }
@@ -78,6 +80,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             buttonData.isTaken = soClothe.isTaken;
             buttonData.isWear = soClothe.isWear;
+            buttonData.ObjectUpgaradeIndex = soClothe.ObjectUpgradeIndex;
         }
 
         for (int i = 0; i < CoinValue.Amount.Count; i++)
@@ -129,7 +132,6 @@ public class ScriptableObjectDataManager : MonoBehaviour
             string coinJson = File.ReadAllText(coinSavePath);
             currencyData = JsonUtility.FromJson<CurrencyData>(coinJson);
 
-            // Update CoinValue's Amount from loaded data
             CoinValue.Amount.Clear();
             CoinValue.Amount.AddRange(currencyData.Amount);
         }
@@ -153,7 +155,14 @@ public class ScriptableObjectDataManager : MonoBehaviour
                 if (item != null)
                 {
                     item.isTaken = true;
-                    item.isWear = buttonDataList.buttonDatas.Exists(data => data.isName == itemName && data.isWear);
+
+                    var buttonData = buttonDataList.buttonDatas.Find(data => data.isName == itemName);
+                    if (buttonData != null)
+                    {
+                        item.isWear = buttonData.isWear;
+                        item.ObjectUpgradeIndex = buttonData.ObjectUpgaradeIndex;
+                    }
+
                     ItemHolder.EquippedData.Add(item);
                 }
                 else
@@ -176,6 +185,18 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             buttonData.isTaken = soClothe.isTaken;
             buttonData.isWear = soClothe.isWear;
+            buttonData.ObjectUpgaradeIndex = soClothe.ObjectUpgradeIndex; // ObjectUpgradeIndex güncelleniyor
+        }
+        else
+        {
+            buttonData = new ButtonData
+            {
+                isName = soClothe.name,
+                isTaken = soClothe.isTaken,
+                isWear = soClothe.isWear,
+                ObjectUpgaradeIndex = soClothe.ObjectUpgradeIndex
+            };
+            buttonDataList.buttonDatas.Add(buttonData);
         }
 
         WriteToJson();

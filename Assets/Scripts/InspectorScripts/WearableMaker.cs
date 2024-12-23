@@ -15,8 +15,7 @@ public class WearableMaker : OdinEditorWindow
     public Sprite Background;
     public Sprite Skin;
     [Title("Boosters")]
-    public int ObjectDoubler;
-    public int ClickBooster;
+    public List<int> ObjectMainFeatureValue;
 
     [Title("ObjectName")]
     public string ObjectName;
@@ -49,7 +48,7 @@ public class WearableMaker : OdinEditorWindow
         newWearable.Background = Background[0];
         newWearable.Skin = Skin;
         */
-        newWearable.ObjectMainFeatureValue = ObjectDoubler;
+        newWearable.ObjectMainFeatureValue = ObjectMainFeatureValue;
         newWearable.MaterialRequirement = MaterialRequirement;
         newWearable.ObjectName = ObjectName;
         newWearable.Skin = Skin;
@@ -92,7 +91,8 @@ public class WearableMaker : OdinEditorWindow
                 if (loadedWearable != null)
                 {
 
-                    ObjectDoubler = loadedWearable.ObjectMainFeatureValue;
+                    ObjectMainFeatureValue = loadedWearable.ObjectMainFeatureValue;
+                    
                     MaterialRequirement = loadedWearable.MaterialRequirement;
                     ObjectName = loadedWearable.ObjectName;
                     Background = loadedWearable.Background;
@@ -118,7 +118,7 @@ public class WearableMaker : OdinEditorWindow
     private void UpdateObject()
     {
       
-        loadedWearable.ObjectMainFeatureValue = ObjectDoubler;
+        loadedWearable.ObjectMainFeatureValue = ObjectMainFeatureValue;
         loadedWearable.MaterialRequirement = MaterialRequirement;
         loadedWearable.ObjectName = ObjectName;
         loadedWearable.Skin = Skin;

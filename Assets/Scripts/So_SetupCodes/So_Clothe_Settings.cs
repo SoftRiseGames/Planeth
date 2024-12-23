@@ -9,12 +9,13 @@ public class So_Clothe_Settings : ScriptableObject
     public Sprite Background;
     public Sprite Skin;
     public string ObjectName;
-    public int ObjectMainFeatureValue;
+    public List<int> ObjectMainFeatureValue;
     public List<int> MaterialRequirement;
     public ObjectType WearableType;
     public bool isTaken;
     public bool isWear;
     public List<int> RequirementItem;
+    public int ObjectUpgradeIndex;
 
 
     [Header("After Take Object")]
@@ -37,6 +38,9 @@ public class So_Clothe_Settings : ScriptableObject
 
     [Header("After Take Object")]
     public int MaxSpeedIncreaseValue;
+
+
+
 
 
 #if UNITY_EDITOR

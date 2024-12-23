@@ -24,10 +24,7 @@ public class MarketingButtonOptions : MonoBehaviour
         ifTake();
         ReCreate();
     }
-    private void Update()
-    {
-       
-    }
+   
     void ifTake()
     {
         if (ButtonSettingObject.isTaken == true)
