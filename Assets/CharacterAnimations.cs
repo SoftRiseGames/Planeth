@@ -11,6 +11,7 @@ public class CharacterAnimations : MonoBehaviour
     private void OnEnable()
     {
         Controlls.IsNonActionCharater += CharacterAttack;
+        Controlls.Launch += RocketAnimation;
         CharacterDedectionControl.isEnemysDecreasingHealth += CharacterDamageEnemy;
         CharacterDedectionControl.isEnemyDecreasingOurhealth += CharacterUnDamageEnemy;
         CharacterDedectionControl.isCollideLava += CharacterCollideLava;
@@ -20,6 +21,7 @@ public class CharacterAnimations : MonoBehaviour
     private void OnDisable()
     {
         Controlls.IsNonActionCharater -= CharacterAttack;
+        Controlls.Launch -= RocketAnimation;
         CharacterDedectionControl.isEnemysDecreasingHealth -= CharacterDamageEnemy;
         CharacterDedectionControl.isEnemyDecreasingOurhealth -= CharacterUnDamageEnemy;
         CharacterDedectionControl.isCollideLava -= CharacterCollideLava;
@@ -42,6 +44,14 @@ public class CharacterAnimations : MonoBehaviour
         animator.SetBool("isReposition", false);
         animator.SetBool("isFallGroundCollide", false);
 
+    }
+    public void RocketAnimation()
+    {
+        animator.SetBool("isRocket", true);
+    }
+    public void RocketOffAnimation()
+    {
+        animator.SetBool("isRocket", false);
     }
 
 

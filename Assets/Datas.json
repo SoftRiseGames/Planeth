@@ -3,8 +3,7 @@
         {
             "isName": "ArmorFirst",
             "isTaken": true,
-            "isWear": false,
-            "ObjectUpgaradeIndex": 4
+            "isWear": false
         }
     ]
 }

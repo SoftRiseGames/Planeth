@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2369957696539473523, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00091552734
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168144048258623398, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_Pivot.x
@@ -476,7 +476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4177812579799021925, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00091552734
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4413517353253414520, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_SizeDelta.y
@@ -484,7 +484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4413517353253414520, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00091552734
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5742181931233468817, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_SizeDelta.y
@@ -492,7 +492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5742181931233468817, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00091552734
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5768602648288401735, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_Name
@@ -504,7 +504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5824458388311340696, guid: 17d4c261a4fc44f4d99aece47f37eb89, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00091552734
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonDataList:
     buttonDatas: []
-  CoinValue: {fileID: 11400000, guid: 6978cf227526cbe4c99bc0c6fbb68a5c, type: 2}
+  CoinValue: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
 --- !u!4 &830365893
 Transform:

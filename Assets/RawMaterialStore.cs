@@ -4,15 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class MarketingButtonOptions : MonoBehaviour
+public class RawMateraiStore : MonoBehaviour
 {
-    public So_Clothe_Settings ButtonSettingObject;
-    [SerializeField] EquippedItem ItemHolder;
+    public So_RawMaterialScript ButtonSettingObject;
     [SerializeField] TextMeshProUGUI ObjectName;
     [SerializeField] Image background;
     [SerializeField] Image Skin;
     [SerializeField] SO_ValueMaker GameTotalCoin;
-    public bool isTaken;
+   
 
     private void Awake()
     {
@@ -20,21 +19,21 @@ public class MarketingButtonOptions : MonoBehaviour
     }
     private void Start()
     {
-       
+
         ifTake();
         ReCreate();
     }
     private void Update()
     {
-       
+
     }
     void ifTake()
     {
-        if (ButtonSettingObject.isTaken == true)
+        if (ButtonSettingObject.ObjectCount == 0)
         {
             gameObject.GetComponent<Button>().interactable = false;
         }
-        
+
     }
     public void ReCreate()
     {
@@ -45,12 +44,12 @@ public class MarketingButtonOptions : MonoBehaviour
 
     public void TakeItem()
     {
-        
+
+        ButtonSettingObject.ObjectCount = ButtonSettingObject.ObjectCount - 1;
         int CheckerInt = 0;
-      
-        foreach(int i in GameTotalCoin.Amount)
+        foreach (int i in GameTotalCoin.Amount)
         {
-            if (i >= ButtonSettingObject.RequirementItem[CheckerInt])
+            if (i >= ButtonSettingObject.MaterialRequipment[CheckerInt])
             {
                 CheckerInt = CheckerInt + 1;
             }
@@ -60,19 +59,18 @@ public class MarketingButtonOptions : MonoBehaviour
         }
         if (GameTotalCoin.Amount.Count == CheckerInt)
         {
-            this.ButtonSettingObject.isTaken = true;
-            for (int i = 0; i< ButtonSettingObject.RequirementItem.Count; i++)
+            
+            for (int i = 0; i < ButtonSettingObject.MaterialRequipment.Count; i++)
             {
-                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.RequirementItem[i];
+                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.MaterialRequipment[i];
             }
             GetComponent<Button>().interactable = false;
-            ItemHolder.EquippedData.Add(this.ButtonSettingObject);
-            ScriptableObjectDataManager.Instance.SaveData(ButtonSettingObject);
-         
+            ScriptableObjectDataManager.Instance.SaveRawMaterialData(ButtonSettingObject);
+
         }
-        
-      
+
+
     }
 
-    
+
 }
