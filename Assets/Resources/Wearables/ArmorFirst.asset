@@ -15,12 +15,12 @@ MonoBehaviour:
   Background: {fileID: 7482667652216324306, guid: 35cbd45a4e6a43142845a055ae067cfd, type: 3}
   Skin: {fileID: -1880120661550918566, guid: e5a445aff202fea45b7af2d716ec72b4, type: 3}
   ObjectName: "Basit Z\u0131rh"
-  ObjectMainFeatureValue: 
+  ObjectMainFeatureValue: 050000000a0000000f00000014000000
   MaterialRequirement: 
   WearableType: 2
   isTaken: 1
   isWear: 0
-  RequirementItem: 0a0000000500000000000000
+  RequirementItem: []
   ObjectUpgradeIndex: 0
   Rockethandle: {fileID: 0}
   RocketBackground: {fileID: 0}

@@ -47,7 +47,7 @@ public class MarketingButtonOptions : MonoBehaviour
       
         foreach(int i in GameTotalCoin.Amount)
         {
-            if (i >= ButtonSettingObject.RequirementItem[CheckerInt])
+            if (i >= ButtonSettingObject.RequirementItem[ButtonSettingObject.ObjectUpgradeIndex].RequirementList[CheckerInt])
             {
                 CheckerInt = CheckerInt + 1;
             }
@@ -58,9 +58,9 @@ public class MarketingButtonOptions : MonoBehaviour
         if (GameTotalCoin.Amount.Count == CheckerInt)
         {
             this.ButtonSettingObject.isTaken = true;
-            for (int i = 0; i< ButtonSettingObject.RequirementItem.Count; i++)
+            for (int i = 0; i< ButtonSettingObject.RequirementItem[ButtonSettingObject.ObjectUpgradeIndex].RequirementList.Count; i++)
             {
-                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.RequirementItem[i];
+                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.RequirementItem[ButtonSettingObject.ObjectUpgradeIndex].RequirementList[CheckerInt];
             }
             GetComponent<Button>().interactable = false;
             ItemHolder.EquippedData.Add(this.ButtonSettingObject);

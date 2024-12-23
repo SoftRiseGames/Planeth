@@ -14,7 +14,7 @@ public class So_Clothe_Settings : ScriptableObject
     public ObjectType WearableType;
     public bool isTaken;
     public bool isWear;
-    public List<int> RequirementItem;
+    public List<ObjectRequirementClass> RequirementItem;
     public int ObjectUpgradeIndex;
 
 
@@ -94,4 +94,10 @@ public class So_Clothe_Settings : ScriptableObject
         }
     }
 #endif
+}
+
+[System.Serializable]
+public class ObjectRequirementClass
+{
+    public List<int> RequirementList;
 }
