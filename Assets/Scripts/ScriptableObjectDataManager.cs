@@ -217,7 +217,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
                 currencyData.Amount[i] = CoinValue.Amount[i];
             }
         }
-        WriteToJson(); 
+        WriteRawMaterialDataToJson(); 
     }
 
     private void WriteRawMaterialDataToJson()
