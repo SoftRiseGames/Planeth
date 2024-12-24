@@ -129,6 +129,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
         File.WriteAllText(savePath, JsonUtility.ToJson(buttonDataList, true));
         File.WriteAllText(coinSavePath, JsonUtility.ToJson(currencyData, true));
         File.WriteAllText(equippedDataPath, JsonUtility.ToJson(equippedLister, true));
+        File.WriteAllText(rawMaterialDataPath, JsonUtility.ToJson(rawMaterialDataList, true));
     }
 
     public void LoadButtonData()
@@ -205,7 +206,18 @@ public class ScriptableObjectDataManager : MonoBehaviour
             materialData.ObjectCount = rawMaterial.ObjectCount;
         }
 
-        WriteRawMaterialDataToJson();
+        for (int i = 0; i < CoinValue.Amount.Count; i++)
+        {
+            if (i >= currencyData.Amount.Count)
+            {
+                currencyData.Amount.Add(CoinValue.Amount[i]);
+            }
+            else
+            {
+                currencyData.Amount[i] = CoinValue.Amount[i];
+            }
+        }
+        WriteToJson(); 
     }
 
     private void WriteRawMaterialDataToJson()
