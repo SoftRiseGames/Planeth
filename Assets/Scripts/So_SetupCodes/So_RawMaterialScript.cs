@@ -9,5 +9,13 @@ public class So_RawMaterialScript : ScriptableObject
     public string ObjectName;
     public int ObjectCount;
     public List<int> MaterialRequipment;
-  
+    public RawItemTypes rawitem;
+    public int EarnPerItem;
+}
+public enum RawItemTypes
+{
+    leather,
+    iron,
+    gold,
+    HardenedSteel
 }

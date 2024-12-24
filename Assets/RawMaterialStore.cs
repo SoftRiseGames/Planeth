@@ -11,7 +11,7 @@ public class RawMateraiStore : MonoBehaviour
     [SerializeField] Image background;
     [SerializeField] Image Skin;
     [SerializeField] SO_ValueMaker GameTotalCoin;
-   
+    [SerializeField] int HowManyTake;
 
     private void Awake()
     {
@@ -60,11 +60,22 @@ public class RawMateraiStore : MonoBehaviour
         if (GameTotalCoin.Amount.Count == CheckerInt)
         {
 
-            ButtonSettingObject.ObjectCount = ButtonSettingObject.ObjectCount - 1;
+            ButtonSettingObject.ObjectCount = ButtonSettingObject.ObjectCount - HowManyTake;
+
+            if (ButtonSettingObject.rawitem == RawItemTypes.leather)
+                GameTotalCoin.Amount[1] = GameTotalCoin.Amount[1] + (ButtonSettingObject.EarnPerItem * HowManyTake);
+            else if (ButtonSettingObject.rawitem == RawItemTypes.iron)
+                GameTotalCoin.Amount[2] = GameTotalCoin.Amount[2] + (ButtonSettingObject.EarnPerItem * HowManyTake);
+            else if (ButtonSettingObject.rawitem == RawItemTypes.gold)
+                GameTotalCoin.Amount[3] = GameTotalCoin.Amount[3] + (ButtonSettingObject.EarnPerItem * HowManyTake);
+            else if (ButtonSettingObject.rawitem == RawItemTypes.HardenedSteel)
+                GameTotalCoin.Amount[4] = GameTotalCoin.Amount[4] + (ButtonSettingObject.EarnPerItem * HowManyTake);
+
+
 
             for (int i = 0; i < ButtonSettingObject.MaterialRequipment.Count; i++)
             {
-                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.MaterialRequipment[i];
+                GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - (ButtonSettingObject.MaterialRequipment[i]*HowManyTake);
             }
             ScriptableObjectDataManager.Instance.SaveRawMaterialData(ButtonSettingObject);
             
