@@ -59,7 +59,9 @@ public class RawMateraiStore : MonoBehaviour
         }
         if (GameTotalCoin.Amount.Count == CheckerInt)
         {
-            
+
+            ButtonSettingObject.ObjectCount = ButtonSettingObject.ObjectCount - 1;
+
             for (int i = 0; i < ButtonSettingObject.MaterialRequipment.Count; i++)
             {
                 GameTotalCoin.Amount[i] = GameTotalCoin.Amount[i] - ButtonSettingObject.MaterialRequipment[i];

@@ -219,6 +219,12 @@ public class ScriptableObjectDataManager : MonoBehaviour
         {
             string json = File.ReadAllText(rawMaterialDataPath);
             rawMaterialDataList = JsonUtility.FromJson<RawMaterialDataList>(json);
+
+            foreach (var i in rawMaterialDataList.rawMaterials)
+            {
+                So_RawMaterialScript RawMaterial = Resources.Load<So_RawMaterialScript>("RawMaterials/" + i.MaterialName);
+                RawMaterial.ObjectCount = i.ObjectCount;
+            }
         }
         else
         {

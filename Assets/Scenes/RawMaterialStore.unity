@@ -781,7 +781,7 @@ GameObject:
   - component: {fileID: 1240832502}
   - component: {fileID: 1240832501}
   - component: {fileID: 1240832500}
-  - component: {fileID: 1240832499}
+  - component: {fileID: 1240832503}
   m_Layer: 5
   m_Name: StoreButton(Clone)
   m_TagString: Untagged
@@ -807,28 +807,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 399.99997, y: 1024.9663}
+  m_AnchoredPosition: {x: 399.99997, y: 254.87805}
   m_SizeDelta: {x: 750, y: 750}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1240832499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240832497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 397385703e6cef94aab9af14c6b82747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonSettingObject: {fileID: 11400000, guid: 52d3c7d5e599c38468e290cc6dfaef40, type: 2}
-  ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
-  ObjectName: {fileID: 1378073712}
-  background: {fileID: 1240832501}
-  Skin: {fileID: 970347902}
-  GameTotalCoin: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
-  isTaken: 0
 --- !u!114 &1240832500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -873,8 +854,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1240832499}
-        m_TargetAssemblyTypeName: MarketingButtonOptions, Assembly-CSharp
+      - m_Target: {fileID: 1240832503}
+        m_TargetAssemblyTypeName: RawMateraiStore, Assembly-CSharp
         m_MethodName: TakeItem
         m_Mode: 1
         m_Arguments:
@@ -923,6 +904,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240832497}
   m_CullTransparentMesh: 1
+--- !u!114 &1240832503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240832497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989e3b74ff71efb4995493636156e9cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonSettingObject: {fileID: 11400000, guid: e1ef932c1d01a5b4f8e6ca26760e097a, type: 2}
+  ObjectName: {fileID: 1378073712}
+  background: {fileID: 1240832501}
+  Skin: {fileID: 970347902}
+  GameTotalCoin: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
 --- !u!1 &1378073710
 GameObject:
   m_ObjectHideFlags: 0
