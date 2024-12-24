@@ -921,6 +921,7 @@ MonoBehaviour:
   background: {fileID: 1240832501}
   Skin: {fileID: 970347902}
   GameTotalCoin: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
+  HowManyTake: 0
 --- !u!1 &1378073710
 GameObject:
   m_ObjectHideFlags: 0

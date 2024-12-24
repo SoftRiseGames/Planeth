@@ -15,5 +15,7 @@ MonoBehaviour:
   Background: {fileID: 0}
   Skin: {fileID: 0}
   ObjectName: dadada
-  ObjectCount: 90
+  ObjectCount: 84
   MaterialRequipment: 0a0000000000000000000000
+  rawitem: 0
+  EarnPerItem: 0
