@@ -15,7 +15,13 @@ public class EquipButton : MonoBehaviour
         else
             gameObject.GetComponent<Button>().interactable = true;
     }
-  
+
+    private void Start()
+    {
+        GetComponent<Image>().sprite = clothes.Background;
+        transform.GetChild(0).GetComponent<Image>().sprite = clothes.Skin;
+    }
+
     private void Update()
     {
         RefreshButton();

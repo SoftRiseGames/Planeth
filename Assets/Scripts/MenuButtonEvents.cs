@@ -4,6 +4,7 @@ using System.Collections;
 using System;
 public class MenuButtonEvents : MonoBehaviour
 {
+
     //Ana oyun sahnesi 0 
     // store için 1
     // alýnanlar için 2
@@ -16,9 +17,13 @@ public class MenuButtonEvents : MonoBehaviour
 
     string ActivatedAsyncSceneByName;
     public static Action isTransition;
+    public static Action isStorePopUp;
+    public static Action isEquippedPopUp;
     public void StoreMenu()
     {
-        StartCoroutine(LoadAsyncScene("Store"));
+        //StartCoroutine(LoadAsyncScene("Store"));
+        isStorePopUp?.Invoke();
+
     }
     private void Start()
     {
@@ -30,6 +35,7 @@ public class MenuButtonEvents : MonoBehaviour
     public void EquippedMenu()
     {
         StartCoroutine(LoadAsyncScene("EquippedItem"));
+        
     }
     public void MainGame()
     {
@@ -41,7 +47,7 @@ public class MenuButtonEvents : MonoBehaviour
     }
     public void CharacterCustomizationScene()
     {
-        SceneManager.LoadScene(0);
+        isEquippedPopUp?.Invoke();
     }
     public void CharacterCustomizationHelmet()
     {

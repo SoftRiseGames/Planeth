@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce97998998bdc384db7fcadba325ab1a, type: 3}
-  m_Name: EquippedItemHolder
+  m_Script: {fileID: 11500000, guid: 642dc213e4ff39e4e8e8efa0835425c5, type: 3}
+  m_Name: GameTakenTotalValue
   m_EditorClassIdentifier: 
-  EquippedData:
-  - {fileID: 11400000, guid: 52d3c7d5e599c38468e290cc6dfaef40, type: 2}
+  _amount: 0000000000000000000000000000000000000000
