@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Store.unity
+    path: Assets/Scenes/RawItemStore.unity
     guid: 6d9a5f5fecc1eb3478f07fbac816d77c
   - enabled: 1
     path: Assets/Scenes/EquippedItem.unity
