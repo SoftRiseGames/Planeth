@@ -259,7 +259,7 @@ public class ScriptableObjectDataManager : MonoBehaviour
             buttonData.isTaken = soClothe.isTaken;
             buttonData.isWear = soClothe.isWear;
         }
-
+        SaveData(soClothe);
         WriteToJson();
     }
 
