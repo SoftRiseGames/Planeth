@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
   m_Name: SwordFirst
   m_EditorClassIdentifier: 
-  Background: {fileID: 4336526279709279265, guid: a0a42dc3387e31141bc6fb02920434cb, type: 3}
+  Background: {fileID: -8358113870863188520, guid: cbbd54b57d1180a43905260f3899a5f4, type: 3}
   Skin: {fileID: 6914154902746628804, guid: 9501935b755251045b91a1147ad0336f, type: 3}
   ObjectName: "Basit K\u0131l\u0131\xE7"
   ObjectMainFeatureValue: 3
-  price: 0
+  MaterialRequirement: 
   WearableType: 4
   isTaken: 1
   isWear: 1
+  RequirementItem: 
   Rockethandle: {fileID: 0}
   RocketBackground: {fileID: 0}
   RocketMaxSpeed: 0

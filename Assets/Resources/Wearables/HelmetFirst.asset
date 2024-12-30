@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
   m_Name: HelmetFirst
   m_EditorClassIdentifier: 
-  Background: {fileID: 4336526279709279265, guid: a0a42dc3387e31141bc6fb02920434cb, type: 3}
+  Background: {fileID: -8358113870863188520, guid: cbbd54b57d1180a43905260f3899a5f4, type: 3}
   Skin: {fileID: 6943535168657398750, guid: 50fb41eb57e7a8d458d3c0f14af6eac3, type: 3}
   ObjectName: Basit Kask
   ObjectMainFeatureValue: 0
-  price: 0
+  MaterialRequirement: 
   WearableType: 1
   isTaken: 1
   isWear: 1
+  RequirementItem: 
   Rockethandle: {fileID: 0}
   RocketBackground: {fileID: 0}
   RocketMaxSpeed: 0

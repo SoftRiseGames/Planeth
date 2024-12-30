@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0a95273d162b44d8ac1e0923f2f584, type: 3}
   m_Name: ArmorFirst
   m_EditorClassIdentifier: 
-  Background: {fileID: -855298285791758126, guid: 37299ac915e058048a139cdbfa397dd1, type: 3}
-  Skin: {fileID: -2136464288153343608, guid: 37299ac915e058048a139cdbfa397dd1, type: 3}
+  Background: {fileID: -8358113870863188520, guid: cbbd54b57d1180a43905260f3899a5f4, type: 3}
+  Skin: {fileID: 21300000, guid: e5a445aff202fea45b7af2d716ec72b4, type: 3}
   ObjectName: "Basit Z\u0131rh"
   ObjectMainFeatureValue: 0
   MaterialRequirement: 
   WearableType: 2
   isTaken: 1
-  isWear: 0
+  isWear: 1
   RequirementItem: 0a0000000500000000000000
   Rockethandle: {fileID: 0}
   RocketBackground: {fileID: 0}
