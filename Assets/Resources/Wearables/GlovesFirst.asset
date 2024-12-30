@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GlovesFirst
   m_EditorClassIdentifier: 
   Background: {fileID: -8358113870863188520, guid: cbbd54b57d1180a43905260f3899a5f4, type: 3}
-  Skin: {fileID: 0}
+  Skin: {fileID: -9130327353728628328, guid: 15f0301cae929504788edd9446e21845, type: 3}
   ObjectName: 
   ObjectMainFeatureValue: 0
   MaterialRequirement: 
@@ -28,7 +28,7 @@ MonoBehaviour:
   ArmorWearSprite: {fileID: 0}
   ShoesLWearSprite: {fileID: 0}
   ShoesRWearSprite: {fileID: 0}
-  GloveLWearSprite: {fileID: 0}
-  GloveRWearSprite: {fileID: 0}
+  GloveLWearSprite: {fileID: -5167413608083449488, guid: 37299ac915e058048a139cdbfa397dd1, type: 3}
+  GloveRWearSprite: {fileID: -9130327353728628328, guid: 15f0301cae929504788edd9446e21845, type: 3}
   SwordWearSprite: {fileID: 0}
   MaxSpeedIncreaseValue: 0

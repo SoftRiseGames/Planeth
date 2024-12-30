@@ -25,7 +25,7 @@ MonoBehaviour:
   RocketBackground: {fileID: 0}
   RocketMaxSpeed: 0
   HelmetWearSprite: {fileID: 0}
-  ArmorWearSprite: {fileID: -1880120661550918566, guid: e5a445aff202fea45b7af2d716ec72b4, type: 3}
+  ArmorWearSprite: {fileID: 21300000, guid: e5a445aff202fea45b7af2d716ec72b4, type: 3}
   ShoesLWearSprite: {fileID: 0}
   ShoesRWearSprite: {fileID: 0}
   GloveLWearSprite: {fileID: 0}
