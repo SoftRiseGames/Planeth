@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonDataList:
     buttonDatas: []
-  CoinValue: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
+  CoinValue: {fileID: 11400000, guid: 7eba69f6d89f6c04d8cbc8e248e787d3, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
 --- !u!4 &667968438
 Transform:
