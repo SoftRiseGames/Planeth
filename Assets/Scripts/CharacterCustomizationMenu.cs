@@ -30,37 +30,37 @@ public class CharacterCustomizationMenu : MonoBehaviour
                     CustomizationButtons[0].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[0].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[0].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
-                    CharacterVisuals[0].GetComponent<SpriteRenderer>().sprite = equippedItem.HelmetWearSprite;
+                    CharacterVisuals[0].GetComponent<Image>().sprite = equippedItem.HelmetWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Armor)
                 {
                     CustomizationButtons[1].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[1].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[1].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
-                    CharacterVisuals[1].GetComponent<SpriteRenderer>().sprite = equippedItem.ArmorWearSprite;
+                    CharacterVisuals[1].GetComponent<Image>().sprite = equippedItem.ArmorWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Shoes)
                 {
                     CustomizationButtons[2].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[2].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[2].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
-                    CharacterVisuals[2].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = equippedItem.ShoesLWearSprite;
-                    CharacterVisuals[2].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = equippedItem.ShoesRWearSprite;
+                    CharacterVisuals[2].transform.GetChild(0).GetComponent<Image>().sprite = equippedItem.ShoesLWearSprite;
+                    CharacterVisuals[2].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.ShoesRWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Sword)
                 {
                     CustomizationButtons[3].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[3].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[3].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
-                    CharacterVisuals[3].GetComponent<SpriteRenderer>().sprite = equippedItem.SwordWearSprite;
+                    CharacterVisuals[3].GetComponent<Image>().sprite = equippedItem.SwordWearSprite;
                 }
                 else if (equippedItem.WearableType == ObjectType.Glove)
                 {
                     CustomizationButtons[4].GetComponent<Image>().sprite = equippedItem.Background;
                     CustomizationButtons[4].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = equippedItem.ObjectName.ToString();
                     CustomizationButtons[4].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.Skin;
-                    CharacterVisuals[4].transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = equippedItem.GloveLWearSprite;
-                    CharacterVisuals[4].transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = equippedItem.GloveRWearSprite;
+                    CharacterVisuals[4].transform.GetChild(0).GetComponent<Image>().sprite = equippedItem.GloveLWearSprite;
+                    CharacterVisuals[4].transform.GetChild(1).GetComponent<Image>().sprite = equippedItem.GloveRWearSprite;
                 }
             }
            
