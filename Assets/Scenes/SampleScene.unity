@@ -1367,7 +1367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonDataList:
     buttonDatas: []
-  CoinValue: {fileID: 11400000, guid: 09b1a2ccfdb07dc45bfaf5aa3b2a1ec8, type: 2}
+  CoinValue: {fileID: 11400000, guid: 7eba69f6d89f6c04d8cbc8e248e787d3, type: 2}
   ItemHolder: {fileID: 11400000, guid: 5463d5bf974605141902412c9324dbb9, type: 2}
 --- !u!1 &519420028
 GameObject:
@@ -1601,7 +1601,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.70710677, z: -0.70710677, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.83137715, y: 0.83137715, z: 1.6627543}
+  m_LocalScale: {x: 0.9138498, y: 0.9138498, z: 1.8276995}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2015,7 +2015,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -572.8196}
+  m_AnchoredPosition: {x: 200.10475, y: -487.22516}
   m_SizeDelta: {x: 55.321, y: 396.926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &950101802

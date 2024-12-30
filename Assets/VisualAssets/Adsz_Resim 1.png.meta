@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 6d3c2de3c7005c743bb0f13530360176
+guid: 6da0698aaa534a647bbcf66a061a324a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8821300619053577891
-    second: Adsz_Resim_0
+      213: 2411273457216592508
+    second: Adsz_Resim 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Adsz_Resim_0
+      name: Adsz_Resim 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -139,16 +139,16 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 3a63f9ffc2e8b6a70800000000000000
-      internalID: 8821300619053577891
+      spriteID: d394ac1ca7d3e2d42a8c9240f106cb76
+      internalID: -242514434
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adsz_Resim_1
+      name: Adsz_Resim 1_1
       rect:
         serializedVersion: 2
         x: 200
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ac7fcb82b7c7c64ebeebecb89c91543
-      internalID: -2114354360
+      spriteID: 6c5c7b82e2c77114585dd9cbb9d76f45
+      internalID: 418130170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adsz_Resim_2
+      name: Adsz_Resim 1_2
       rect:
         serializedVersion: 2
         x: 400
@@ -185,14 +185,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e984cc1c27e1a149b93309c81410a99
-      internalID: 1948833209
+      spriteID: 8488b1e83c9277044b1bf3e66f95b6cc
+      internalID: -2043042071
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Adsz_Resim_3
+      name: Adsz_Resim 1_3
       rect:
         serializedVersion: 2
         x: 600
@@ -207,8 +207,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e07fe0464d4f8a145bc68f66bff89857
-      internalID: -1076999560
+      spriteID: baccb278f4a7d164683f7e22a946f417
+      internalID: -498366796
       vertices: []
       indices: 
       edges: []
@@ -217,7 +217,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 931f975d2f638ad40b16a6ff2ce29203
+    spriteID: 42e202de8cc12f34eadeaaaec97fa1f0
     internalID: 0
     vertices: []
     indices: 
@@ -227,10 +227,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Adsz_Resim_0: 8821300619053577891
-      Adsz_Resim_1: -2114354360
-      Adsz_Resim_2: 1948833209
-      Adsz_Resim_3: -1076999560
+      Adsz_Resim 1_0: -242514434
+      Adsz_Resim 1_1: 418130170
+      Adsz_Resim 1_2: -2043042071
+      Adsz_Resim 1_3: -498366796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
