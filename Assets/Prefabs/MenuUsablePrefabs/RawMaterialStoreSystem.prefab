@@ -1818,6 +1818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8489353859737896679}
   - component: {fileID: 6407254510442041774}
+  - component: {fileID: -530826223897981041}
   m_Layer: 5
   m_Name: RawMaterialStoreSystem
   m_TagString: Untagged
@@ -1855,6 +1856,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6244804280622565163}
   m_CullTransparentMesh: 1
+--- !u!95 &-530826223897981041
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6244804280622565163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8301190e9efb3004eb5651241e60500c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6475353681035938507
 GameObject:
   m_ObjectHideFlags: 0

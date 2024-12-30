@@ -19,11 +19,34 @@ public class MenuButtonEvents : MonoBehaviour
     public static Action isTransition;
     public static Action isStorePopUp;
     public static Action isEquippedPopUp;
+    public static Action isRawMaterialPopUp;
+
+    public static Action isStorePopUpOff;
+    public static Action isEquippedPopUpOff;
+    public static Action isRawMaterialPopUpOff;
     public void StoreMenu()
     {
         //StartCoroutine(LoadAsyncScene("Store"));
         isStorePopUp?.Invoke();
 
+    }
+
+    public void StoreMenuOff()
+    {
+        isStorePopUpOff?.Invoke();
+    }
+
+    public void RawMaterialMenu()
+    {
+        isRawMaterialPopUp?.Invoke();
+    }
+    public void RawMaterialMenuOff()
+    {
+        isRawMaterialPopUpOff?.Invoke();
+    }
+    public void EquippedManuOff()
+    {
+        isEquippedPopUpOff?.Invoke();
     }
     private void Start()
     {
