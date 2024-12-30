@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4200cb86dcb823b48bd4972f953e1d5a, type: 3}
-  m_Name: dadada
+  m_Name: demir
   m_EditorClassIdentifier: 
-  Background: {fileID: -855298285791758126, guid: 37299ac915e058048a139cdbfa397dd1, type: 3}
-  Skin: {fileID: -5167413608083449488, guid: 37299ac915e058048a139cdbfa397dd1, type: 3}
-  ObjectName: dadada
-  ObjectCount: 100
-  MaterialRequipment: 0a0000000000000000000000
+  Background: {fileID: -855298285791758126, guid: a4fc073cf42a10740af918dce6d3517a, type: 3}
+  Skin: {fileID: -5589664403440696418, guid: a4fc073cf42a10740af918dce6d3517a, type: 3}
+  ObjectName: Demir
+  ObjectCount: 5
+  MaterialRequipment: 0a00000000000000000000000000000000000000
+  rawitem: 0
+  EarnPerItem: 0

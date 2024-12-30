@@ -753,6 +753,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1777726099623050466, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_SizeDelta.y
+      value: -763.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437674977048912457, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437674977048912457, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5651932253255421405, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
@@ -835,9 +843,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6495829103855229709, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8158761895949614585, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
       propertyPath: m_Name
       value: StoreSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 8409764123833350594, guid: eb49f2a44bd4d91469a701e98012cebc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
