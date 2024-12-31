@@ -10,6 +10,7 @@ public class EquipButton : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.GetComponent<EquipButton>().enabled = true;
         if (clothes.isWear == true)
             gameObject.GetComponent<Button>().interactable = false;
         else
@@ -20,6 +21,7 @@ public class EquipButton : MonoBehaviour
     {
         GetComponent<Image>().sprite = clothes.Background;
         transform.GetChild(0).GetComponent<Image>().sprite = clothes.Skin;
+     
     }
 
     private void Update()

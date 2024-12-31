@@ -13,6 +13,8 @@ public class Enemies : MonoBehaviour
     public bool isDamagable;
     public Rigidbody2D rb;
 
+    public SO_ValueMaker value;
+
     float speedX;
     float speedY;
 
@@ -117,6 +119,28 @@ public class Enemies : MonoBehaviour
     void Kill()
     {
         isDeath?.Invoke();
+        int RandomItem = UnityEngine.Random.Range(0, 100);
+        if(RandomItem <= enemies.possibility[4])
+        {
+            value.Amount[4] = enemies.possibility[4];
+        }
+        else if(RandomItem> enemies.possibility[4] && RandomItem <= enemies.possibility[3])
+        {
+            value.Amount[3] = enemies.possibility[3];
+        }
+        else if(RandomItem > enemies.possibility[3] && RandomItem <= enemies.possibility[2])
+        {
+            value.Amount[2] = enemies.possibility[2];
+        }
+        else if(RandomItem > enemies.possibility[2] && RandomItem <= enemies.possibility[1])
+        {
+            value.Amount[1] = enemies.possibility[1];
+        }
+        else
+        {
+            value.Amount[0] = enemies.possibility[0];
+        }
+        
         Destroy(this.gameObject);
     }
     void FallTimerDecrease()

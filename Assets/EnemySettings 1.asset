@@ -21,3 +21,5 @@ MonoBehaviour:
   enemyFallTimer: 10
   EnemyFallSpeed: 100
   EnemyScale: 0.5
+  EarnedAmount: 3200000005000000050000000500000005000000
+  possibility: 64000000460000001e0000000a00000005000000

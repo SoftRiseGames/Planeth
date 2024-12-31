@@ -154,6 +154,7 @@ MonoBehaviour:
   health: 0
   isDamagable: 1
   rb: {fileID: 0}
+  value: {fileID: 11400000, guid: 7eba69f6d89f6c04d8cbc8e248e787d3, type: 2}
 --- !u!50 &1659959630156298668
 Rigidbody2D:
   serializedVersion: 5

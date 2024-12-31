@@ -21,24 +21,23 @@ public class EquippedItemHolderScript : MonoBehaviour
         foreach (GameObject EquippedObject in EquippedItemMenu)
             EquippedObject.SetActive(false);
 
-        EquippedItemMenu[0].SetActive(true);
+        
 
         EquippedItemCount = -1;
+        EquipItemList();
 
-        
 
     }
     private void Start()
     {
-        EquipItemList();
-
+        EquippedItemMenu[0].SetActive(true);
     }
     void EquipItemList()
     {
 
         EquippedItemHolderScript equippeditems = GetComponent<EquippedItemHolderScript>();
 
-        for (int i = 0; i < equippeditems.EquippedItem.EquippedData.Count; i++)
+        for (int i = -1; i < equippeditems.EquippedItem.EquippedData.Count; i++)
         {
             if (i > EquippedItemCount)
             {
