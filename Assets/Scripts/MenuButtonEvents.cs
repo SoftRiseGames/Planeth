@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using UnityEngine.Playables;
 public class MenuButtonEvents : MonoBehaviour
 {
 
@@ -24,11 +25,18 @@ public class MenuButtonEvents : MonoBehaviour
     public static Action isStorePopUpOff;
     public static Action isEquippedPopUpOff;
     public static Action isRawMaterialPopUpOff;
+
+
     public void StoreMenu()
     {
         //StartCoroutine(LoadAsyncScene("Store"));
         isStorePopUp?.Invoke();
 
+    }
+
+    public void EndAnimation()
+    {
+        GameObject.Find("EndAnimation").GetComponent<PlayableDirector>().Play();
     }
 
     public void StoreMenuOff()
